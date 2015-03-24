@@ -1,0 +1,28 @@
+doctype html
+html(lang="en", ng-app="cinema")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title cinema
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    base(href="/")
+    // bower:css
+    link(rel='stylesheet', href='../bower_components/bootstrap/dist/css/bootstrap.css')
+    // endbower
+    link(rel="stylesheet", href="css/main.css")
+  body
+    block content
+    block js
+      // bower:js
+      script(src='bower_components/jquery/dist/jquery.js')
+      script(src='bower_components/angular/angular.js')
+      script(src='bower_components/angular-ui-router/release/angular-ui-router.js')
+      script(src='bower_components/angular-storage/dist/angular-storage.js')
+      script(src='bower_components/angular-jwt/dist/angular-jwt.js')
+      script(src='bower_components/bootstrap/dist/js/bootstrap.js')
+      script(src='bower_components/auth0.js/build/auth0.js')
+      script(src='bower_components/auth0-lock/build/auth0-lock.js')
+      script(src='bower_components/auth0-angular/build/auth0-angular.js')
+      script(src='bower_components/angular-cookies/angular-cookies.js')
+      // endbower
+      script(src="js/app.js")

@@ -1,0 +1,20 @@
+form.form.form_login(ua-signup)
+  .form__title.form__title_center Sign up
+  .form__row
+    img.form__img(src='img/profile.png')
+  .form__row
+    input.form__input(name='first_name', placeholder='First name', type='text')
+  .form__row
+    input.form__input(ua-is-email, name='login', placeholder='Email', type='text')
+  .form__row
+    input.form__input(name='password', placeholder='Password', type='password')
+  .form__row
+    button.btn.btn_block.hvr-ripple-out(type='submit') Sign Up
+  .form__footer
+    p.form__error(ng-show='error') {{ error.message }}
+    .form__info
+      | Don't have an account!&nbsp;
+      a.form__link(ui-sref='login') Log in
+  .loading-bar(ng-show='loading')
+    img.loading-bar__img(src='img/ajax-loader.gif')
+

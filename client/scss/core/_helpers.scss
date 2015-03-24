@@ -1,0 +1,31 @@
+@function em($pixels, $context: $browser-context) {
+    @return #{$pixels / $context}em;
+}
+
+%horizontal-align{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+};
+
+%align{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+};
+
+%clearfix {
+    &:before, &:after {
+        content: '';
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+%container {
+    max-width: $container-width + $container-gutter * 2;
+    margin: 0 auto;
+}

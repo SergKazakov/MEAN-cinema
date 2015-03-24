@@ -1,0 +1,32 @@
+//fonts
+$browser-context: 16;
+$base-font-family: Rockwell;
+$base-color: #384d5c;
+
+
+//grid
+$container-width: 940px;
+$cw: $container-width;
+$container-gutter: 15px;
+$cg: $container-gutter;
+
+//colors
+$link-color: #3eb3a5;
+$nav-link-color: #bcbcbc;
+$border-color: #e1e1e1;
+$post-border-color: #ebebeb;
+$white: #fff;
+
+//transition
+$transition-duration: 300ms;
+$td: $transition-duration;
+
+//fonts
+@include font-face(Rockwell, '../fonts/rockwell-webfont');
+@include font-face(Rockwell, '../fonts/rockwell-bold-webfont', bold);
+
+//breakpoints
+$small: 481px;
+$middle: 769px;
+$large: 993px;
+$iphone-height: 351px;

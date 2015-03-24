@@ -1,0 +1,11 @@
+ul.friends-list(data-ng-if='!friends.areFriendsEmpty')
+  li.friends-list__item(data-ng-repeat='friend in friends.users', ng-if='user.user_id !== friend.user_id')
+    .friends-list__name
+      a.friends-list__link(ui-sref='user({userId: friend.user_id})') {{friend.first_name}}
+    .friends-list__actions
+      button.btn.btn_danger.hvr-ripple-out.hvr-ripple-out_danger(ng-if='friend.properties.isFriend.value', data-ng-click='friends.deleteFriend(friend.user_id, $index)')
+        | Delete
+      button.btn.hvr-ripple-out(ng-if='!friend.properties.isFriend.value', data-ng-click='friends.addFriend(friend.user_id, $index)')
+        | Add
+h1.post-empty(ng-if='friends.areFriendsEmpty') Oops, there are no users any more:(
+
