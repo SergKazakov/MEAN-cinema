@@ -1,12 +1,10 @@
 do ->
-  LoginCtrl = ($state, auth, aiStorage) ->
+  LoginCtrl = (auth) ->
     @login = ->
-      auth.signin {}, (profile, token) ->
-        aiStorage.set 'profile', profile
-        aiStorage.set 'token', token
-        $state.go 'home'
-      , (error) ->
-        console.log 'There was an error logging in', error
+      auth.signin
+        socialBigButtons: on
+        authParams:
+          scope: 'openid offline_access'
 
     return
 

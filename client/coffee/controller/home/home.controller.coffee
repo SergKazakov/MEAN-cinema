@@ -1,9 +1,11 @@
 do ->
-  HomeCtrl = ($state, auth, aiStorage) ->
+  HomeCtrl = ($state, auth, store) ->
+    @auth = auth
+
     @logout = ->
       auth.signout()
-      aiStorage.remove 'profile'
-      aiStorage.remove 'token'
+      store.remove 'profile'
+      store.remove 'token'
       $state.go 'login'
 
     return

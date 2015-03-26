@@ -4,22 +4,6 @@ block content
   section.hero
   section.page
     .container
-      nav.nav
-        ul.nav-left(ng-if="user.authenticated")
-          li.nav__item
-            a.nav__item-link(ui-sref="home", ui-sref-active="nav__item-link_active") Posts
-          li.nav__item
-            a.nav__item-link(ui-sref="addpost", ui-sref-active="nav__item-link_active") Add post
-        ul.nav-right(ng-if="user.authenticated")
-          li.nav__item
-            a.nav__item-link(ui-sref="friends", ui-sref-active="nav__item-link_active") Add friends
-          li.nav__item
-            a.nav__item-link(ua-logout, href="#") Log out
-        a.logo(ui-sref="home")
-          img.logo__img(src="img/logo.jpg")
-      h2.greeting(ng-if="user.authenticated")
-        | Hello,&nbsp;
-        a.greeting__link(ng-bind="user.first_name", ui-sref="user({userId: user.user_id})")
       ui-view
     footer.footer
       p.copyright
