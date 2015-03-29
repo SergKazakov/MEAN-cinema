@@ -6,5 +6,3 @@ do ->
         url:          '/'
         templateUrl:  'partials/home'
         controller:   'HomeCtrl as home'
-        data:
-          requiresLogin: on

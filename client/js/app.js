@@ -1,5 +1,5 @@
 (function() {
-  return angular.module('cinema', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt']).config(function($urlRouterProvider, $locationProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
+  return angular.module('cinema', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'mgcrea.ngStrap', 'ngAnimate']).config(function($urlRouterProvider, $locationProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
     $urlRouterProvider.otherwise('/');
     authProvider.init({
       domain: 'sergeykazakoff-test.auth0.com',
@@ -7,7 +7,7 @@
       loginState: 'login'
     });
     authProvider.on('loginSuccess', function($state, profilePromise, idToken, refreshToken, store) {
-      $state.go('home');
+      $state.go('profile');
       store.set('token', idToken);
       store.set('refreshToken', refreshToken);
       return profilePromise.then(function(profile) {
@@ -60,11 +60,90 @@
 })();
 
 (function() {
+  var authFactory;
+  authFactory = function($state, auth, store, $alert) {
+    return {
+      login: function() {
+        return auth.signin({
+          socialBigButtons: true,
+          authParams: {
+            scope: 'openid offline_access'
+          }
+        }, function() {
+          return $alert({
+            content: 'Вы успешно вошли в свою учетную запись',
+            type: 'success',
+            duration: 2
+          });
+        });
+      },
+      logout: function() {
+        auth.signout();
+        store.remove('profile');
+        store.remove('token');
+        $state.go('home');
+        return $alert({
+          content: 'Вы вышли из учетной записи',
+          type: 'success',
+          duration: 2
+        });
+      }
+    };
+  };
+  return angular.module('cinema').factory('authFactory', authFactory);
+})();
+
+(function() {
   return angular.module('cinema').config(function($stateProvider) {
     return $stateProvider.state('home', {
       url: '/',
       templateUrl: 'partials/home',
-      controller: 'HomeCtrl as home',
+      controller: 'HomeCtrl as home'
+    });
+  });
+})();
+
+(function() {
+  var HomeCtrl;
+  HomeCtrl = function($state, auth, store) {};
+  return angular.module('cinema').controller('HomeCtrl', HomeCtrl);
+})();
+
+(function() {
+  return angular.module('cinema').config(function($stateProvider) {
+    return $stateProvider.state('login', {
+      url: '/login',
+      controller: 'LoginCtrl as login'
+    });
+  });
+})();
+
+(function() {
+  var LoginCtrl;
+  LoginCtrl = function(auth, authFactory) {
+    authFactory.login();
+  };
+  return angular.module('cinema').controller('LoginCtrl', LoginCtrl);
+})();
+
+(function() {
+  var NavbarCtrl;
+  NavbarCtrl = function($state, auth, authFactory) {
+    this.auth = auth;
+    this.logout = function(e) {
+      e.preventDefault();
+      return authFactory.logout();
+    };
+  };
+  return angular.module('cinema').controller('NavbarCtrl', NavbarCtrl);
+})();
+
+(function() {
+  return angular.module('cinema').config(function($stateProvider) {
+    return $stateProvider.state('profile', {
+      url: '/profile',
+      templateUrl: 'partials/profile',
+      controller: 'ProfileCtrl as profile',
       data: {
         requiresLogin: true
       }
@@ -73,40 +152,9 @@
 })();
 
 (function() {
-  var HomeCtrl;
-  HomeCtrl = function($state, auth, store) {
+  var ProfileCtrl;
+  ProfileCtrl = function(auth) {
     this.auth = auth;
-    this.logout = function() {
-      auth.signout();
-      store.remove('profile');
-      store.remove('token');
-      return $state.go('login');
-    };
   };
-  return angular.module('cinema').controller('HomeCtrl', HomeCtrl);
-})();
-
-(function() {
-  return angular.module('cinema').config(function($stateProvider) {
-    return $stateProvider.state('login', {
-      url: '/login',
-      templateUrl: 'partials/login',
-      controller: 'LoginCtrl as login'
-    });
-  });
-})();
-
-(function() {
-  var LoginCtrl;
-  LoginCtrl = function(auth) {
-    this.login = function() {
-      return auth.signin({
-        socialBigButtons: true,
-        authParams: {
-          scope: 'openid offline_access'
-        }
-      });
-    };
-  };
-  return angular.module('cinema').controller('LoginCtrl', LoginCtrl);
+  return angular.module('cinema').controller('ProfileCtrl', ProfileCtrl);
 })();

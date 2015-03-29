@@ -1,7 +1,0 @@
-form(ng-submit='editpost.editPost(editpost.post._id)', name='editPostForm')
-  .form__title Edit post
-  .form__row
-    input.form__input(placeholder='Title', name='Title', ng-model='editpost.post.Title', required)
-  .form__row
-    textarea.form__textarea(placeholder='Text', name='Text', ng-model='editpost.post.Text', required)
-  button.btn.hvr-ripple-out(type='submit', ng-disabled='editPostForm.$invalid') Save

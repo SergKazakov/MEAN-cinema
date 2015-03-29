@@ -5,6 +5,8 @@ do ->
       'auth0'
       'angular-storage'
       'angular-jwt'
+      'mgcrea.ngStrap'
+      'ngAnimate'
     ]
     .config ($urlRouterProvider, $locationProvider, authProvider, $httpProvider, jwtInterceptorProvider) ->
       $urlRouterProvider.otherwise '/'
@@ -15,7 +17,7 @@ do ->
         loginState:   'login'
 
       authProvider.on 'loginSuccess', ($state, profilePromise, idToken, refreshToken, store) ->
-        $state.go 'home'
+        $state.go 'profile'
         store.set 'token', idToken
         store.set 'refreshToken', refreshToken
         profilePromise.then (profile) ->

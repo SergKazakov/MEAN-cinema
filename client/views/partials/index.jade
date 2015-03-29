@@ -1,12 +1,5 @@
 extends ../layout
 
 block content
-  section.hero
-  section.page
-    .container
-      ui-view
-    footer.footer
-      p.copyright
-        | Copyrights (c)&nbsp;
-        a.copyright-link(ui-sref="home") Billboard&nbsp;
-        | 2015
+  include navbar
+  ui-view

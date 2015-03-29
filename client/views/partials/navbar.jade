@@ -1,0 +1,26 @@
+div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl as navbar')
+  div.container
+    div.navbar-header
+      button.navbar-toggle(type='button')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(ui-sref='home') Cinema
+
+    div.navbar-collapse.collapse
+      ul.nav.navbar-nav.navbar-right
+        li(ng-if='!navbar.auth.isAuthenticated')
+          a(ui-sref='login') Login
+
+        li(ng-if='navbar.auth.isAuthenticated')
+          p.navbar-text
+            | Hello,&nbsp;
+            span(ng-bind="navbar.auth.profile.nickname")
+
+        li(ng-if='navbar.auth.isAuthenticated')
+          a(ui-sref='profile')
+            span.glyphicon.glyphicon-cog
+
+        li(ng-if='navbar.auth.isAuthenticated')
+          a(href='#', ng-click='navbar.logout($event)') Logout
