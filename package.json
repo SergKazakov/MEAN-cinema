@@ -13,8 +13,8 @@
     "method-override": "latest",
     "mongoose": "^3.8.24",
     "morgan": "latest",
-    "socket.io": "^1.3.5",
-    "userapp": "^2.0.0"
+    "nconf": "^0.7.1",
+    "socket.io": "^1.3.5"
   },
   "devDependencies": {
     "gulp": "latest",

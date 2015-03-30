@@ -65,7 +65,6 @@
     return {
       login: function() {
         return auth.signin({
-          socialBigButtons: true,
           authParams: {
             scope: 'openid offline_access'
           }
@@ -91,39 +90,6 @@
     };
   };
   return angular.module('cinema').factory('authFactory', authFactory);
-})();
-
-(function() {
-  return angular.module('cinema').config(function($stateProvider) {
-    return $stateProvider.state('home', {
-      url: '/',
-      templateUrl: 'partials/home',
-      controller: 'HomeCtrl as home'
-    });
-  });
-})();
-
-(function() {
-  var HomeCtrl;
-  HomeCtrl = function($state, auth, store) {};
-  return angular.module('cinema').controller('HomeCtrl', HomeCtrl);
-})();
-
-(function() {
-  return angular.module('cinema').config(function($stateProvider) {
-    return $stateProvider.state('login', {
-      url: '/login',
-      controller: 'LoginCtrl as login'
-    });
-  });
-})();
-
-(function() {
-  var LoginCtrl;
-  LoginCtrl = function(auth, authFactory) {
-    authFactory.login();
-  };
-  return angular.module('cinema').controller('LoginCtrl', LoginCtrl);
 })();
 
 (function() {
@@ -157,4 +123,37 @@
     this.auth = auth;
   };
   return angular.module('cinema').controller('ProfileCtrl', ProfileCtrl);
+})();
+
+(function() {
+  return angular.module('cinema').config(function($stateProvider) {
+    return $stateProvider.state('login', {
+      url: '/login',
+      controller: 'LoginCtrl as login'
+    });
+  });
+})();
+
+(function() {
+  var LoginCtrl;
+  LoginCtrl = function(auth, authFactory) {
+    authFactory.login();
+  };
+  return angular.module('cinema').controller('LoginCtrl', LoginCtrl);
+})();
+
+(function() {
+  return angular.module('cinema').config(function($stateProvider) {
+    return $stateProvider.state('home', {
+      url: '/',
+      templateUrl: 'partials/home',
+      controller: 'HomeCtrl as home'
+    });
+  });
+})();
+
+(function() {
+  var HomeCtrl;
+  HomeCtrl = function($state, auth, store) {};
+  return angular.module('cinema').controller('HomeCtrl', HomeCtrl);
 })();
