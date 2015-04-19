@@ -25,11 +25,13 @@
     "gulp-livereload": "latest",
     "gulp-load-plugins": "^0.10.0",
     "gulp-nodemon": "^2.0.2",
+    "gulp-notify": "^2.2.0",
     "gulp-plumber": "latest",
     "gulp-sourcemaps": "latest",
     "gulp-stylus": "^2.0.1",
     "install": "^0.1.8",
     "npm": "^2.8.3",
+    "run-sequence": "^1.0.2",
     "wiredep": "^2.2.2"
   },
   "engines": {
@@ -37,6 +39,6 @@
     "npm": "latest"
   },
   "scripts": {
-    "postinstall": "bower cache clean && bower install"
+    "postinstall": "bower cache clean && bower i"
   }
 }

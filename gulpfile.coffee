@@ -1,8 +1,9 @@
 'use strict'
 
-gulp     = require 'gulp'
-$        = require('gulp-load-plugins')()
-wiredep  = require('wiredep').stream
+gulp        = require 'gulp'
+$           = require('gulp-load-plugins')()
+wiredep     = require('wiredep').stream
+runSequence = require 'run-sequence'
 
 gulp.task 'stylus', ->
   gulp.src 'client/stylus/main.styl'
@@ -14,6 +15,7 @@ gulp.task 'stylus', ->
       cascade: on
     .pipe $.sourcemaps.write()
     .pipe gulp.dest 'client/css'
+    .pipe $.notify 'Stylus'
     .pipe $.livereload()
 
 gulp.task 'coffee', ->
@@ -28,6 +30,7 @@ gulp.task 'coffee', ->
     .pipe $.coffee bare: on
     .pipe $.concat 'app.js'
     .pipe gulp.dest 'client/js'
+    .pipe $.notify 'Coffee'
     .pipe $.livereload()
 
 gulp.task 'wiredep', ->
@@ -43,10 +46,10 @@ gulp.task 'nodemon', ->
   $.nodemon
     script: 'server.coffee'
 
-
 gulp.task 'watch', ->
   $.livereload.listen()
   gulp.watch 'client/stylus/**/*.styl', [ 'stylus' ]
   gulp.watch ['client/coffee/**/*.coffee'], [ 'coffee' ]
 
-gulp.task 'default', ['stylus', 'coffee', 'nodemon', 'watch']
+gulp.task 'default', ->
+  runSequence ['stylus', 'coffee'], 'nodemon', 'watch'
