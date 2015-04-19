@@ -1,95 +1,72 @@
 (function() {
-  return angular.module('cinema', ['ui.router', 'auth0', 'angular-storage', 'angular-jwt', 'mgcrea.ngStrap', 'ngAnimate']).config(function($urlRouterProvider, $locationProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
+  return angular.module('cinema', ['ngResource', 'ngMessages', 'ui.router', 'mgcrea.ngStrap', 'ngAnimate', 'satellizer']).config(function($urlRouterProvider, $locationProvider, $authProvider) {
     $urlRouterProvider.otherwise('/');
-    authProvider.init({
-      domain: 'sergeykazakoff-test.auth0.com',
-      clientID: 'XPQYEuy68HSlowXjeRJuA4xK9V8HaZdX',
-      loginState: 'login'
+    $locationProvider.html5Mode(true);
+    $authProvider.facebook({
+      clientId: '1653435961554069'
     });
-    authProvider.on('loginSuccess', function($state, profilePromise, idToken, refreshToken, store) {
-      $state.go('profile');
-      store.set('token', idToken);
-      store.set('refreshToken', refreshToken);
-      return profilePromise.then(function(profile) {
-        return store.set('profile', profile);
-      });
+    $authProvider.google({
+      clientId: '476828247245-ve3nh4f0fbcg0elggblkvctse9a26821.apps.googleusercontent.com'
     });
-    authProvider.on('loginFailure', function($log, error) {
-      return $log('Error logging in', error);
+    $authProvider.github({
+      clientId: '0ba2600b1dbdb756688b'
     });
-    jwtInterceptorProvider.tokenGetter = function(store, jwtHelper, auth) {
-      var idToken, refreshToken;
-      idToken = store.get('token');
-      refreshToken = store.get('refreshToken');
-      if (!idToken || !refreshToken) {
-        return null;
-      }
-      if (jwtHelper.isTokenExpired(idToken)) {
-        return auth.refreshIdToken(refreshToken).then(function(idToken) {
-          store.set('token', idToken);
-          return idToken;
-        });
-      } else {
-        return idToken;
-      }
-    };
-    $httpProvider.interceptors.push('jwtInterceptor');
-  }).run(function($rootScope, auth, store, jwtHelper, $state) {
-    $rootScope.$on('$locationChangeStart', function() {
-      var refreshToken, token;
-      if (!auth.isAuthenticated) {
-        token = store.get('token');
-        refreshToken = store.get('refreshToken');
-        if (token) {
-          if (!jwtHelper.isTokenExpired(token)) {
-            return auth.authenticate(store.get('profile', token));
-          } else {
-            if (refreshToken) {
-              return auth.refreshIdToken(refreshToken).then(function(idToken) {
-                store.set('token', idToken);
-                return auth.authenticate(store.get('profile', idToken));
-              });
-            } else {
-              return $state.go('login');
-            }
-          }
-        }
-      }
+    $authProvider.linkedin({
+      clientId: '77cw786yignpzj'
+    });
+    $authProvider.yahoo({
+      clientId: 'dj0yJmk9SDVkM2RhNWJSc2ZBJmQ9WVdrOWIzVlFRMWxzTXpZbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0yYw--'
+    });
+    $authProvider.twitter({
+      url: '/auth/twitter'
+    });
+    $authProvider.live({
+      clientId: '0000000048152D9F'
+    });
+    return $authProvider.oauth2({
+      name: 'foursquare',
+      url: '/auth/foursquare',
+      clientId: 'MTCEJ3NGW2PNNB31WOSBFDSAD4MTHYVAZ1UKIULXZ2CVFC2K',
+      redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
+      authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate'
     });
   });
 })();
 
 (function() {
-  var authFactory;
-  authFactory = function($state, auth, store, $alert) {
+  var passwordMatch;
+  passwordMatch = function() {
     return {
-      login: function() {
-        return auth.signin({
-          authParams: {
-            scope: 'openid offline_access'
-          }
-        }, function() {
-          return $alert({
-            content: 'Вы успешно вошли в свою учетную запись',
-            type: 'success',
-            duration: 2
-          });
-        });
+      require: 'ngModel',
+      scope: {
+        otherModelValue: '=passwordMatch'
       },
-      logout: function() {
-        auth.signout();
-        store.remove('profile');
-        store.remove('token');
-        $state.go('home');
-        return $alert({
-          content: 'Вы вышли из учетной записи',
-          type: 'success',
-          duration: 2
+      link: function(scope, element, attributes, ngModel) {
+        ngModel.$validators.compareTo = function(modelValue) {
+          return modelValue === scope.otherModelValue;
+        };
+        return scope.$watch('otherModelValue', function() {
+          return ngModel.$validate();
         });
       }
     };
   };
-  return angular.module('cinema').factory('authFactory', authFactory);
+  return angular.module('cinema').directive('passwordMatch', passwordMatch);
+})();
+
+(function() {
+  var Account;
+  Account = function($http) {
+    return {
+      getProfile: function() {
+        return $http.get('/api/v1/me');
+      },
+      updateProfile: function(profileData) {
+        return $http.put('/api/v1/me', profileData);
+      }
+    };
+  };
+  return angular.module('cinema').factory('Account', Account);
 })();
 
 (function() {
@@ -104,7 +81,7 @@
 
 (function() {
   var HomeCtrl;
-  HomeCtrl = function($state, auth, store) {};
+  HomeCtrl = function($state) {};
   return angular.module('cinema').controller('HomeCtrl', HomeCtrl);
 })();
 
@@ -112,26 +89,72 @@
   return angular.module('cinema').config(function($stateProvider) {
     return $stateProvider.state('login', {
       url: '/login',
-      controller: 'LoginCtrl as login'
+      templateUrl: 'partials/login',
+      controller: 'LoginCtrl'
     });
   });
 })();
 
 (function() {
   var LoginCtrl;
-  LoginCtrl = function(auth, authFactory) {
-    authFactory.login();
+  LoginCtrl = function($scope, $alert, $auth) {
+    $scope.login = function() {
+      return $auth.login({
+        email: $scope.email,
+        password: $scope.password
+      }).then(function() {
+        return $alert({
+          content: 'You have successfully logged in',
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      })["catch"](function(response) {
+        return $alert({
+          content: response.data.message,
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      });
+    };
+    $scope.authenticate = function(provider) {
+      return $auth.authenticate(provider).then(function() {
+        return $alert({
+          content: 'You have successfully logged in',
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      })["catch"](function(response) {
+        return $alert({
+          content: response.data ? response.data.message : response,
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      });
+    };
   };
   return angular.module('cinema').controller('LoginCtrl', LoginCtrl);
 })();
 
 (function() {
   var NavbarCtrl;
-  NavbarCtrl = function($state, auth, authFactory) {
-    this.auth = auth;
+  NavbarCtrl = function($auth, $alert) {
+    this.isAuthenticated = function() {
+      return $auth.isAuthenticated();
+    };
     this.logout = function(e) {
       e.preventDefault();
-      return authFactory.logout();
+      return $auth.logout().then(function() {
+        return $alert({
+          content: 'You have been logged out',
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      });
     };
   };
   return angular.module('cinema').controller('NavbarCtrl', NavbarCtrl);
@@ -142,9 +165,18 @@
     return $stateProvider.state('profile', {
       url: '/profile',
       templateUrl: 'partials/profile',
-      controller: 'ProfileCtrl as profile',
-      data: {
-        requiresLogin: true
+      controller: 'ProfileCtrl',
+      resolve: {
+        authenticated: function($q, $state, $auth) {
+          var deferred;
+          deferred = $q.defer();
+          if (!$auth.isAuthenticated()) {
+            $state.go('login');
+          } else {
+            deferred.resolve();
+          }
+          return deferred.promise;
+        }
       }
     });
   });
@@ -152,8 +184,112 @@
 
 (function() {
   var ProfileCtrl;
-  ProfileCtrl = function(auth) {
-    this.auth = auth;
+  ProfileCtrl = function($scope, $auth, $alert, Account) {
+    $scope.getProfile = function() {
+      return Account.getProfile().success(function(data) {
+        return $scope.user = data;
+      }).error(function(error) {
+        return $alert({
+          content: error.message,
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      });
+    };
+    $scope.getProfile();
+    $scope.updateProfile = function() {
+      Account.updateProfile({
+        displayName: $scope.user.displayName,
+        email: $scope.user.email
+      }).then(function() {});
+      return $alert({
+        content: 'Profile has been updated',
+        animation: 'fadeZoomFadeDown',
+        type: 'material',
+        duration: 3
+      });
+    };
+    $scope.link = function(provider) {
+      return $auth.link(provider).then(function() {
+        return $alert({
+          content: 'You have successfully linked ' + provider + ' account',
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      }).then(function() {
+        return $scope.getProfile();
+      })["catch"](function(response) {
+        return $alert({
+          content: response.data.message,
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      });
+    };
+    $scope.unlink = function(provider) {
+      return $auth.unlink(provider).then(function() {
+        return $alert({
+          content: 'You have successfully unlinked ' + provider + ' account',
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      }).then(function() {
+        return $scope.getProfile();
+      })["catch"](function(response) {
+        return $alert({
+          content: response.data ? response.data.message : 'Could not unlink ' + provider + ' account',
+          animation: 'fadeZoomFadeDown',
+          type: 'material',
+          duration: 3
+        });
+      });
+    };
   };
   return angular.module('cinema').controller('ProfileCtrl', ProfileCtrl);
+})();
+
+(function() {
+  return angular.module('cinema').config(function($stateProvider) {
+    return $stateProvider.state('signup', {
+      url: '/signup',
+      templateUrl: 'partials/signup',
+      controller: 'SignupCtrl'
+    });
+  });
+})();
+
+(function() {
+  var SignupCtrl;
+  SignupCtrl = function($scope, $alert, $auth) {
+    $scope.signup = function() {
+      return $auth.signup({
+        displayName: $scope.displayName,
+        email: $scope.email,
+        password: $scope.password
+      })["catch"](function(response) {
+        if (typeof response.data.message === 'object') {
+          return angular.forEach(response.data.message, function(message) {
+            return $alert({
+              content: message[0],
+              animation: 'fadeZoomFadeDown',
+              type: 'material',
+              duration: 3
+            });
+          });
+        } else {
+          return $alert({
+            content: response.data.message,
+            animation: 'fadeZoomFadeDown',
+            type: 'material',
+            duration: 3
+          });
+        }
+      });
+    };
+  };
+  return angular.module('cinema').controller('SignupCtrl', SignupCtrl);
 })();

@@ -1,21 +1,19 @@
 'use strict'
 
-express           = require 'express'
-bodyParser        = require 'body-parser'
-methodOverride    = require 'method-override'
-morgan            = require 'morgan'
-path              = require 'path'
-mongoose          = require 'mongoose'
-chalk             = require 'chalk'
-conf              = require 'nconf'
-http              = require 'http'
-app               = module.exports = express()
-server            = require('http').createServer(app);
+express        = require 'express'
+bodyParser     = require 'body-parser'
+methodOverride = require 'method-override'
+morgan         = require 'morgan'
+path           = require 'path'
+mongoose       = require 'mongoose'
+chalk          = require 'chalk'
+conf           = require './server/config/config'
+app            = module.exports = express()
 
-conf.argv()
-    .env()
-    .file
-      file: path.join __dirname, 'server/config/config.json'
+mongoose.connect conf.mongoUrl
+mongoose.connection.on 'error', (err) ->
+  console.log chalk.bgRed.bold "MongoDB connection error: #{err}"
+  process.exit -1
 
 app
   .set 'views', path.join __dirname, '/client/views'
@@ -26,6 +24,15 @@ app
   .use methodOverride()
   .use express.static path.join __dirname, 'client'
 
-require('./server/routes/routes') app
+# Force HTTPS on Heroku
+if app.get 'env' is 'production'
+  app.use (req, res, next) ->
+    protocol = req.get 'x-forwarded-proto'
+    if protocol is 'https' then next() else res.redirect "https://#{req.hostname}#{req.url}"
 
-server.listen process.env.PORT or conf.get 'port'
+require('./server/routes/me') app
+require('./server/routes/auth') app
+require('./server/routes/routes') app
+require('./server/routes/error') app
+
+app.listen process.env.PORT or conf.port

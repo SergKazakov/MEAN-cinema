@@ -1,11 +1,72 @@
 .container
-    .row
-      .col-lg-3.col-sm-6.col-lg-offset-4
-        .card.hovercard
-          .cardheader
-          .avatar
-            img(alt='', ng-src='{{profile.auth.profile.picture}}')
-          .info
-            .title
-              a(href='http://scripteden.com/') {{profile.auth.profile.nickname}}
+  .panel.panel-default
+    .panel-heading Profile
+    .panel-body
+      legend
+        i.ion-clipboard
+        |  Edit My Profile
+      form(method='post', ng-submit='updateProfile()')
+        .form-group
+          label.control-label Profile Picture
+          img.profile-picture(ng-src="{{user.picture || 'http://placehold.it/100x100'}}")
+        .form-group
+          label.control-label
+            i.ion-person
+            |  Display Name
+          input.form-control(type='text', ng-model='user.displayName')
+        .form-group
+          label.control-label
+            i.ion-at
+            |  Email Address
+          input.form-control(type='email', ng-model='user.email')
+        button.btn.btn-lg.btn-success Update Information
+  .panel.panel-default
+    .panel-heading Accounts
+    .panel-body
+      legend
+        i.ion-link
+        |  Linked Accounts
+      .btn-group-vertical
+        button.btn.btn-sm.btn-danger(ng-if='user.facebook', ng-click="unlink('facebook')")
+          i.ion-social-facebook
+          |  Unlink Facebook Account
+        button.btn.btn-sm.btn-primary(ng-if='!user.facebook', ng-click="link('facebook')")
+          i.ion-social-facebook
+          |  Link Facebook Account
+        button.btn.btn-sm.btn-danger(ng-if='user.google', ng-click="unlink('google')")
+          i.ion-social-googleplus
+          |  Unlink Google Account
+        button.btn.btn-sm.btn-primary(ng-if='!user.google', ng-click="link('google')")
+          i.ion-social-googleplus
+          |  Link Google Account
+        button.btn.btn-sm.btn-danger(ng-if='user.linkedin', ng-click="unlink('linkedin')")
+          i.ion-social-linkedin
+          |  Unlink LinkedIn Account
+        button.btn.btn-sm.btn-primary(ng-if='!user.linkedin', ng-click="link('linkedin')")
+          i.ion-social-linkedin
+          |  Link LinkedIn Account
+        button.btn.btn-sm.btn-danger(ng-if='user.twitter', ng-click="unlink('twitter')")
+          i.ion-social-twitter
+          |  Unlink Twitter Account
+        button.btn.btn-sm.btn-primary(ng-if='!user.twitter', ng-click="link('twitter')")
+          i.ion-social-twitter
+          |  Link Twitter Account
+        button.btn.btn-sm.btn-danger(ng-if='user.github', ng-click="unlink('github')")
+          i.ion-social-github
+          |  Unlink GitHub Account
+        button.btn.btn-sm.btn-primary(ng-if='!user.github', ng-click="link('github')")
+          i.ion-social-github
+          |  Link GitHub Account
+        button.btn.btn-sm.btn-danger(ng-if='user.foursquare', ng-click="unlink('foursquare')")
+          i.ion-social-foursquare
+          |  Unlink Foursquare Account
+        button.btn.btn-sm.btn-primary(ng-if='!user.foursquare', ng-click="link('foursquare')")
+          i.ion-social-foursquare
+          |  Link Foursquare Account
+        button.btn.btn-sm.btn-danger(ng-if='user.yahoo', ng-click="unlink('yahoo')")
+          i.ion-social-yahoo
+          |  Unlink Yahoo Account
+        button.btn.btn-sm.btn-primary(ng-if='!user.yahoo', ng-click="link('yahoo')")
+          i.ion-social-yahoo
+          |  Link Yahoo Account
 

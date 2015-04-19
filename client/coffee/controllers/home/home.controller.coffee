@@ -1,5 +1,5 @@
 do ->
-  HomeCtrl = ($state, auth, store) ->
+  HomeCtrl = ($state) ->
     return
 
   angular

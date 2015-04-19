@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "async": "^0.9.0",
+    "bcryptjs": "^2.1.0",
     "body-parser": "latest",
     "bower": "latest",
     "chalk": "^1.0.0",
@@ -10,11 +11,13 @@
     "error-handler": "latest",
     "express": "latest",
     "jade": "latest",
+    "jwt-simple": "^0.3.0",
+    "lodash": "^3.7.0",
     "method-override": "latest",
+    "moment": "^2.10.2",
     "mongoose": "^3.8.24",
     "morgan": "latest",
-    "nconf": "^0.7.1",
-    "socket.io": "^1.3.5"
+    "request": "^2.55.0"
   },
   "devDependencies": {
     "gulp": "latest",

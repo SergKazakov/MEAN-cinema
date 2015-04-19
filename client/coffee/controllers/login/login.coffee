@@ -4,5 +4,6 @@ do ->
     .config ($stateProvider) ->
       $stateProvider.state 'login',
         url : '/login'
-        controller : 'LoginCtrl as login'
+        templateUrl : 'partials/login'
+        controller : 'LoginCtrl'
 

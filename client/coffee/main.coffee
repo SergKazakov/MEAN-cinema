@@ -1,63 +1,41 @@
 do ->
   angular
     .module 'cinema', [
+      'ngResource'
+      'ngMessages'
       'ui.router'
-      'auth0'
-      'angular-storage'
-      'angular-jwt'
       'mgcrea.ngStrap'
       'ngAnimate'
+      'satellizer'
     ]
-    .config ($urlRouterProvider, $locationProvider, authProvider, $httpProvider, jwtInterceptorProvider) ->
+    .config ($urlRouterProvider, $locationProvider, $authProvider) ->
       $urlRouterProvider.otherwise '/'
+      $locationProvider.html5Mode on
 
-      authProvider.init
-        domain : 'sergeykazakoff-test.auth0.com'
-        clientID : 'XPQYEuy68HSlowXjeRJuA4xK9V8HaZdX'
-        loginState : 'login'
+      $authProvider.facebook
+        clientId : '1653435961554069'
 
-      authProvider.on 'loginSuccess', ($state, profilePromise, idToken, refreshToken, store) ->
-        $state.go 'profile'
-        store.set 'token', idToken
-        store.set 'refreshToken', refreshToken
-        profilePromise.then (profile) ->
-          store.set 'profile', profile
+      $authProvider.google
+        clientId : '476828247245-ve3nh4f0fbcg0elggblkvctse9a26821.apps.googleusercontent.com'
 
-      authProvider.on 'loginFailure', ($log, error) ->
-        $log 'Error logging in', error
+      $authProvider.github
+        clientId : '0ba2600b1dbdb756688b'
 
-      jwtInterceptorProvider.tokenGetter = (store, jwtHelper, auth) ->
-        idToken = store.get 'token'
-        refreshToken = store.get 'refreshToken'
-        if not idToken or not refreshToken then return null
-        if jwtHelper.isTokenExpired idToken
-          auth
-            .refreshIdToken refreshToken
-            .then (idToken) ->
-              store.set 'token', idToken
-              idToken
-        else
-          idToken
+      $authProvider.linkedin
+        clientId : '77cw786yignpzj'
 
-      $httpProvider.interceptors.push 'jwtInterceptor'
+      $authProvider.yahoo
+        clientId : 'dj0yJmk9SDVkM2RhNWJSc2ZBJmQ9WVdrOWIzVlFRMWxzTXpZbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0yYw--'
 
-      return
-    .run ($rootScope, auth, store, jwtHelper, $state) ->
-           
-      $rootScope.$on '$locationChangeStart', ->
-        if not auth.isAuthenticated
-          token = store.get 'token'
-          refreshToken = store.get 'refreshToken'
-          if token
-            if not jwtHelper.isTokenExpired token
-              auth.authenticate store.get 'profile', token
-            else
-              if refreshToken
-                return auth
-                          .refreshIdToken refreshToken
-                          .then (idToken) ->
-                            store.set 'token', idToken
-                            auth.authenticate store.get 'profile', idToken
-              else
-                $state.go 'login'
-      return
+      $authProvider.twitter
+        url : '/auth/twitter'
+
+      $authProvider.live
+        clientId : '0000000048152D9F'
+
+      $authProvider.oauth2
+        name : 'foursquare'
+        url : '/auth/foursquare'
+        clientId : 'MTCEJ3NGW2PNNB31WOSBFDSAD4MTHYVAZ1UKIULXZ2CVFC2K'
+        redirectUri : window.location.origin or window.location.protocol + '//' + window.location.host
+        authorizationEndpoint : 'https://foursquare.com/oauth2/authenticate'

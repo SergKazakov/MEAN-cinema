@@ -19,19 +19,23 @@ gulp.task 'stylus', ->
     .pipe $.livereload()
 
 gulp.task 'coffee', ->
-  gulp.src([
+  gulp.src [
     'client/coffee/main.coffee'
+    'client/coffee/directives/**/*.coffee'
     'client/coffee/factories/**/*.coffee'
     'client/coffee/controllers/**/*.coffee'
-    ])
+    ]
     .pipe $.plumber()
-    .pipe $.coffeelint optFile: './coffeelint.json'
-    .pipe $.coffeelint.reporter()
     .pipe $.coffee bare: on
     .pipe $.concat 'app.js'
     .pipe gulp.dest 'client/js'
     .pipe $.notify 'Coffee'
     .pipe $.livereload()
+
+gulp.task 'coffee-lint', ->
+  gulp.src 'client/coffee/**/*.coffee'
+    .pipe $.coffeelint optFile: './coffeelint.json'
+    .pipe $.coffeelint.reporter()
 
 gulp.task 'wiredep', ->
   gulp.src 'client/views/layout.jade'
@@ -50,6 +54,9 @@ gulp.task 'watch', ->
   $.livereload.listen()
   gulp.watch 'client/stylus/**/*.styl', [ 'stylus' ]
   gulp.watch ['client/coffee/**/*.coffee'], [ 'coffee' ]
+  gulp
+    .watch ['client/views/**/*.jade']
+    .on 'change', $.livereload.changed
 
 gulp.task 'default', ->
   runSequence ['stylus', 'coffee'], 'nodemon', 'watch'

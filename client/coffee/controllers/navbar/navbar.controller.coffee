@@ -1,10 +1,17 @@
 do ->
-  NavbarCtrl = ($state, auth, authFactory) ->
-    @auth = auth
+  NavbarCtrl = ($auth, $alert) ->
+    @isAuthenticated = -> $auth.isAuthenticated()
 
     @logout = (e) ->
       e.preventDefault()
-      authFactory.logout()
+      $auth
+        .logout()
+        .then ->
+          $alert
+            content : 'You have been logged out'
+            animation : 'fadeZoomFadeDown'
+            type : 'material'
+            duration : 3
 
     return
 
