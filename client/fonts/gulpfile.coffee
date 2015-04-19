@@ -1,8 +1,8 @@
 'use strict'
 
-gulp     = require 'gulp'
-$        = require('gulp-load-plugins')()
-wiredep  = require('wiredep').stream
+gulp    = require 'gulp'
+$       = require('gulp-load-plugins')()
+wiredep = require('wiredep').stream
 
 gulp.task 'stylus', ->
   gulp.src 'client/stylus/main.styl'
@@ -23,8 +23,6 @@ gulp.task 'coffee', ->
     'client/coffee/controllers/**/*.coffee'
     ])
     .pipe $.plumber()
-    .pipe $.coffeelint optFile: './coffeelint.json'
-    .pipe $.coffeelint.reporter()
     .pipe $.coffee bare: on
     .pipe $.concat 'app.js'
     .pipe gulp.dest 'client/js'
@@ -47,6 +45,6 @@ gulp.task 'nodemon', ->
 gulp.task 'watch', ->
   $.livereload.listen()
   gulp.watch 'client/stylus/**/*.styl', [ 'stylus' ]
-  gulp.watch ['client/coffee/**/*.coffee'], [ 'coffee' ]
+  gulp.watch ['client/coffee/main.coffee', 'client/coffee/**/*.coffee'], [ 'coffee' ]
 
 gulp.task 'default', ['stylus', 'coffee', 'nodemon', 'watch']

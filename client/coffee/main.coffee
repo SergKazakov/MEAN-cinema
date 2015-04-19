@@ -12,9 +12,9 @@ do ->
       $urlRouterProvider.otherwise '/'
 
       authProvider.init
-        domain:       'sergeykazakoff-test.auth0.com'
-        clientID:     'XPQYEuy68HSlowXjeRJuA4xK9V8HaZdX'
-        loginState:   'login'
+        domain : 'sergeykazakoff-test.auth0.com'
+        clientID : 'XPQYEuy68HSlowXjeRJuA4xK9V8HaZdX'
+        loginState : 'login'
 
       authProvider.on 'loginSuccess', ($state, profilePromise, idToken, refreshToken, store) ->
         $state.go 'profile'
@@ -41,8 +41,9 @@ do ->
 
       $httpProvider.interceptors.push 'jwtInterceptor'
 
+      return
     .run ($rootScope, auth, store, jwtHelper, $state) ->
-
+           
       $rootScope.$on '$locationChangeStart', ->
         if not auth.isAuthenticated
           token = store.get 'token'
@@ -59,3 +60,4 @@ do ->
                             auth.authenticate store.get 'profile', idToken
               else
                 $state.go 'login'
+      return

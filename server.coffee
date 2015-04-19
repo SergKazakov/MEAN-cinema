@@ -26,7 +26,6 @@ app
   .use methodOverride()
   .use express.static path.join __dirname, 'client'
 
-require('./server/routes/api') app
 require('./server/routes/routes') app
 
 server.listen process.env.PORT or conf.get 'port'
