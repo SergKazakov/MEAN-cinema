@@ -82,14 +82,14 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.navbar', []).controller('NavbarCtrl', __webpack_require__(26));
+	module.exports = angular.module('cinema.navbar', []).controller('NavbarCtrl', __webpack_require__(28));
 
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.home', []).config(__webpack_require__(27)).controller('HomeCtrl', __webpack_require__(28));
+	module.exports = angular.module('cinema.home', []).config(__webpack_require__(26)).controller('HomeCtrl', __webpack_require__(27));
 
 
 /***/ },
@@ -40135,6 +40135,34 @@
 /* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var homeConfig;
+	
+	homeConfig = function($stateProvider) {
+	  return $stateProvider.state('home', {
+	    url: '/',
+	    templateUrl: 'partials/home',
+	    controller: 'HomeCtrl as home'
+	  });
+	};
+	
+	module.exports = homeConfig;
+
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var HomeCtrl;
+	
+	HomeCtrl = function($state) {};
+	
+	module.exports = HomeCtrl;
+
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var NavbarCtrl;
 	
 	NavbarCtrl = function($auth, $alert) {
@@ -40155,34 +40183,6 @@
 	};
 	
 	module.exports = NavbarCtrl;
-
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var homeConfig;
-	
-	homeConfig = function($stateProvider) {
-	  return $stateProvider.state('home', {
-	    url: '/',
-	    templateUrl: 'partials/home',
-	    controller: 'HomeCtrl as home'
-	  });
-	};
-	
-	module.exports = homeConfig;
-
-
-/***/ },
-/* 28 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var HomeCtrl;
-	
-	HomeCtrl = function($state) {};
-	
-	module.exports = HomeCtrl;
 
 
 /***/ },
