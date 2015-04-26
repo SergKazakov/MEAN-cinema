@@ -1,9 +1,9 @@
-ProfileCtrl = ($scope, $auth, $alert, Account) ->
-  $scope.getProfile = ->
+ProfileCtrl = ($auth, $alert, Account) ->
+  @getProfile = ->
     Account
       .getProfile()
-      .success (data) ->
-        $scope.user = data
+      .success (data) =>
+        @user = data
       .error (error) ->
         $alert
           content : error.message
@@ -11,30 +11,30 @@ ProfileCtrl = ($scope, $auth, $alert, Account) ->
           type : 'material'
           duration : 3
 
-  $scope.getProfile()
+  @getProfile()
 
-  $scope.updateProfile = ->
+  @updateProfile = ->
     Account
       .updateProfile
-        displayName : $scope.user.displayName
-        email : $scope.user.email
+        displayName : @user.displayName
+        email : @user.email
       .then -> $alert
         content : 'Profile has been updated'
         animation : 'fadeZoomFadeDown'
         type : 'material'
         duration : 3
 
-  $scope.link = (provider) ->
+  @link = (provider) ->
     $auth
       .link provider
       .then ->
         $alert
-          content : 'You have successfully linked ' + provider + ' account'
+          content : "You have successfully linked #{provider} account"
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
-      .then ->
-        $scope.getProfile()
+      .then =>
+        @getProfile()
       .catch (response) ->
         $alert
           content : response.data.message
@@ -42,20 +42,20 @@ ProfileCtrl = ($scope, $auth, $alert, Account) ->
           type : 'material'
           duration : 3
 
-  $scope.unlink = (provider) ->
+  @unlink = (provider) ->
     $auth
       .unlink provider
       .then ->
         $alert
-          content : 'You have successfully unlinked ' + provider + ' account'
+          content : "You have successfully unlinked #{provider} account"
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
-      .then ->
-        $scope.getProfile()
+      .then =>
+        @getProfile()
       .catch (response) ->
         $alert
-          content : if response.data then response.data.message else 'Could not unlink ' + provider + ' account'
+          content : if response.data then response.data.message else "Could not unlink #{provider} account"
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3

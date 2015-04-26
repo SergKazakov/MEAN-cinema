@@ -1,16 +1,8 @@
-jwt     = require 'jwt-simple'
-express = require 'express'
-moment  = require 'moment'
-router  = express.Router()
-User    = require '../models/user'
-conf    = require '../config/config'
-
-createToken = (user) ->
-  payload =
-    sub: user._id
-    iat: moment().unix()
-    exp: moment().add(14, 'days').unix()
-  jwt.encode payload, conf.tokenSecret
+express             = require 'express'
+router              = express.Router()
+User                = require '../../models/user'
+createToken         = require './createToken'
+ensureAuthenticated = require './ensureAuthenticated'
 
 router
   .post '/login', (req, res) ->
@@ -29,5 +21,12 @@ router
         password: req.body.password
       user.save ->
         res.send token: createToken user
+
+  .get '/unlink/:provider', ensureAuthenticated, (req, res) ->
+    provider = req.params.provider
+    User.findById req.user, (err, user) ->
+      return res.status(400).send message: 'User not found' if not user
+      user[provider] = undefined
+      user.save -> res.sendStatus 200
 
 module.exports = (app) -> app.use '/auth', router

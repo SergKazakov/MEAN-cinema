@@ -54,11 +54,13 @@
 	
 	__webpack_require__(17);
 	
+	__webpack_require__(18);
+	
 	__webpack_require__(11);
 	
 	__webpack_require__(12);
 	
-	angular.module('cinema', ['mgcrea.ngStrap', 'satellizer', __webpack_require__(8), __webpack_require__(9), __webpack_require__(18), __webpack_require__(10), __webpack_require__(1).name, __webpack_require__(2).name, __webpack_require__(3).name, __webpack_require__(4).name, __webpack_require__(5).name, __webpack_require__(6).name]).config(function($urlRouterProvider, $locationProvider, $authProvider) {
+	angular.module('cinema', ['mgcrea.ngStrap', 'satellizer', 'angular-loading-bar', __webpack_require__(8), __webpack_require__(9), __webpack_require__(19), __webpack_require__(10), __webpack_require__(1).name, __webpack_require__(2).name, __webpack_require__(3).name, __webpack_require__(4).name, __webpack_require__(5).name, __webpack_require__(6).name]).config(function($urlRouterProvider, $locationProvider, $authProvider) {
 	  $urlRouterProvider.otherwise('/');
 	  $locationProvider.html5Mode(true);
 	  $authProvider.facebook({
@@ -68,26 +70,10 @@
 	    clientId: '476828247245-ve3nh4f0fbcg0elggblkvctse9a26821.apps.googleusercontent.com'
 	  });
 	  $authProvider.github({
-	    clientId: '0ba2600b1dbdb756688b'
+	    clientId: 'fdf1e069c66bb5a88004'
 	  });
-	  $authProvider.linkedin({
-	    clientId: '77cw786yignpzj'
-	  });
-	  $authProvider.yahoo({
-	    clientId: 'dj0yJmk9SDVkM2RhNWJSc2ZBJmQ9WVdrOWIzVlFRMWxzTXpZbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD0yYw--'
-	  });
-	  $authProvider.twitter({
+	  return $authProvider.twitter({
 	    url: '/auth/twitter'
-	  });
-	  $authProvider.live({
-	    clientId: '0000000048152D9F'
-	  });
-	  return $authProvider.oauth2({
-	    name: 'foursquare',
-	    url: '/auth/foursquare',
-	    clientId: 'MTCEJ3NGW2PNNB31WOSBFDSAD4MTHYVAZ1UKIULXZ2CVFC2K',
-	    redirectUri: window.location.origin || window.location.protocol + '//' + window.location.host,
-	    authorizationEndpoint: 'https://foursquare.com/oauth2/authenticate'
 	  });
 	});
 
@@ -96,49 +82,49 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.navbar', []).controller('NavbarCtrl', __webpack_require__(25));
+	module.exports = angular.module('cinema.navbar', []).controller('NavbarCtrl', __webpack_require__(26));
 
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.home', []).config(__webpack_require__(26)).controller('HomeCtrl', __webpack_require__(27));
+	module.exports = angular.module('cinema.home', []).config(__webpack_require__(27)).controller('HomeCtrl', __webpack_require__(28));
 
 
 /***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.login', []).config(__webpack_require__(28)).controller('LoginCtrl', __webpack_require__(29));
+	module.exports = angular.module('cinema.login', []).config(__webpack_require__(29)).controller('LoginCtrl', __webpack_require__(30));
 
 
 /***/ },
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.signup', []).config(__webpack_require__(30)).controller('SignupCtrl', __webpack_require__(31)).directive('passwordMatch', __webpack_require__(32));
+	module.exports = angular.module('cinema.signup', []).config(__webpack_require__(31)).controller('SignupCtrl', __webpack_require__(32)).directive('passwordMatch', __webpack_require__(33));
 
 
 /***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.account', []).factory('Account', __webpack_require__(33));
+	module.exports = angular.module('cinema.account', []).factory('Account', __webpack_require__(34));
 
 
 /***/ },
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.profile', []).config(__webpack_require__(34)).controller('ProfileCtrl', __webpack_require__(35));
+	module.exports = angular.module('cinema.profile', []).config(__webpack_require__(35)).controller('ProfileCtrl', __webpack_require__(36));
 
 
 /***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(20);
+	__webpack_require__(21);
 	module.exports = angular;
 
 
@@ -146,7 +132,7 @@
 /* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(21);
+	__webpack_require__(22);
 	module.exports = 'ngResource';
 
 
@@ -154,7 +140,7 @@
 /* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(22);
+	__webpack_require__(23);
 	module.exports = 'ngMessages';
 
 
@@ -162,7 +148,7 @@
 /* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(23);
+	__webpack_require__(24);
 	module.exports = 'ngAnimate';
 
 
@@ -5592,7 +5578,7 @@
 	var content = __webpack_require__(14);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content, {});
+	var update = __webpack_require__(20)(content, {});
 	if(content.placeholders) module.exports = content.placeholders;
 	// Hot Module Replacement
 	if(false) {
@@ -5612,7 +5598,7 @@
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(24)();
+	exports = module.exports = __webpack_require__(25)();
 	exports.push([module.id, "/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:textfield;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}", ""]);
 
 /***/ },
@@ -5625,7 +5611,7 @@
 	var content = __webpack_require__(16);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(19)(content, {});
+	var update = __webpack_require__(20)(content, {});
 	if(content.placeholders) module.exports = content.placeholders;
 	// Hot Module Replacement
 	if(false) {
@@ -5645,8 +5631,8 @@
 /* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(24)();
-	exports.push([module.id, "@import\"../bower_components/bootstrap/dist/css/bootstrap.css\";@import\"../bower_components/angular-motion/dist/angular-motion.css\";*,*:before,*:after{box-sizing:border-box}html{font-size:62.5%}ul{padding:0;margin:0;list-style-type:none}a{text-decoration:none}img{max-width:100%}a:focus,input:focus,textarea:focus,button:focus{outline:0}textarea{resize:none}body{font-family:Open Sans,sans-serif;background:#e4e7ec}h1,h2,h3,h4,h5,h6{font-family:Montserrat,sans-serif;font-weight:700}a{color:#000}.text-muted{color:#90939a}.navbar{border:0;box-shadow:0 2px 5px 0 rgba(0,0,0,.26)}.navbar-header{float:left;padding-left:15px}.navbar-nav{float:left;margin:0}.navbar-nav>li{float:left}.navbar-nav>li>a{padding:15px}.navbar-default{color:#fff;background:#fff}.navbar-default .navbar-brand{color:#333;background-color:#ffe939}.navbar-default .navbar-brand:hover{color:#ffe939;background-color:#333}.navbar-brand{margin-left:-15px;transition:.25s all}.panel{border-color:#cfd9d7;border-radius:2px;box-shadow:0 8px 17px rgba(0,0,0,.2)}.panel-default>.panel-heading{font-size:85%;font-weight:700;color:#444;text-transform:uppercase;background-color:#f6f6f6;border-color:#cfd9db}.form-control{border-radius:0}.center-form{width:330px;margin:12% auto}.signup-or-separator{position:relative;height:34px;text-align:center;background:none}.signup-or-separator hr{width:90%;margin:-16px auto 10px;border-top:1px solid #dce0e0}.signup-or-separator .text{display:inline-block;padding:8px;margin:0;background-color:#fff}.has-feedback .form-control-feedback{top:0;left:0;width:46px;height:46px;line-height:46px;color:#555}.has-feedback .form-control{padding-left:42.5px}.password-strength-indicator{position:absolute;top:10px;right:0;width:5px;padding:0 15px}.password-strength-indicator span{display:block;width:5px;height:5px;margin-bottom:2px;background:#ebeef1;border-radius:5px}[class^=ion-]{font-size:1.2em}.alert-material{position:fixed;right:12px;bottom:12px;z-index:1;display:inline-block;min-height:48px;padding:13px 24px 12px;font-family:Roboto,sans-serif;color:#f1f1f1;cursor:default;background:#323232;border-radius:2px;outline:none;box-shadow:0 2px 5px 0 rgba(0,0,0,.26)}.profile-picture{height:100px;display:block}.btn{font-weight:700;border-radius:2px;box-shadow:0 2px 5px 0 rgba(0,0,0,.26)}.btn [class^=ion-]{margin-right:5px}.btn .fa{margin-right:5px}.btn-primary{background-color:#4285f4}.btn-primary:hover{background-color:#3367d6}.btn-success{background-color:#0f9d58}.btn-success:hover{background-color:#196c4a}.btn-danger{background-color:#db4437}.btn-danger:hover{background-color:#b04c3b}.btn-group-vertical .btn{margin-bottom:10px}.btn-group-vertical>.btn:first-child:not(:last-child){border-radius:2px}.btn-group-vertical>.btn:not(:first-child):not(:last-child){border-radius:2px}.btn-group-vertical>.btn:last-child:not(:first-child){border-radius:2px}.btn-lg{font-size:14px}.btn-google-plus{color:#fff;background-color:#dd4b39;border:1px solid #d54331}.btn-google-plus:hover,.btn-google-plus:focus{color:#fff;background-color:#cb3927}.btn-facebook{color:#fff;background-color:#3b5998;border:1px solid #335190}.btn-facebook:hover,.btn-facebook:focus{color:#fff;background-color:#294786}.btn-linkedin{color:#fff;background-color:#007bb6;border:1px solid #0073ae}.btn-linkedin:hover,.btn-linkedin:focus{color:#fff;background-color:#0069a4}.btn-twitter{color:#fff;background-color:#00aced;border:1px solid #009fdb}.btn-twitter:hover,.btn-twitter:focus{color:#fff;background-color:#0090c7}.btn-foursquare{color:#fff;background-color:#f94877;border:1px solid #f8215a}.btn-foursquare:hover,.btn-foursquare:focus{color:#fff;background-color:#f71752}.btn-github{color:#fff;background-color:#444;border:1px solid #3b3b3b}.btn-github:hover,.btn-github:focus{color:#fff;background-color:#303030}.btn-yahoo{color:#fff;background-color:#720e9e;border:1px solid #580b75}.btn-yahoo:hover,.btn-yahoo:focus{color:#fff;background-color:#303030}.btn-live{color:#fff;background-color:#2672ec}.btn-live:hover,.btn-live:focus{color:#fff;background-color:#125acd}.fadeZoom.ng-enter{-webkit-animation-duration:.6s,.2s;animation-duration:.2,.2s;-webkit-animation-name:fadeIn,zoomIn;animation-name:fadeIn,zoomIn}.fadeZoomFadeDown.ng-enter{-webkit-animation-duration:.2s,.2s;animation-duration:.2s,.2s;-webkit-animation-name:fadeIn,zoomIn;animation-name:fadeIn,zoomIn}.fadeZoomFadeDown.ng-leave{-webkit-animation:fadeOutDown .2s;animation:fadeOutDown .2s}@-webkit-keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.8,.8,.8);transform:scale3d(.8,.8,.8)}50%{opacity:1}}@-webkit-keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.8,.8,.8);transform:scale3d(.8,.8,.8)}50%{opacity:1}}@keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.8,.8,.8);transform:scale3d(.8,.8,.8)}50%{opacity:1}}", ""]);
+	exports = module.exports = __webpack_require__(25)();
+	exports.push([module.id, "@import\"../bower_components/bootstrap/dist/css/bootstrap.css\";@import\"../bower_components/angular-motion/dist/angular-motion.css\";@import\"../../node_modules/angular-loading-bar/build/loading-bar.css\";*,*:before,*:after{box-sizing:border-box}html{font-size:62.5%}ul{padding:0;margin:0;list-style-type:none}a{text-decoration:none}img{max-width:100%}a:focus,input:focus,textarea:focus,button:focus{outline:0}textarea{resize:none}body{font-family:Open Sans,sans-serif;background:#e4e7ec}h1,h2,h3,h4,h5,h6{font-family:Montserrat,sans-serif;font-weight:700}a{color:#000}.text-muted{color:#90939a}.navbar{border:0;box-shadow:0 2px 5px 0 rgba(0,0,0,.26)}.navbar-header{float:left;padding-left:15px}.navbar-nav{float:left;margin:0}.navbar-nav>li{float:left}.navbar-nav>li>a{padding:15px}.navbar-default{color:#fff;background:#fff}.navbar-default .navbar-brand{color:#333;background-color:#ffe939}.navbar-default .navbar-brand:hover{color:#ffe939;background-color:#333}.navbar-brand{margin-left:-15px;transition:.25s all}.panel{border-color:#cfd9d7;border-radius:2px;box-shadow:0 8px 17px rgba(0,0,0,.2)}.panel-default>.panel-heading{font-size:85%;font-weight:700;color:#444;text-transform:uppercase;background-color:#f6f6f6;border-color:#cfd9db}.form-control{border-radius:0}.center-form{width:330px;margin:12% auto}.signup-or-separator{position:relative;height:34px;text-align:center;background:none}.signup-or-separator hr{width:90%;margin:-16px auto 10px;border-top:1px solid #dce0e0}.signup-or-separator .text{display:inline-block;padding:8px;margin:0;background-color:#fff}.has-feedback .form-control-feedback{top:0;left:0;width:46px;height:46px;line-height:46px;color:#555}.has-feedback .form-control{padding-left:42.5px}.password-strength-indicator{position:absolute;top:10px;right:0;width:5px;padding:0 15px}.password-strength-indicator span{display:block;width:5px;height:5px;margin-bottom:2px;background:#ebeef1;border-radius:5px}[class^=ion-]{font-size:1.2em}.alert-material{position:fixed;right:12px;bottom:12px;z-index:1;display:inline-block;min-height:48px;padding:13px 24px 12px;font-family:Roboto,sans-serif;color:#f1f1f1;cursor:default;background:#323232;border-radius:2px;outline:none;box-shadow:0 2px 5px 0 rgba(0,0,0,.26)}.profile-picture{height:100px;display:block}.btn{font-weight:700;border-radius:2px;box-shadow:0 2px 5px 0 rgba(0,0,0,.26)}.btn [class^=ion-]{margin-right:5px}.btn .fa{margin-right:5px}.btn-primary{background-color:#4285f4}.btn-primary:hover{background-color:#3367d6}.btn-success{background-color:#0f9d58}.btn-success:hover{background-color:#196c4a}.btn-danger{background-color:#db4437}.btn-danger:hover{background-color:#b04c3b}.btn-group-vertical .btn{margin-bottom:10px}.btn-group-vertical>.btn:first-child:not(:last-child){border-radius:2px}.btn-group-vertical>.btn:not(:first-child):not(:last-child){border-radius:2px}.btn-group-vertical>.btn:last-child:not(:first-child){border-radius:2px}.btn-lg{font-size:14px}.btn-google-plus{color:#fff;background-color:#dd4b39;border:1px solid #d54331}.btn-google-plus:hover,.btn-google-plus:focus{color:#fff;background-color:#cb3927}.btn-facebook{color:#fff;background-color:#3b5998;border:1px solid #335190}.btn-facebook:hover,.btn-facebook:focus{color:#fff;background-color:#294786}.btn-linkedin{color:#fff;background-color:#007bb6;border:1px solid #0073ae}.btn-linkedin:hover,.btn-linkedin:focus{color:#fff;background-color:#0069a4}.btn-twitter{color:#fff;background-color:#00aced;border:1px solid #009fdb}.btn-twitter:hover,.btn-twitter:focus{color:#fff;background-color:#0090c7}.btn-foursquare{color:#fff;background-color:#f94877;border:1px solid #f8215a}.btn-foursquare:hover,.btn-foursquare:focus{color:#fff;background-color:#f71752}.btn-github{color:#fff;background-color:#444;border:1px solid #3b3b3b}.btn-github:hover,.btn-github:focus{color:#fff;background-color:#303030}.btn-yahoo{color:#fff;background-color:#720e9e;border:1px solid #580b75}.btn-yahoo:hover,.btn-yahoo:focus{color:#fff;background-color:#303030}.btn-live{color:#fff;background-color:#2672ec}.btn-live:hover,.btn-live:focus{color:#fff;background-color:#125acd}.fadeZoom.ng-enter{-webkit-animation-duration:.6s,.2s;animation-duration:.2,.2s;-webkit-animation-name:fadeIn,zoomIn;animation-name:fadeIn,zoomIn}.fadeZoomFadeDown.ng-enter{-webkit-animation-duration:.2s,.2s;animation-duration:.2s,.2s;-webkit-animation-name:fadeIn,zoomIn;animation-name:fadeIn,zoomIn}.fadeZoomFadeDown.ng-leave{-webkit-animation:fadeOutDown .2s;animation:fadeOutDown .2s}@-webkit-keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.8,.8,.8);transform:scale3d(.8,.8,.8)}50%{opacity:1}}@-webkit-keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.8,.8,.8);transform:scale3d(.8,.8,.8)}50%{opacity:1}}@keyframes zoomIn{0%{opacity:0;-webkit-transform:scale3d(.8,.8,.8);transform:scale3d(.8,.8,.8)}50%{opacity:1}}", ""]);
 
 /***/ },
 /* 17 */
@@ -5661,6 +5647,330 @@
 
 /***/ },
 /* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+	 * angular-loading-bar
+	 *
+	 * intercepts XHR requests and creates a loading bar.
+	 * Based on the excellent nprogress work by rstacruz (more info in readme)
+	 *
+	 * (c) 2013 Wes Cruver
+	 * License: MIT
+	 */
+	
+	
+	(function() {
+	
+	'use strict';
+	
+	// Alias the loading bar for various backwards compatibilities since the project has matured:
+	angular.module('angular-loading-bar', ['cfp.loadingBarInterceptor']);
+	angular.module('chieffancypants.loadingBar', ['cfp.loadingBarInterceptor']);
+	
+	
+	/**
+	 * loadingBarInterceptor service
+	 *
+	 * Registers itself as an Angular interceptor and listens for XHR requests.
+	 */
+	angular.module('cfp.loadingBarInterceptor', ['cfp.loadingBar'])
+	  .config(['$httpProvider', function ($httpProvider) {
+	
+	    var interceptor = ['$q', '$cacheFactory', '$timeout', '$rootScope', '$log', 'cfpLoadingBar', function ($q, $cacheFactory, $timeout, $rootScope, $log, cfpLoadingBar) {
+	
+	      /**
+	       * The total number of requests made
+	       */
+	      var reqsTotal = 0;
+	
+	      /**
+	       * The number of requests completed (either successfully or not)
+	       */
+	      var reqsCompleted = 0;
+	
+	      /**
+	       * The amount of time spent fetching before showing the loading bar
+	       */
+	      var latencyThreshold = cfpLoadingBar.latencyThreshold;
+	
+	      /**
+	       * $timeout handle for latencyThreshold
+	       */
+	      var startTimeout;
+	
+	
+	      /**
+	       * calls cfpLoadingBar.complete() which removes the
+	       * loading bar from the DOM.
+	       */
+	      function setComplete() {
+	        $timeout.cancel(startTimeout);
+	        cfpLoadingBar.complete();
+	        reqsCompleted = 0;
+	        reqsTotal = 0;
+	      }
+	
+	      /**
+	       * Determine if the response has already been cached
+	       * @param  {Object}  config the config option from the request
+	       * @return {Boolean} retrns true if cached, otherwise false
+	       */
+	      function isCached(config) {
+	        var cache;
+	        var defaultCache = $cacheFactory.get('$http');
+	        var defaults = $httpProvider.defaults;
+	
+	        // Choose the proper cache source. Borrowed from angular: $http service
+	        if ((config.cache || defaults.cache) && config.cache !== false &&
+	          (config.method === 'GET' || config.method === 'JSONP')) {
+	            cache = angular.isObject(config.cache) ? config.cache
+	              : angular.isObject(defaults.cache) ? defaults.cache
+	              : defaultCache;
+	        }
+	
+	        var cached = cache !== undefined ?
+	          cache.get(config.url) !== undefined : false;
+	
+	        if (config.cached !== undefined && cached !== config.cached) {
+	          return config.cached;
+	        }
+	        config.cached = cached;
+	        return cached;
+	      }
+	
+	
+	      return {
+	        'request': function(config) {
+	          // Check to make sure this request hasn't already been cached and that
+	          // the requester didn't explicitly ask us to ignore this request:
+	          if (!config.ignoreLoadingBar && !isCached(config)) {
+	            $rootScope.$broadcast('cfpLoadingBar:loading', {url: config.url});
+	            if (reqsTotal === 0) {
+	              startTimeout = $timeout(function() {
+	                cfpLoadingBar.start();
+	              }, latencyThreshold);
+	            }
+	            reqsTotal++;
+	            cfpLoadingBar.set(reqsCompleted / reqsTotal);
+	          }
+	          return config;
+	        },
+	
+	        'response': function(response) {
+	          if (!response || !response.config) {
+	            $log.error('Broken interceptor detected: Config object not supplied in response:\n https://github.com/chieffancypants/angular-loading-bar/pull/50');
+	            return response;
+	          }
+	
+	          if (!response.config.ignoreLoadingBar && !isCached(response.config)) {
+	            reqsCompleted++;
+	            $rootScope.$broadcast('cfpLoadingBar:loaded', {url: response.config.url, result: response});
+	            if (reqsCompleted >= reqsTotal) {
+	              setComplete();
+	            } else {
+	              cfpLoadingBar.set(reqsCompleted / reqsTotal);
+	            }
+	          }
+	          return response;
+	        },
+	
+	        'responseError': function(rejection) {
+	          if (!rejection || !rejection.config) {
+	            $log.error('Broken interceptor detected: Config object not supplied in rejection:\n https://github.com/chieffancypants/angular-loading-bar/pull/50');
+	            return $q.reject(rejection);
+	          }
+	
+	          if (!rejection.config.ignoreLoadingBar && !isCached(rejection.config)) {
+	            reqsCompleted++;
+	            $rootScope.$broadcast('cfpLoadingBar:loaded', {url: rejection.config.url, result: rejection});
+	            if (reqsCompleted >= reqsTotal) {
+	              setComplete();
+	            } else {
+	              cfpLoadingBar.set(reqsCompleted / reqsTotal);
+	            }
+	          }
+	          return $q.reject(rejection);
+	        }
+	      };
+	    }];
+	
+	    $httpProvider.interceptors.push(interceptor);
+	  }]);
+	
+	
+	/**
+	 * Loading Bar
+	 *
+	 * This service handles adding and removing the actual element in the DOM.
+	 * Generally, best practices for DOM manipulation is to take place in a
+	 * directive, but because the element itself is injected in the DOM only upon
+	 * XHR requests, and it's likely needed on every view, the best option is to
+	 * use a service.
+	 */
+	angular.module('cfp.loadingBar', [])
+	  .provider('cfpLoadingBar', function() {
+	
+	    this.includeSpinner = true;
+	    this.includeBar = true;
+	    this.latencyThreshold = 100;
+	    this.startSize = 0.02;
+	    this.parentSelector = 'body';
+	    this.spinnerTemplate = '<div id="loading-bar-spinner"><div class="spinner-icon"></div></div>';
+	    this.loadingBarTemplate = '<div id="loading-bar"><div class="bar"><div class="peg"></div></div></div>';
+	
+	    this.$get = ['$injector', '$document', '$timeout', '$rootScope', function ($injector, $document, $timeout, $rootScope) {
+	      var $animate;
+	      var $parentSelector = this.parentSelector,
+	        loadingBarContainer = angular.element(this.loadingBarTemplate),
+	        loadingBar = loadingBarContainer.find('div').eq(0),
+	        spinner = angular.element(this.spinnerTemplate);
+	
+	      var incTimeout,
+	        completeTimeout,
+	        started = false,
+	        status = 0;
+	
+	      var includeSpinner = this.includeSpinner;
+	      var includeBar = this.includeBar;
+	      var startSize = this.startSize;
+	
+	      /**
+	       * Inserts the loading bar element into the dom, and sets it to 2%
+	       */
+	      function _start() {
+	        if (!$animate) {
+	          $animate = $injector.get('$animate');
+	        }
+	
+	        var $parent = $document.find($parentSelector).eq(0);
+	        $timeout.cancel(completeTimeout);
+	
+	        // do not continually broadcast the started event:
+	        if (started) {
+	          return;
+	        }
+	
+	        $rootScope.$broadcast('cfpLoadingBar:started');
+	        started = true;
+	
+	        if (includeBar) {
+	          $animate.enter(loadingBarContainer, $parent, angular.element($parent[0].lastChild));
+	        }
+	
+	        if (includeSpinner) {
+	          $animate.enter(spinner, $parent, angular.element($parent[0].lastChild));
+	        }
+	
+	        _set(startSize);
+	      }
+	
+	      /**
+	       * Set the loading bar's width to a certain percent.
+	       *
+	       * @param n any value between 0 and 1
+	       */
+	      function _set(n) {
+	        if (!started) {
+	          return;
+	        }
+	        var pct = (n * 100) + '%';
+	        loadingBar.css('width', pct);
+	        status = n;
+	
+	        // increment loadingbar to give the illusion that there is always
+	        // progress but make sure to cancel the previous timeouts so we don't
+	        // have multiple incs running at the same time.
+	        $timeout.cancel(incTimeout);
+	        incTimeout = $timeout(function() {
+	          _inc();
+	        }, 250);
+	      }
+	
+	      /**
+	       * Increments the loading bar by a random amount
+	       * but slows down as it progresses
+	       */
+	      function _inc() {
+	        if (_status() >= 1) {
+	          return;
+	        }
+	
+	        var rnd = 0;
+	
+	        // TODO: do this mathmatically instead of through conditions
+	
+	        var stat = _status();
+	        if (stat >= 0 && stat < 0.25) {
+	          // Start out between 3 - 6% increments
+	          rnd = (Math.random() * (5 - 3 + 1) + 3) / 100;
+	        } else if (stat >= 0.25 && stat < 0.65) {
+	          // increment between 0 - 3%
+	          rnd = (Math.random() * 3) / 100;
+	        } else if (stat >= 0.65 && stat < 0.9) {
+	          // increment between 0 - 2%
+	          rnd = (Math.random() * 2) / 100;
+	        } else if (stat >= 0.9 && stat < 0.99) {
+	          // finally, increment it .5 %
+	          rnd = 0.005;
+	        } else {
+	          // after 99%, don't increment:
+	          rnd = 0;
+	        }
+	
+	        var pct = _status() + rnd;
+	        _set(pct);
+	      }
+	
+	      function _status() {
+	        return status;
+	      }
+	
+	      function _completeAnimation() {
+	        status = 0;
+	        started = false;
+	      }
+	
+	      function _complete() {
+	        if (!$animate) {
+	          $animate = $injector.get('$animate');
+	        }
+	
+	        $rootScope.$broadcast('cfpLoadingBar:completed');
+	        _set(1);
+	
+	        $timeout.cancel(completeTimeout);
+	
+	        // Attempt to aggregate any start/complete calls within 500ms:
+	        completeTimeout = $timeout(function() {
+	          var promise = $animate.leave(loadingBarContainer, _completeAnimation);
+	          if (promise && promise.then) {
+	            promise.then(_completeAnimation);
+	          }
+	          $animate.leave(spinner);
+	        }, 500);
+	      }
+	
+	      return {
+	        start            : _start,
+	        set              : _set,
+	        status           : _status,
+	        inc              : _inc,
+	        complete         : _complete,
+	        includeSpinner   : this.includeSpinner,
+	        latencyThreshold : this.latencyThreshold,
+	        parentSelector   : this.parentSelector,
+	        startSize        : this.startSize
+	      };
+	
+	
+	    }];     //
+	  });       // wtf javascript. srsly
+	})();       //
+
+
+/***/ },
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -10004,7 +10314,7 @@
 	})(window, window.angular);
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -10228,7 +10538,7 @@
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var require;/**
@@ -36542,7 +36852,7 @@
 	!window.angular.$$csp() && window.angular.element(document).find('head').prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -37216,7 +37526,7 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -37623,7 +37933,7 @@
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -39766,7 +40076,7 @@
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -39822,7 +40132,7 @@
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var NavbarCtrl;
@@ -39848,7 +40158,7 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var homeConfig;
@@ -39865,7 +40175,7 @@
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var HomeCtrl;
@@ -39876,7 +40186,7 @@
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var loginConfig;
@@ -39893,7 +40203,7 @@
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var LoginCtrl;
@@ -39942,7 +40252,7 @@
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var signupConfig;
@@ -39959,7 +40269,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var SignupCtrl;
@@ -39996,7 +40306,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var passwordMatch;
@@ -40022,7 +40332,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var Account;
@@ -40042,7 +40352,7 @@
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var profileConfig;
@@ -40051,13 +40361,13 @@
 	  return $stateProvider.state('profile', {
 	    url: '/profile',
 	    templateUrl: 'partials/profile',
-	    controller: 'ProfileCtrl',
+	    controller: 'ProfileCtrl as vm',
 	    resolve: {
-	      authenticated: function($q, $state, $auth) {
+	      authenticated: function($q, $location, $auth) {
 	        var deferred;
 	        deferred = $q.defer();
 	        if (!$auth.isAuthenticated()) {
-	          $state.go('login');
+	          $location.path('/login');
 	        } else {
 	          deferred.resolve();
 	        }
@@ -40071,16 +40381,18 @@
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ProfileCtrl;
 	
-	ProfileCtrl = function($scope, $auth, $alert, Account) {
-	  $scope.getProfile = function() {
-	    return Account.getProfile().success(function(data) {
-	      return $scope.user = data;
-	    }).error(function(error) {
+	ProfileCtrl = function($auth, $alert, Account) {
+	  this.getProfile = function() {
+	    return Account.getProfile().success((function(_this) {
+	      return function(data) {
+	        return _this.user = data;
+	      };
+	    })(this)).error(function(error) {
 	      return $alert({
 	        content: error.message,
 	        animation: 'fadeZoomFadeDown',
@@ -40089,11 +40401,11 @@
 	      });
 	    });
 	  };
-	  $scope.getProfile();
-	  $scope.updateProfile = function() {
+	  this.getProfile();
+	  this.updateProfile = function() {
 	    return Account.updateProfile({
-	      displayName: $scope.user.displayName,
-	      email: $scope.user.email
+	      displayName: this.user.displayName,
+	      email: this.user.email
 	    }).then(function() {
 	      return $alert({
 	        content: 'Profile has been updated',
@@ -40103,17 +40415,19 @@
 	      });
 	    });
 	  };
-	  $scope.link = function(provider) {
+	  this.link = function(provider) {
 	    return $auth.link(provider).then(function() {
 	      return $alert({
-	        content: 'You have successfully linked ' + provider + ' account',
+	        content: "You have successfully linked " + provider + " account",
 	        animation: 'fadeZoomFadeDown',
 	        type: 'material',
 	        duration: 3
 	      });
-	    }).then(function() {
-	      return $scope.getProfile();
-	    })["catch"](function(response) {
+	    }).then((function(_this) {
+	      return function() {
+	        return _this.getProfile();
+	      };
+	    })(this))["catch"](function(response) {
 	      return $alert({
 	        content: response.data.message,
 	        animation: 'fadeZoomFadeDown',
@@ -40122,19 +40436,21 @@
 	      });
 	    });
 	  };
-	  $scope.unlink = function(provider) {
+	  this.unlink = function(provider) {
 	    return $auth.unlink(provider).then(function() {
 	      return $alert({
-	        content: 'You have successfully unlinked ' + provider + ' account',
+	        content: "You have successfully unlinked " + provider + " account",
 	        animation: 'fadeZoomFadeDown',
 	        type: 'material',
 	        duration: 3
 	      });
-	    }).then(function() {
-	      return $scope.getProfile();
-	    })["catch"](function(response) {
+	    }).then((function(_this) {
+	      return function() {
+	        return _this.getProfile();
+	      };
+	    })(this))["catch"](function(response) {
 	      return $alert({
-	        content: response.data ? response.data.message : 'Could not unlink ' + provider + ' account',
+	        content: response.data ? response.data.message : "Could not unlink " + provider + " account",
 	        animation: 'fadeZoomFadeDown',
 	        type: 'material',
 	        duration: 3

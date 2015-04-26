@@ -8,6 +8,7 @@ module.exports =
   output :
     path : "#{__dirname}/client/js"
     filename : 'bundle.js'
+  cache : on
   watch : on
   debug : on
   devtool : 'source-map'
