@@ -8,12 +8,12 @@ require '../bower_components/angular-strap/dist/angular-strap.tpl'
 
 angular
   .module 'cinema', [
+    'mgcrea.ngStrap'
+    'satellizer'
     require 'angular-resource'
     require 'angular-messages'
     require 'angular-ui-router'
     require 'angular-animate'
-    'mgcrea.ngStrap'
-    'satellizer'
     require('./navbar/navbar').name
     require('./home/home').name
     require('./login/login').name

@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "angular-motion": "~0.3.4"
+    "angular-motion": "~0.3.4",
+    "angular-strap": "~2.2.1"
   },
   "devDependencies": {}
 }

@@ -18,8 +18,7 @@ ProfileCtrl = ($scope, $auth, $alert, Account) ->
       .updateProfile
         displayName : $scope.user.displayName
         email : $scope.user.email
-      .then ->
-      $alert
+      .then -> $alert
         content : 'Profile has been updated'
         animation : 'fadeZoomFadeDown'
         type : 'material'
