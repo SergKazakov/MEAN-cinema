@@ -1,16 +1,16 @@
-.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl as navbar')
+.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl as vm')
   .navbar-header
-    a.navbar-brand(href='/')
+    a.navbar-brand(ui-sref='home')
       i.ion-ios7-pulse-strong
       |  Satellizer
   ul.nav.navbar-nav
-    li(ng-if='navbar.isAuthenticated()')
+    li(ng-if='vm.isAuthenticated()')
       a(ui-sref='profile', ui-sref-active='active') Profile
-  ul.nav.navbar-nav.pull-right(ng-if='!navbar.isAuthenticated()')
+  ul.nav.navbar-nav.pull-right(ng-if='!vm.isAuthenticated()')
     li
       a(ui-sref='login', ui-sref-active='active') Login
     li
       a(ui-sref='signup', ui-sref-active='active') Sign up
-  ul.nav.navbar-nav.pull-right(ng-if='navbar.isAuthenticated()')
+  ul.nav.navbar-nav.pull-right(ng-if='vm.isAuthenticated()')
     li
-      a(href='#', ng-click="navbar.logout($event)") Logout
+      a(href='#', ng-click="vm.logout($event)") Logout

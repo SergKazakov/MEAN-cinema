@@ -1,9 +1,9 @@
-LoginCtrl = ($scope, $alert, $auth) ->
-  $scope.login = ->
+LoginCtrl = ($alert, $auth) ->
+  @login = ->
     $auth
       .login
-        email : $scope.email
-        password : $scope.password
+        email : @email
+        password : @password
       .then ->
         $alert
           content : 'You have successfully logged in'
@@ -16,7 +16,8 @@ LoginCtrl = ($scope, $alert, $auth) ->
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
-  $scope.authenticate = (provider) ->
+
+  @authenticate = (provider) ->
     $auth
       .authenticate provider
       .then ->

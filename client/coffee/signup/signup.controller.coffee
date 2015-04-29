@@ -1,10 +1,10 @@
-SignupCtrl = ($scope, $alert, $auth) ->
-  $scope.signup = ->
+SignupCtrl = ($alert, $auth) ->
+  @signup = ->
     $auth
       .signup
-        displayName : $scope.displayName
-        email : $scope.email
-        password : $scope.password
+        displayName : @displayName
+        email : @email
+        password : @password
       .catch (response) ->
         if typeof response.data.message is 'object'
           angular.forEach response.data.message, (message) ->

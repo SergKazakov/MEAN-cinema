@@ -4,7 +4,7 @@ autoprefixer          = require 'autoprefixer-core'
 csswring              = require 'csswring'
 
 module.exports =
-  entry : './client/coffee/main.coffee'
+  entry : './client/coffee/main/main.coffee'
   output :
     path : "#{__dirname}/client/js"
     filename : 'bundle.js'

@@ -6,7 +6,7 @@ wiredep     = require('wiredep').stream
 runSequence = require 'run-sequence'
 
 gulp.task 'webpack', ->
-  gulp.src './client/coffee/main.coffee'
+  gulp.src './client/coffee/main/main.coffee'
     .pipe $.webpack require './webpack.config.coffee'
     .pipe gulp.dest './client/js'
 
