@@ -1,9 +1,9 @@
-ProfileCtrl = ($auth, $alert, Account) ->
+ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
   @getProfile = ->
-    Account
+    Auth
       .getProfile()
-      .success (data) =>
-        @user = data
+      .success (response) =>
+        @user = response
       .error (error) ->
         $alert
           content : error.message
@@ -14,15 +14,18 @@ ProfileCtrl = ($auth, $alert, Account) ->
   @getProfile()
 
   @updateProfile = ->
-    Account
+    Auth
       .updateProfile
         displayName : @user.displayName
         email : @user.email
-      .then -> $alert
-        content : 'Profile has been updated'
-        animation : 'fadeZoomFadeDown'
-        type : 'material'
-        duration : 3
+      .success (response) ->
+        store.set 'profile', response
+        $rootScope.currentUser = store.get 'profile'
+        $alert
+          content : 'Profile has been updated'
+          animation : 'fadeZoomFadeDown'
+          type : 'material'
+          duration : 3
 
   @link = (provider) ->
     $auth

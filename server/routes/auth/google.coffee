@@ -29,7 +29,6 @@ router
         headers: headers
         json: on
       , (err, response, profile) ->
-        console.log profile
         if req.headers.authorization
           User.findOne google: profile.sub, (err, existingUser) ->
             return res.status(409).send message: 'There is already a Google account that belongs to you' if existingUser
@@ -40,14 +39,23 @@ router
               user.google = profile.sub
               user.picture = user.picture or profile.picture.replace 'sz=50', 'sz=200'
               user.displayName = user.displayName or profile.name
-              user.save -> res.send token: createToken user
+              user.save ->
+                res.send
+                  user : user
+                  token : createToken user
         else
           User.findOne google: profile.sub, (err, existingUser) ->
-            return res.send token: createToken existingUser if existingUser
-            user = new User()
-            user.google = profile.sub
-            user.picture = profile.picture.replace 'sz=50', 'sz=200'
-            user.displayName = profile.name
-            user.save -> res.send token: createToken user
+            if existingUser
+              return res.send
+                user : existingUser
+                token : createToken existingUser
+            user = new User
+              google : profile.sub
+              picture : profile.picture.replace 'sz=50', 'sz=200'
+              displayName : profile.name
+            user.save ->
+              res.send
+                user : user
+                token : createToken user
 
 module.exports = (app) -> app.use '/auth', router

@@ -1,10 +1,12 @@
-LoginCtrl = ($alert, $auth) ->
+LoginCtrl = ($rootScope, Auth, $alert, $auth, store) ->
   @login = ->
     $auth
       .login
         email : @email
         password : @password
-      .then ->
+      .then (response) ->
+        store.set 'profile', response.data.user
+        $rootScope.currentUser = store.get 'profile'
         $alert
           content : 'You have successfully logged in'
           animation : 'fadeZoomFadeDown'
@@ -20,7 +22,9 @@ LoginCtrl = ($alert, $auth) ->
   @authenticate = (provider) ->
     $auth
       .authenticate provider
-      .then ->
+      .then (response) ->
+        store.set 'profile', response.data.user
+        $rootScope.currentUser = store.get 'profile'
         $alert
           content : 'You have successfully logged in'
           animation : 'fadeZoomFadeDown'

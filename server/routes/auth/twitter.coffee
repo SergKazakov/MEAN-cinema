@@ -48,13 +48,22 @@ router
               return res.status(400).send message: 'User not found' if not user
               user.twitter = profile.user_id
               user.displayName = user.displayName or profile.screen_name
-              user.save (err) -> res.send token: createToken user
+              user.save ->
+                res.send
+                  user : user
+                  token : createToken user
         else
           User.findOne twitter: profile.user_id, (err, existingUser) ->
-            return res.send token: createToken existingUser if existingUser
-            user = new User()
-            user.twitter = profile.user_id
-            user.displayName = profile.screen_name
-            user.save -> res.send token: createToken user
+            if existingUser
+              return res.send
+                user : existingUser
+                token : createToken existingUser
+            user = new User
+              twitter : profile.user_id
+              displayName : profile.screen_name
+            user.save ->
+              res.send
+                user : user
+                token : createToken user
 
 module.exports = (app) -> app.use '/auth', router

@@ -1,4 +1,4 @@
-NavbarCtrl = ($auth, $alert) ->
+NavbarCtrl = ($auth, $alert, Auth, store, $rootScope) ->
   @isAuthenticated = -> $auth.isAuthenticated()
 
   @logout = (e) ->
@@ -6,6 +6,7 @@ NavbarCtrl = ($auth, $alert) ->
     $auth
       .logout()
       .then ->
+        store.remove 'profile'
         $alert
           content : 'You have been logged out'
           animation : 'fadeZoomFadeDown'

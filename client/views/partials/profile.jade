@@ -14,7 +14,7 @@
             i.ion-person
             |  Display Name
           input.form-control(type='text', ng-model='vm.user.displayName')
-        .form-group
+        .form-group(ng-if='vm.user.email')
           label.control-label
             i.ion-at
             |  Email Address

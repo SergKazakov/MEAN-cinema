@@ -31,7 +31,7 @@ if app.get 'env' is 'production'
     if protocol is 'https' then next() else res.redirect "https://#{req.hostname}#{req.url}"
 
 require('./server/routes/auth/me') app
-require('./server/routes/auth/simpleAuth') app
+require('./server/routes/auth/local') app
 require('./server/routes/auth/google') app
 require('./server/routes/auth/facebook') app
 require('./server/routes/auth/twitter') app

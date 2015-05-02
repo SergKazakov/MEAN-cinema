@@ -17,14 +17,15 @@ gulp.task 'wiredep', ->
 
 gulp.task 'nodemon', ->
   $.nodemon
-    script: 'server.coffee'
+    ext : 'coffee'
+    script : 'server.coffee'
 
 gulp.task 'watch', ->
   $.livereload.listen()
   gulp
     .watch [
-      'client/views/**/*.jade'
       'client/js/bundle.js'
+      'client/views/**/*.jade'
     ]
     .on 'change', $.livereload.changed
 

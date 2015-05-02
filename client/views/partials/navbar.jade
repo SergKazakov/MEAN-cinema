@@ -1,16 +1,15 @@
 .navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl as vm')
   .navbar-header
-    a.navbar-brand(ui-sref='home')
-      i.ion-ios7-pulse-strong
-      |  Satellizer
-  ul.nav.navbar-nav
-    li(ng-if='vm.isAuthenticated()')
-      a(ui-sref='profile', ui-sref-active='active') Profile
-  ul.nav.navbar-nav.pull-right(ng-if='!vm.isAuthenticated()')
-    li
+    a.navbar-brand(ui-sref='home') Cinema
+  ul.nav.navbar-nav.pull-right
+    li(ng-if='!vm.isAuthenticated()')
       a(ui-sref='login', ui-sref-active='active') Login
-    li
+    li(ng-if='!vm.isAuthenticated()')
       a(ui-sref='signup', ui-sref-active='active') Sign up
-  ul.nav.navbar-nav.pull-right(ng-if='vm.isAuthenticated()')
-    li
+    li(ng-if='vm.isAuthenticated()')
+      a(ui-sref='profile', ui-sref-active='active')
+        span.header-avatar__img-wr
+          img.header-avatar__img(ng-src="{{currentUser.picture || 'http://placehold.it/25x25'}}")
+        | Hi, {{currentUser.displayName}}
+    li(ng-if='vm.isAuthenticated()')
       a(href='#', ng-click="vm.logout($event)") Logout

@@ -41,14 +41,23 @@ router
               user.github = profile.id
               user.picture = user.picture or profile.avatar_url
               user.displayName = user.displayName or profile.name
-              user.save -> res.send token: createToken user
+              user.save ->
+                res.send
+                  user : user
+                  token : createToken user
         else
           User.findOne github: profile.id, (err, existingUser) ->
-            return res.send token: createToken existingUser if existingUser
-            user = new User()
-            user.github = profile.id
-            user.picture = profile.avatar_url
-            user.displayName = profile.name
-            user.save -> res.send token: createToken user
+            if existingUser
+              return res.send
+                user : existingUser
+                token : createToken existingUser
+            user = new User
+              github : profile.id
+              picture : profile.avatar_url
+              displayName : profile.name
+            user.save ->
+              res.send
+                user : user
+                token : createToken user
 
 module.exports = (app) -> app.use '/auth', router

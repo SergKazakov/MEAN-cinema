@@ -39,14 +39,23 @@ router
               user.facebook = profile.id
               user.picture = user.picture or "https://graph.facebook.com/v2.3/#{profile.id}/picture?type=large"
               user.displayName = user.displayName or profile.name
-              user.save -> res.send token: createToken user
+              user.save ->
+                res.send
+                  user : user
+                  token : createToken user
         else
           User.findOne facebook: profile.id, (err, existingUser) ->
-            return res.send token: createToken existingUser if existingUser
-            user = new User()
-            user.facebook = profile.id
-            user.picture = "https://graph.facebook.com/#{profile.id}/picture?type=large"
-            user.displayName = profile.name
-            user.save -> res.send token: createToken user
+            if existingUser
+              return res.send
+                user : existingUser
+                token : createToken existingUser
+            user = new User
+              facebook : profile.id
+              picture : "https://graph.facebook.com/#{profile.id}/picture?type=large"
+              displayName : profile.name
+            user.save ->
+              res.send
+                user : user
+                token : createToken user
 
 module.exports = (app) -> app.use '/auth', router
