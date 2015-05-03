@@ -15,37 +15,37 @@ router
 
     if not req.query.oauth_token or not req.query.oauth_verifier
       requestTokenOauth =
-        consumer_key: conf.twitterKey
-        consumer_secret: conf.twitterSecret
-        callback: conf.twitterCallback
+        consumer_key : conf.twitterKey
+        consumer_secret : conf.twitterSecret
+        callback : conf.twitterCallback
 
       request.post
-        url: requestTokenUrl
-        oauth: requestTokenOauth
+        url : requestTokenUrl
+        oauth : requestTokenOauth
       , (err, response, body) ->
         oauthToken = qs.parse body
-        params = qs.stringify oauth_token: oauthToken.oauth_token
+        params = qs.stringify oauth_token : oauthToken.oauth_token
 
         res.redirect "#{authenticateUrl}?#{params}"
     else
       accessTokenOauth =
-        consumer_key: conf.twitterKey
-        consumer_secret: conf.twitterSecret
-        token: req.query.oauth_token
-        verifier: req.query.oauth_verifier
+        consumer_key : conf.twitterKey
+        consumer_secret : conf.twitterSecret
+        token : req.query.oauth_token
+        verifier : req.query.oauth_verifier
 
       request.post
-        url: accessTokenUrl
-        oauth: accessTokenOauth
+        url : accessTokenUrl
+        oauth : accessTokenOauth
       , (err, response, profile) ->
         profile = qs.parse profile
         if req.headers.authorization
-          User.findOne twitter: profile.user_id, (err, existingUser) ->
-            return res.status(409).send message: 'There is already a Twitter account that belongs to you' if existingUser
+          User.findOne twitter : profile.user_id, (err, existingUser) ->
+            return res.status(409).send message : 'There is already a Twitter account that belongs to you' if existingUser
             token = req.headers.authorization.split(' ')[1]
             payload = jwt.decode token, conf.tokenSecret
             User.findById payload.sub, (err, user) ->
-              return res.status(400).send message: 'User not found' if not user
+              return res.status(400).send message : 'User not found' if not user
               user.twitter = profile.user_id
               user.displayName = user.displayName or profile.screen_name
               user.save ->
@@ -53,7 +53,7 @@ router
                   user : user
                   token : createToken user
         else
-          User.findOne twitter: profile.user_id, (err, existingUser) ->
+          User.findOne twitter : profile.user_id, (err, existingUser) ->
             if existingUser
               return res.send
                 user : existingUser

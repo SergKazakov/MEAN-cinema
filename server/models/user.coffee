@@ -9,7 +9,7 @@ userSchema = new Schema
     type : String
     unique : on
     lowercase : on
-  password:
+  password :
     type : String
     select : no
   displayName : String

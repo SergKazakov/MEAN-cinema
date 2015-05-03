@@ -13,7 +13,7 @@ module.exports =
   debug : on
   devtool : 'source-map'
   module :
-    preLoaders: [
+    preLoaders : [
         test : /\.coffee$/,
         exclude : /node_modules/
         loader : 'coffeelint-loader'
@@ -43,7 +43,7 @@ module.exports =
     new WebpackNotifierPlugin()
     new webpack.optimize.DedupePlugin()
   ]
-  postcss: [
+  postcss : [
     autoprefixer
       browsers : ['last 2 version']
     csswring

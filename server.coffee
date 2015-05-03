@@ -20,7 +20,7 @@ app
   .set 'view engine', 'jade'
   .use morgan 'dev'
   .use bodyParser.json()
-  .use bodyParser.urlencoded extended: on
+  .use bodyParser.urlencoded extended : on
   .use methodOverride()
   .use express.static path.join __dirname, 'client'
 

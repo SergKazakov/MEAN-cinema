@@ -20,6 +20,15 @@ gulp.task 'nodemon', ->
     ext : 'coffee'
     script : 'server.coffee'
 
+gulp.task 'coffeelint', ->
+  gulp.src [
+      './*.coffee'
+      './server/**/*.coffee'
+      '!./client'
+    ]
+    .pipe $.coffeelint()
+    .pipe $.coffeelint.reporter()
+
 gulp.task 'watch', ->
   $.livereload.listen()
   gulp
@@ -28,6 +37,7 @@ gulp.task 'watch', ->
       'client/views/**/*.jade'
     ]
     .on 'change', $.livereload.changed
+  gulp.watch ['./*.coffee', './server/**/*.coffee', '!./client'], ['coffeelint']
 
 gulp.task 'default', ->
-  runSequence 'nodemon', 'watch', 'webpack'
+  runSequence 'nodemon', 'coffeelint', 'watch', 'webpack'

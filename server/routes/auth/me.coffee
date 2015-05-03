@@ -12,7 +12,7 @@ router
   .put ensureAuthenticated, (req, res, next) ->
     User.findById req.user, (err, user) ->
       next() if err
-      return res.status(400).send message: 'User not found' if not user
+      return res.status(400).send message : 'User not found' if not user
       user.displayName = req.body.displayName or user.displayName
       user.email = req.body.email or user.email
       user.save (err, user) ->
