@@ -36,6 +36,7 @@ require('./server/routes/auth/google') app
 require('./server/routes/auth/facebook') app
 require('./server/routes/auth/twitter') app
 require('./server/routes/auth/github') app
+require('./server/routes/auth/unlink') app
 require('./server/routes/routes') app
 require('./server/routes/error') app
 

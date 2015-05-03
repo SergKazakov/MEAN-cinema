@@ -80,14 +80,14 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.home', []).config(__webpack_require__(29)).controller('HomeCtrl', __webpack_require__(30));
+	module.exports = angular.module('cinema.home', []).config(__webpack_require__(31)).controller('HomeCtrl', __webpack_require__(32));
 
 
 /***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = angular.module('cinema.login', []).config(__webpack_require__(31)).controller('LoginCtrl', __webpack_require__(32));
+	module.exports = angular.module('cinema.login', []).config(__webpack_require__(29)).controller('LoginCtrl', __webpack_require__(30));
 
 
 /***/ },
@@ -40050,34 +40050,6 @@
 /* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var homeConfig;
-	
-	homeConfig = function($stateProvider) {
-	  return $stateProvider.state('home', {
-	    url: '/',
-	    templateUrl: 'partials/home',
-	    controller: 'HomeCtrl as vm'
-	  });
-	};
-	
-	module.exports = homeConfig;
-
-
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var HomeCtrl;
-	
-	HomeCtrl = function($state) {};
-	
-	module.exports = HomeCtrl;
-
-
-/***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
-
 	var loginConfig;
 	
 	loginConfig = function($stateProvider) {
@@ -40092,7 +40064,7 @@
 
 
 /***/ },
-/* 32 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var LoginCtrl;
@@ -40145,6 +40117,34 @@
 
 
 /***/ },
+/* 31 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var homeConfig;
+	
+	homeConfig = function($stateProvider) {
+	  return $stateProvider.state('home', {
+	    url: '/',
+	    templateUrl: 'partials/home',
+	    controller: 'HomeCtrl as vm'
+	  });
+	};
+	
+	module.exports = homeConfig;
+
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var HomeCtrl;
+	
+	HomeCtrl = function($state) {};
+	
+	module.exports = HomeCtrl;
+
+
+/***/ },
 /* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -40167,12 +40167,15 @@
 
 	var SignupCtrl;
 	
-	SignupCtrl = function($alert, $auth) {
+	SignupCtrl = function($rootScope, $alert, $auth, store) {
 	  this.signup = function() {
 	    return $auth.signup({
 	      displayName: this.displayName,
 	      email: this.email,
 	      password: this.password
+	    }).then(function(response) {
+	      store.set('profile', response.data.user);
+	      return $rootScope.currentUser = store.get('profile');
 	    })["catch"](function(response) {
 	      if (typeof response.data.message === 'object') {
 	        return angular.forEach(response.data.message, function(message) {
