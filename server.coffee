@@ -40,4 +40,4 @@ require('./server/routes/auth/unlink') app
 require('./server/routes/routes') app
 require('./server/routes/error') app
 
-app.listen process.env.PORT or conf.port
+app.listen conf.port
