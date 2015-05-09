@@ -1,7 +1,7 @@
-express             = require 'express'
-router              = express.Router()
-User                = require '../../models/user'
-createToken         = require './createToken'
+express   = require 'express'
+router    = express.Router()
+User      = require '../../models/user'
+createJWT = require './createJWT'
 
 router
   .post '/login', (req, res, next) ->
@@ -13,7 +13,7 @@ router
         return res.status(401).send message : 'Wrong email and/or password' if not isMatch
         res.send
           user : user
-          token : createToken user
+          token : createJWT user
 
   .post '/signup', (req, res, next) ->
     User.findOne  email : req.body.email, (err, existingUser) ->
@@ -27,6 +27,6 @@ router
         next() if err
         res.send
           user : user
-          token : createToken user
+          token : createJWT user
 
 module.exports = (app) -> app.use '/auth', router

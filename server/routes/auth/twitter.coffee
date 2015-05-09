@@ -1,11 +1,11 @@
-jwt          = require 'jwt-simple'
-qs           = require 'querystring'
-express      = require 'express'
-router       = express.Router()
-User         = require '../../models/user'
-conf         = require '../../config/config'
-request      = require 'request'
-createToken  = require './createToken'
+jwt        = require 'jwt-simple'
+qs         = require 'querystring'
+express    = require 'express'
+router     = express.Router()
+User       = require '../../models/user'
+conf       = require '../../config/config'
+request    = require 'request'
+createJWT  = require './createJWT'
 
 router
   .get '/twitter', (req, res) ->
@@ -51,19 +51,19 @@ router
               user.save ->
                 res.send
                   user : user
-                  token : createToken user
+                  token : createJWT user
         else
           User.findOne twitter : profile.user_id, (err, existingUser) ->
             if existingUser
               return res.send
                 user : existingUser
-                token : createToken existingUser
+                token : createJWT existingUser
             user = new User
               twitter : profile.user_id
               displayName : profile.screen_name
             user.save ->
               res.send
                 user : user
-                token : createToken user
+                token : createJWT user
 
 module.exports = (app) -> app.use '/auth', router
