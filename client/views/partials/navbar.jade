@@ -11,5 +11,7 @@
         span.header-avatar__img-wr
           img.header-avatar__img(ng-src="{{currentUser.picture || 'http://placehold.it/25x25'}}")
         | Hi, {{currentUser.displayName}}
+    li(ng-if="vm.isAuthenticated() && currentUser.role === 'Admin'")
+      a(ui-sref='admin', ui-sref-active='active') Dashboard
     li(ng-if='vm.isAuthenticated()')
       a(href='#', ng-click="vm.logout($event)") Logout

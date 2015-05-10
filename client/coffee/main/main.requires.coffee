@@ -13,4 +13,5 @@ module.exports = [
   require('../signup/signup').name
   require('../auth/auth').name
   require('../profile/profile').name
+  require('../admin/admin').name
 ]

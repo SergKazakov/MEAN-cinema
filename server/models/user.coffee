@@ -12,6 +12,10 @@ userSchema = new Schema
     select : no
   displayName : String
   picture : String
+  role :
+    type : String
+    default : 'User'
+    enum : ['User', 'Admin']
   facebook : String
   foursquare : String
   google : String
