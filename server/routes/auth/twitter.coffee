@@ -8,7 +8,7 @@ request    = require 'request'
 createJWT  = require './createJWT'
 
 router
-  .get '/twitter', (req, res) ->
+  .get '/twitter', (req, res, next) ->
     requestTokenUrl = 'https://api.twitter.com/oauth/request_token'
     accessTokenUrl  = 'https://api.twitter.com/oauth/access_token'
     authenticateUrl = 'https://api.twitter.com/oauth/authenticate'
@@ -23,6 +23,7 @@ router
         url : requestTokenUrl
         oauth : requestTokenOauth
       , (err, response, body) ->
+        return next() if err
         oauthToken = qs.parse body
         params = qs.stringify oauth_token : oauthToken.oauth_token
 
@@ -38,9 +39,11 @@ router
         url : accessTokenUrl
         oauth : accessTokenOauth
       , (err, response, profile) ->
+        return next() if err
         profile = qs.parse profile
         if req.headers.authorization
           User.findOne twitter : profile.user_id, (err, existingUser) ->
+            return next() if err
             return res.status(409).send message : 'There is already a Twitter account that belongs to you' if existingUser
             token = req.headers.authorization.split(' ')[1]
             payload = jwt.decode token, conf.tokenSecret
@@ -48,12 +51,14 @@ router
               return res.status(400).send message : 'User not found' if not user
               user.twitter = profile.user_id
               user.displayName = user.displayName or profile.screen_name
-              user.save ->
+              user.save (err) ->
+                return next() if err
                 res.send
                   user : user
                   token : createJWT user
         else
           User.findOne twitter : profile.user_id, (err, existingUser) ->
+            return next() if err
             if existingUser
               return res.send
                 user : existingUser
@@ -61,7 +66,8 @@ router
             user = new User
               twitter : profile.user_id
               displayName : profile.screen_name
-            user.save ->
+            user.save (err) ->
+              return next() if err
               res.send
                 user : user
                 token : createJWT user

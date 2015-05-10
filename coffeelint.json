@@ -23,8 +23,7 @@
     }
   },
   "cyclomatic_complexity" : {
-    "level" : "error",
-    "value" : 11
+    "level" : "ignore"
   },
   "duplicate_key" : {
     "level" : "error"
