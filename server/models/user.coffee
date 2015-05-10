@@ -1,5 +1,3 @@
-'use strict'
-
 mongoose = require 'mongoose'
 Schema   = mongoose.Schema
 bcrypt   = require 'bcryptjs'

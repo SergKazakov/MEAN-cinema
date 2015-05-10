@@ -1,5 +1,3 @@
-'use strict'
-
 module.exports = (app) ->
   if app.get 'env' is 'development'
     app.use (err, req, res, next) ->
