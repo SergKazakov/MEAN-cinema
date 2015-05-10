@@ -62,10 +62,9 @@
 	
 	__webpack_require__(14);
 	
-	angular.module('cinema', ['mgcrea.ngStrap', 'satellizer', 'angular-loading-bar', 'angular-storage', __webpack_require__(9), __webpack_require__(10), __webpack_require__(21), __webpack_require__(11), __webpack_require__(1).name, __webpack_require__(2).name, __webpack_require__(3).name, __webpack_require__(4).name, __webpack_require__(5).name, __webpack_require__(6).name]).config(__webpack_require__(7)).run(function($rootScope, $auth, store) {
-	  if ($auth.isAuthenticated()) {
-	    return $rootScope.currentUser = store.get('profile');
-	  }
+	angular.element(document).ready(function() {
+	  angular.module('cinema', __webpack_require__(40)).config(__webpack_require__(7)).run(__webpack_require__(39));
+	  return angular.bootstrap(document, ['cinema']);
 	});
 
 
@@ -40359,6 +40358,28 @@
 	};
 	
 	module.exports = ProfileCtrl;
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var mainRun;
+	
+	mainRun = function($rootScope, $auth, store) {
+	  if ($auth.isAuthenticated()) {
+	    return $rootScope.currentUser = store.get('profile');
+	  }
+	};
+	
+	module.exports = mainRun;
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = ['mgcrea.ngStrap', 'satellizer', 'angular-loading-bar', 'angular-storage', __webpack_require__(9), __webpack_require__(10), __webpack_require__(21), __webpack_require__(11), __webpack_require__(1).name, __webpack_require__(2).name, __webpack_require__(3).name, __webpack_require__(4).name, __webpack_require__(5).name, __webpack_require__(6).name];
 
 
 /***/ }
