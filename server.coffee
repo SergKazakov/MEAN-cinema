@@ -30,14 +30,16 @@ if app.get 'env' is 'production'
     protocol = req.get 'x-forwarded-proto'
     if protocol is 'https' then next() else res.redirect "https://#{req.hostname}#{req.url}"
 
-require('./server/routes/auth/me') app
-require('./server/routes/auth/local') app
-require('./server/routes/auth/google') app
-require('./server/routes/auth/facebook') app
-require('./server/routes/auth/twitter') app
-require('./server/routes/auth/github') app
-require('./server/routes/auth/unlink') app
-require('./server/routes/routes') app
-require('./server/routes/error') app
+[
+  'auth/me'
+  'auth/local'
+  'auth/google'
+  'auth/facebook'
+  'auth/twitter'
+  'auth/github'
+  'auth/unlink'
+  'routes'
+  'error'
+].map (path) -> require("./server/routes/#{path}") app
 
 app.listen conf.port
