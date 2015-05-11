@@ -21,7 +21,7 @@
     "method-override": "^2.3.2",
     "moment": "^2.10.2",
     "mongoose": "^4.0.2",
-    "morgan": "latest",
+    "morgan": "^1.5.3",
     "normalize.css": "^3.0.3",
     "npm": "^2.9.1",
     "request": "^2.55.0",

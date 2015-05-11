@@ -5,7 +5,8 @@
     "bootstrap": "~3.3.4",
     "angular-motion": "~0.3.4",
     "angular-strap": "~2.2.1",
-    "angular-loading-bar": "~0.7.1"
+    "angular-loading-bar": "~0.7.1",
+    "ionicons": "~2.0.1"
   },
   "devDependencies": {}
 }
