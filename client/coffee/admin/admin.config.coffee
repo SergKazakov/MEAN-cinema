@@ -2,7 +2,7 @@ adminConfig = ($stateProvider) ->
   $stateProvider.state 'admin',
     url : '/admin'
     absract : on
-    templateUrl : 'partials/admin'
+    templateUrl : require './admin.html'
     resolve :
       authenticated : ($q, $location, $auth, $rootScope) ->
         deferred = $q.defer()

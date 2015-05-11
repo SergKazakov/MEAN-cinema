@@ -14,8 +14,6 @@ mongoose.connection.on 'error', (err) ->
   process.exit -1
 
 app
-  .set 'views', path.join __dirname, '/client/views'
-  .set 'view engine', 'jade'
   .use morgan 'dev'
   .use bodyParser.json()
   .use bodyParser.urlencoded extended : on

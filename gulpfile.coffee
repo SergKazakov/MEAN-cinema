@@ -34,7 +34,6 @@ gulp.task 'watch', ->
   gulp
     .watch [
       'client/js/bundle.js'
-      'client/views/**/*.jade'
     ]
     .on 'change', $.livereload.changed
   gulp.watch ['./*.coffee', './server/**/*.coffee', '!./client'], ['coffeelint']

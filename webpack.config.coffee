@@ -2,6 +2,7 @@ WebpackNotifierPlugin = require 'webpack-notifier'
 webpack               = require 'webpack'
 autoprefixer          = require 'autoprefixer-core'
 csswring              = require 'csswring'
+path                  = require 'path'
 
 module.exports =
   entry : './client/coffee/main/main.coffee'
@@ -31,6 +32,9 @@ module.exports =
       ,
         test : /\.(svg|eot|ttf|woff)/
         loader : 'url-loader'
+      ,
+        test : /\.html$/
+        loader : "ngtemplate?relativeTo=#{path.resolve __dirname, './client' }/!html"
     ]
   resolve :
     extensions : [

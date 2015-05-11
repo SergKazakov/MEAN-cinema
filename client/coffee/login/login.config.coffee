@@ -1,7 +1,7 @@
 loginConfig = ($stateProvider) ->
   $stateProvider.state 'login',
     url : '/login'
-    templateUrl : 'partials/login'
+    templateUrl : require './login.html'
     controller : 'LoginCtrl as vm'
 
 module.exports = loginConfig

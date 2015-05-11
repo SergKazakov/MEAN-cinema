@@ -1,7 +1,7 @@
 profileConfig = ($stateProvider) ->
   $stateProvider.state 'profile',
     url : '/profile'
-    templateUrl : 'partials/profile'
+    templateUrl : require './profile.html'
     controller : 'ProfileCtrl as vm'
     resolve :
       authenticated : ($q, $location, $auth) ->

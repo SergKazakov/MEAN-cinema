@@ -1,6 +1,5 @@
 mainConfig = ($urlRouterProvider, $locationProvider, $authProvider) ->
   $urlRouterProvider.otherwise '/'
-  $locationProvider.html5Mode on
 
   $authProvider.facebook
     clientId : '1653435961554069'
