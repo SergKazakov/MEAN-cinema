@@ -1,0 +1,35 @@
+<form ng-submit="vm.addMovie()">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" ng-model="vm.movie.name">
+  </div>
+  <div class="form-group">
+    <label>Poster</label>
+    <input type="text" class="form-control" ng-model="vm.movie.poster">
+  </div>
+  <div class="form-group">
+    <label>Country</label>
+    <input type="text" class="form-control" ng-model="vm.movie.country">
+  </div>
+  <div class="form-group">
+    <label>Genre</label>
+    <input type="text" class="form-control" ng-model="vm.movie.genre">
+  </div>
+  <div class="form-group">
+    <label>Duration</label>
+    <input type="text" class="form-control" ng-model="vm.movie.duration">
+  </div>
+  <div class="form-group">
+    <label>AgeRating</label>
+    <input type="text" class="form-control" ng-model="vm.movie.ageRating">
+  </div>
+  <div class="form-group">
+    <label>ReleaseDate</label>
+    <input type="text" class="form-control" ng-model="vm.movie.releaseDate">
+  </div>
+  <div class="form-group">
+    <label>Synopsis</label>
+    <textarea class="form-control" ng-model="vm.movie.synopsis"></textarea>
+  </div>
+  <button class="btn btn-default" type="submit">Submit</button>
+</form>

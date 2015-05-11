@@ -7,6 +7,12 @@ AdminMoviesCtrl = (Movie) ->
       @noMovies = on if not res.length
       @movies = res
 
+  @deleteMovie = (movieId, index) ->
+    Movie
+      .deleteMovie movieId
+      .success (res) =>
+        @movies.splice index, 1
+
   return
 
 module.exports = AdminMoviesCtrl

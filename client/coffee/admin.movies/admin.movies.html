@@ -1,1 +1,13 @@
-<p ng-if="vm.noMovies">Ooops! There are no movies</p>
+<p ng-if="vm.noMovies">Ooops! There are no movies:(</p>
+<ul class="admin-movies">
+  <li class="admin-movies__item" ng-repeat="movie in vm.movies">
+    <img class="admin-movies__img" ng-src="{{movie.poster}}">
+    <div class="admin-movies__overlay">
+      <div class="admin-movies__buttons">
+        <a class="btn btn-default" ui-sref="admin.movieedit({movieId: movie._id})">Edit</a>
+        <button ng-click="vm.deleteMovie(movie._id, $index)" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </li>
+</ul>
+<a class="btn btn-primary" ui-sref="admin.moviesnew">Add movie</a>

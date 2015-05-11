@@ -7,3 +7,4 @@ node_modules
 vendor
 client/js
 client/bower_components
+client/img/media

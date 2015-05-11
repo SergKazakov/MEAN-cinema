@@ -16,4 +16,6 @@ module.exports = [
   require('../api/api').name
   require('../admin/admin').name
   require('../admin.movies/admin.movies').name
+  require('../admin.movies.new/admin.movies.new').name
+  require('../admin.movie.edit/admin.movie.edit').name
 ]

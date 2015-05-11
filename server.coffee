@@ -18,6 +18,9 @@ app
   .use bodyParser.json()
   .use bodyParser.urlencoded extended : on
   .use methodOverride()
+  .set 'views', path.join __dirname, 'server/views'
+  .engine 'html', require('ejs').renderFile
+  .set 'view engine', 'html'
   .use express.static path.join __dirname, 'client'
 
 # Force HTTPS on Heroku

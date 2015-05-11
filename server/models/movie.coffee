@@ -12,7 +12,6 @@ movieSchema = new Schema
     required : on
   trailer : [
     type : String
-    required : on
   ]
   genre : [
     type : String
@@ -26,10 +25,10 @@ movieSchema = new Schema
     required : on
   ageRating :
     type : Number
-    required : on
+    default : 0
   rating :
     type : Number
-    required : on
+    default : 0
   country :
     type : String
     required : on
