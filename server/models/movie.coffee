@@ -15,6 +15,7 @@ movieSchema = new Schema
   ]
   genre : [
     type : String
+    lowercase : on
     required : on
   ]
   synopsis :

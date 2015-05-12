@@ -10,7 +10,7 @@ AdminMovieEditCtrl = (Movie, $alert, $state, $stateParams) ->
       .editMovie @movie
       .success (res) ->
         $alert
-          content : 'Movie has been added'
+          content : 'Movie has been edited'
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3

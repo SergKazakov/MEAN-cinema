@@ -300,6 +300,12 @@ a
   }
 }
 
+.btn
+  &-danger
+    .ion-close
+      margin 0
+      font-size 20px
+
 .header
   &-avatar
     &__img
@@ -321,7 +327,8 @@ a
       padding 1.5rem
       display block
       text-transform uppercase
-      &:hover
+      &:hover,
+      &:focus
         text-decoration none
   &-content
     width 78%
@@ -371,4 +378,46 @@ a
         padding 0
         display block
         margin 1rem
-
+  &-persons
+    text-align center
+    &__item
+      display inline-block
+      margin 0 1.2rem 1.2rem
+      position relative
+      overflow hidden
+      &:hover
+        .admin-persons
+          &__img
+            transform scale(1.1)
+          &__buttons
+            opacity 1
+          &__overlay
+            background rgba(0,0,0,0.1)
+    &__img
+      display block
+      width 180px
+      height 265px
+      transition transform 300ms
+    &__overlay
+      position absolute
+      left 0
+      right 0
+      top 0
+      bottom 0
+      background rgba(0,0,0,0.6)
+      transition background 300ms
+      .btn
+        border-radius 50%
+        height 50px
+        width 50px
+        padding 0
+        display block
+        font 1.2rem/50px Arial,sans-serif
+        margin 1rem
+    &__buttons
+      position absolute
+      left 50%
+      top 50%
+      transform translate(-50%, -50%)
+      opacity 0
+      transition opacity 300ms
