@@ -14,9 +14,10 @@ movieSchema = new Schema
     type : String
   ]
   genre : [
-    type : String
-    lowercase : on
-    required : on
+    text :
+      type : String
+      lowercase : on
+      required : on
   ]
   synopsis :
     type : String

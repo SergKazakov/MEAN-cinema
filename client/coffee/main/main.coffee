@@ -7,6 +7,7 @@ require 'angular-storage'
 require '../../bower_components/angular-loading-bar/build/loading-bar.min.js'
 require '../../bower_components/angular-strap/dist/angular-strap'
 require '../../bower_components/angular-strap/dist/angular-strap.tpl'
+require '../../bower_components/ng-tags-input/ng-tags-input.min.js'
 
 angular
   .element document

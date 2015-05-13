@@ -7,9 +7,10 @@ personSchema = new Schema
     type : String
     required : on
   career : [
-    type : String
-    lowercase : on
-    required : on
+    text :
+      type : String
+      lowercase : on
+      required : on
   ]
   birthdate :
     type : Date

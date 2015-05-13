@@ -3,6 +3,7 @@ module.exports = [
   'satellizer'
   'angular-loading-bar'
   'angular-storage'
+  'ngTagsInput'
   require 'angular-resource'
   require 'angular-messages'
   require 'angular-ui-router'
