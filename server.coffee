@@ -4,6 +4,7 @@ methodOverride = require 'method-override'
 morgan         = require 'morgan'
 path           = require 'path'
 mongoose       = require 'mongoose'
+multer         = require 'multer'
 chalk          = require 'chalk'
 conf           = require './server/config/config'
 app            = module.exports = express()
@@ -22,6 +23,11 @@ app
   .engine 'html', require('ejs').renderFile
   .set 'view engine', 'html'
   .use express.static path.join __dirname, 'client'
+  .use multer
+    dest : './client/img/media/'
+    rename : (fieldname, filename) ->
+      filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
+
 
 # Force HTTPS on Heroku
 if app.get 'env' is 'production'

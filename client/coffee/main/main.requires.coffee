@@ -4,6 +4,7 @@ module.exports = [
   'angular-loading-bar'
   'angular-storage'
   'ngTagsInput'
+  'ngFileUpload'
   require 'angular-resource'
   require 'angular-messages'
   require 'angular-ui-router'
