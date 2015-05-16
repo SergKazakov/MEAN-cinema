@@ -1,4 +1,4 @@
-AdminMoviesNewCtrl = (Movie, $alert, $state, Upload) ->
+AdminMoviesNewCtrl = (Movie, Person, $alert, $state, Upload) ->
 
   @addMovie = ->
     if @file and @file.length
@@ -22,6 +22,9 @@ AdminMoviesNewCtrl = (Movie, $alert, $state, Upload) ->
         animation : 'fadeZoomFadeDown'
         type : 'material'
         duration : 3
+
+  @loadActors = (name) ->
+    Person.getPersonByName name
 
   return
 

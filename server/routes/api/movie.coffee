@@ -8,11 +8,15 @@ fillMovie = (movie, newMovie, fileName) ->
   movie.poster      = newMovie.poster
   movie.country     = newMovie.country
   movie.genre       = newMovie.genre
-  movie.duration    = parseInt newMovie.duration
-  movie.ageRating   = parseInt newMovie.ageRating
   movie.releaseDate = newMovie.releaseDate
   movie.synopsis    = newMovie.synopsis
+  movie.duration    = parseInt newMovie.duration
+  movie.ageRating   = parseInt newMovie.ageRating
   movie.poster      = "img/media/#{fileName}" if fileName?
+  if newMovie.actors.length
+    movie.actors = []
+    for actor in newMovie.actors
+      movie.actors.push actor._id
   return movie
 
 router
@@ -32,9 +36,12 @@ router
 router
   .route '/movie/:movieId'
   .get (req, res, next) ->
-    Movie.findById req.params.movieId, (err, movie) ->
-      return next() if err
-      res.status(200).send movie
+    Movie
+      .findById req.params.movieId
+      .populate 'actors'
+      .exec (err, movie) ->
+        return next() if err
+        res.status(200).send movie
   .put (req, res, next) ->
     Movie.findById req.params.movieId, (err, movie) ->
       return next() if err

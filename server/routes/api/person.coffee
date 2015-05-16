@@ -45,4 +45,12 @@ router
       return next() if err
       res.status(200).send person
 
+router
+  .route '/person'
+  .get (req, res, next) ->
+    reqex = new RegExp req.query.name, 'i'
+    Person.find name : reqex, (err, actors) ->
+      return next() if err
+      res.status(200).send actors
+
 module.exports = (app) -> app.use '/api/v1/', router

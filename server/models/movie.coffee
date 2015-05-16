@@ -38,24 +38,20 @@ movieSchema = new Schema
     type : Date
     default : Date.now
   directors : [
-    type :
-      Schema.Types.ObjectId
+    type : Schema.Types.ObjectId
     ref : 'Person'
   ]
   actors : [
-    type :
-      Schema.Types.ObjectId
+    type : Schema.Types.ObjectId
     ref : 'Person'
     role : String
   ]
   likes : [
-    type :
-      Schema.Types.ObjectId
+    type : Schema.Types.ObjectId
     ref : 'User'
   ]
   dislikes : [
-    type :
-      Schema.Types.ObjectId
+    type : Schema.Types.ObjectId
     ref : 'User'
   ]
 

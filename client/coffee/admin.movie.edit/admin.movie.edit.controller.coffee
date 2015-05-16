@@ -1,4 +1,4 @@
-AdminMovieEditCtrl = (Movie, $alert, $state, $stateParams, Upload) ->
+AdminMovieEditCtrl = (Movie, Person, $alert, $state, $stateParams, Upload) ->
 
   Movie
     .getMovie $stateParams.movieId
@@ -15,7 +15,6 @@ AdminMovieEditCtrl = (Movie, $alert, $state, $stateParams, Upload) ->
         file : @file
     else
       promise = Movie.editMovie @movie
-
     promise.success (res) ->
       $alert
         content : 'Movie has been added'
@@ -23,6 +22,9 @@ AdminMovieEditCtrl = (Movie, $alert, $state, $stateParams, Upload) ->
         type : 'material'
         duration : 3
       $state.go 'admin.movies'
+
+  @loadActors = (name) ->
+    Person.getPersonByName name
 
   return
 

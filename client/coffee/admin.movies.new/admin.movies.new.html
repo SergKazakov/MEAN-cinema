@@ -17,6 +17,12 @@
     <tags-input ng-model="vm.movie.genre" placeholder="Add a movie"></tags-input>
   </div>
   <div class="form-group">
+    <label>Actors</label>
+    <tags-input replace-spaces-with-dashes="false" display-property="name" ng-model="vm.movie.actors" placeholder="Add an actor">
+      <auto-complete source="vm.loadActors($query)"></auto-complete>
+    </tags-input>
+  </div>
+  <div class="form-group">
     <label>Duration</label>
     <input type="text" class="form-control" ng-model="vm.movie.duration">
   </div>
