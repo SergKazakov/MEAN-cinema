@@ -3,6 +3,8 @@ webpack               = require 'webpack'
 autoprefixer          = require 'autoprefixer-core'
 csswring              = require 'csswring'
 path                  = require 'path'
+bowerRoot             = path.join __dirname, 'client/bower_components'
+stylusRoot            = path.join __dirname, 'client/stylus'
 
 module.exports =
   entry : './client/coffee/main/main.coffee'
@@ -37,6 +39,9 @@ module.exports =
         loader : "ngtemplate?relativeTo=#{path.resolve __dirname, './client' }/!html"
     ]
   resolve :
+    alias :
+      bower : bowerRoot
+      stylus : stylusRoot
     extensions : [
       ''
       '.js'

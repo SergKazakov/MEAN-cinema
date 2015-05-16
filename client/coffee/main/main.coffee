@@ -1,14 +1,13 @@
-require 'normalize.css'
-require '../../stylus/main.styl'
-
 angular = require 'angular'
+require 'normalize.css'
+require 'stylus/main.styl'
 require 'satellizer'
 require 'angular-storage'
 require 'ng-file-upload'
-require '../../bower_components/angular-loading-bar/build/loading-bar.min.js'
-require '../../bower_components/angular-strap/dist/angular-strap'
-require '../../bower_components/angular-strap/dist/angular-strap.tpl'
-require '../../bower_components/ng-tags-input/ng-tags-input.min.js'
+require 'bower/angular-loading-bar/build/loading-bar.min.js'
+require 'bower/angular-strap/dist/angular-strap'
+require 'bower/angular-strap/dist/angular-strap.tpl'
+require 'bower/ng-tags-input/ng-tags-input.min.js'
 
 angular
   .element document
