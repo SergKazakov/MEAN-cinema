@@ -1,11 +1,11 @@
 // bower:css
 @import '../bower_components/bootstrap/dist/css/bootstrap.css'
 @import '../bower_components/angular-motion/dist/angular-motion.css'
-@import '../bower_components/angular-loading-bar/build/loading-bar.css'
 @import '../bower_components/ionicons/css/ionicons.css'
 @import '../bower_components/ng-tags-input/ng-tags-input.min.css'
 // endbower
 @import 'core/*'
+@import 'components/*'
 
 a
   color #000
@@ -341,9 +341,9 @@ a
     margin-left 2%
     padding 1.5rem
   &-movies
-    @extend $cf
     &__item
-      float left
+      display inline-block
+      vertical-align top
       width 33.3%
       margin 0 0 2rem
       position relative

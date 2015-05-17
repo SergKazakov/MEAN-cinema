@@ -1,10 +1,10 @@
 module.exports = [
   'mgcrea.ngStrap'
   'satellizer'
-  'angular-loading-bar'
   'angular-storage'
   'ngTagsInput'
   'ngFileUpload'
+  'blockUI'
   require 'angular-resource'
   require 'angular-messages'
   require 'angular-ui-router'
@@ -17,6 +17,7 @@ module.exports = [
   require('../profile/profile').name
   require('../api/api').name
   require('../admin/admin').name
+  require('../block-ui/block-ui').name
   require('../admin.movies/admin.movies').name
   require('../admin.movies.new/admin.movies.new').name
   require('../admin.movie.edit/admin.movie.edit').name
