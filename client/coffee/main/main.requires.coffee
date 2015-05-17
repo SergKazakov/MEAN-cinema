@@ -16,11 +16,14 @@ module.exports = [
   require('../auth/auth').name
   require('../profile/profile').name
   require('../api/api').name
-  require('../admin/admin').name
-  require('../admin.movies/admin.movies').name
-  require('../admin.movies.new/admin.movies.new').name
-  require('../admin.movie.edit/admin.movie.edit').name
-  require('../admin.persons/admin.persons').name
-  require('../admin.persons.new/admin.persons.new').name
-  require('../admin.person.edit/admin.person.edit').name
+  require('../admin/admin.index/admin').name
+  require('../admin/admin.movies/admin.movies').name
+  require('../admin/admin.movies.new/admin.movies.new').name
+  require('../admin/admin.movie.edit/admin.movie.edit').name
+  require('../admin/admin.persons/admin.persons').name
+  require('../admin/admin.persons.new/admin.persons.new').name
+  require('../admin/admin.person.edit/admin.person.edit').name
+  require('../admin/admin.cinemas/admin.cinemas').name
+  require('../admin/admin.cinemas.new/admin.cinemas.new').name
+  require('../admin/admin.cinema.edit/admin.cinema.edit').name
 ]

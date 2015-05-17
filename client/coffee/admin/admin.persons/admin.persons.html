@@ -1,9 +1,9 @@
 <p ng-if="vm.noPersons">Ooops! There are no persons:(</p>
-<ul class="admin-persons">
-  <li class="admin-persons__item" ng-repeat="person in vm.persons">
-    <img class="admin-persons__img" ng-src="{{person.photo}}">
-    <div class="admin-persons__overlay">
-      <div class="admin-persons__buttons">
+<ul class="admin-grid">
+  <li class="admin-grid__item" ng-repeat="person in vm.persons">
+    <img class="admin-grid__img" ng-src="{{person.photo}}">
+    <div class="admin-grid__overlay">
+      <div class="admin-grid__buttons">
         <a class="btn btn-default" ui-sref="admin.personedit({personId: person._id})">Edit</a>
         <button ng-click="vm.deletePerson(person._id, $index)" class="btn btn-danger"><i class="ion-close"></i></button>
       </div>

@@ -45,6 +45,7 @@ if app.get 'env' is 'production'
   'auth/unlink'
   'api/movie'
   'api/person'
+  'api/cinema'
   'error'
 ].map (path) -> require("./server/routes/#{path}") app
 

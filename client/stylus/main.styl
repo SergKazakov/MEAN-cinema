@@ -6,6 +6,7 @@
 @import '../bower_components/ng-tags-input/ng-tags-input.min.css'
 // endbower
 @import 'core/*'
+@import 'components/*'
 
 a
   color #000
@@ -322,108 +323,3 @@ a
         overflow hidden
         vertical-align top
         margin: -5px 10px 0 0;
-
-.admin
-  &-sidebar,
-  &-content
-    float left
-  &-sidebar
-    width 20%
-    &__link
-      padding 1.5rem
-      display block
-      text-transform uppercase
-      &:hover,
-      &:focus
-        text-decoration none
-  &-content
-    width 78%
-    margin-left 2%
-    padding 1.5rem
-  &-movies
-    &__item
-      vertical-align top
-      display inline-block
-      width 33.3%
-      margin 0 0 2rem
-      position relative
-      overflow hidden
-      &:hover
-        .admin-movies
-          &__img
-            transform scale(1.1)
-          &__buttons
-            opacity 1
-          &__overlay
-            background rgba(0,0,0,0.1)
-    &__img
-      transition transform 300ms
-    &__link,
-    &__img
-      display block
-    &__buttons
-      position absolute
-      left 50%
-      top 50%
-      transform translate(-50%, -50%)
-      opacity 0
-      transition opacity 300ms
-    &__overlay
-      position absolute
-      left 0
-      right 0
-      top 0
-      bottom 0
-      background rgba(0,0,0,0.6)
-      transition background 300ms
-      .btn
-        border-radius 50%
-        height 65px
-        width 65px
-        line-height 65px
-        padding 0
-        display block
-        margin 1rem
-  &-persons
-    text-align center
-    &__item
-      display inline-block
-      margin 0 1.2rem 1.2rem
-      position relative
-      overflow hidden
-      &:hover
-        .admin-persons
-          &__img
-            transform scale(1.1)
-          &__buttons
-            opacity 1
-          &__overlay
-            background rgba(0,0,0,0.1)
-    &__img
-      display block
-      width 180px
-      height 265px
-      transition transform 300ms
-    &__overlay
-      position absolute
-      left 0
-      right 0
-      top 0
-      bottom 0
-      background rgba(0,0,0,0.6)
-      transition background 300ms
-      .btn
-        border-radius 50%
-        height 50px
-        width 50px
-        padding 0
-        display block
-        font 1.2rem/50px Arial,sans-serif
-        margin 1rem
-    &__buttons
-      position absolute
-      left 50%
-      top 50%
-      transform translate(-50%, -50%)
-      opacity 0
-      transition opacity 300ms

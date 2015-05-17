@@ -1,0 +1,67 @@
+.admin
+  &-sidebar,
+  &-content
+    float left
+  &-sidebar
+    width 20%
+    &__link
+      padding 1.5rem
+      display block
+      text-transform uppercase
+      &:hover,
+      &:focus,
+      &_active
+        text-decoration none
+      &_active
+        background #ccc
+  &-content
+    width 78%
+    margin-left 2%
+    padding 1.5rem
+  &-grid
+    &__item
+      vertical-align top
+      display inline-block
+      width 32%
+      margin 0 2% 2rem 0
+      position relative
+      overflow hidden
+      &:nth-child(3n)
+        margin-right 0
+      &:hover
+        .admin-grid
+          &__img
+            transform scale(1.1)
+          &__buttons
+            opacity 1
+          &__overlay
+            background rgba(0,0,0,0.1)
+    &__img
+      transition transform 300ms
+      width 100%
+    &__link,
+    &__img
+      display block
+    &__buttons
+      position absolute
+      left 50%
+      top 50%
+      transform translate(-50%, -50%)
+      opacity 0
+      transition opacity 300ms
+    &__overlay
+      position absolute
+      left 0
+      right 0
+      top 0
+      bottom 0
+      background rgba(0,0,0,0.6)
+      transition background 300ms
+      .btn
+        border-radius 50%
+        height 65px
+        width 65px
+        line-height 65px
+        padding 0
+        display block
+        margin 1rem
