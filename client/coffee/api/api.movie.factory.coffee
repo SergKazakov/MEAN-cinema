@@ -10,4 +10,6 @@ Movie = ($http) ->
   deleteMovie : (movieId) ->
     $http.delete "/api/v1/movie/#{movieId}"
 
+Movie.$inject = ['$http']
+
 module.exports = Movie

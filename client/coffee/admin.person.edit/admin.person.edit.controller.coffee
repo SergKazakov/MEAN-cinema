@@ -26,4 +26,6 @@ AdminPersonEditCtrl = (Person, $alert, $state, $stateParams, Upload) ->
 
   return
 
+AdminPersonEditCtrl.$inject = ['Person', '$alert', '$state', '$stateParams', 'Upload']
+
 module.exports = AdminPersonEditCtrl

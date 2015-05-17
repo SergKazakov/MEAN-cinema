@@ -65,4 +65,6 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
 
   return
 
+ProfileCtrl.$inject = ['$rootScope', '$auth', '$alert', 'Auth', 'store']
+
 module.exports = ProfileCtrl

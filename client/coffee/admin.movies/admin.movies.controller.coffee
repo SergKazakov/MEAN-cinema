@@ -15,4 +15,6 @@ AdminMoviesCtrl = (Movie) ->
 
   return
 
+AdminMoviesCtrl.$inject = ['Movie']
+
 module.exports = AdminMoviesCtrl

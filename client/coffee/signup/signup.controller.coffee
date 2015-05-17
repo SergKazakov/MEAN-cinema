@@ -25,4 +25,6 @@ SignupCtrl = ($rootScope, $alert, $auth, store) ->
 
   return
 
+SignupCtrl.$inject = ['$rootScope', '$alert', '$auth', 'store']
+
 module.exports = SignupCtrl

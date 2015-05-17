@@ -1,4 +1,4 @@
-LoginCtrl = ($rootScope, Auth, $alert, $auth, store) ->
+LoginCtrl = ($rootScope, $alert, $auth, store) ->
   @login = ->
     $auth
       .login
@@ -38,5 +38,7 @@ LoginCtrl = ($rootScope, Auth, $alert, $auth, store) ->
           duration : 3
 
   return
+
+LoginCtrl.$inject = ['$rootScope', '$alert', '$auth', 'store']
 
 module.exports = LoginCtrl

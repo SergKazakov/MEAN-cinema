@@ -15,4 +15,6 @@ NavbarCtrl = ($auth, $alert, Auth, store, $rootScope) ->
 
   return
 
+NavbarCtrl.$inject = ['$auth', '$alert', 'Auth', 'store', '$rootScope']
+
 module.exports = NavbarCtrl

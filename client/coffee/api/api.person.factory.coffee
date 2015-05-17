@@ -12,4 +12,6 @@ Person = ($http) ->
   deletePerson : (personId) ->
     $http.delete "/api/v1/person/#{personId}"
 
+Person.$inject = ['$http']
+
 module.exports = Person

@@ -4,4 +4,6 @@ homeConfig = ($stateProvider) ->
     templateUrl : require './home.html'
     controller : 'HomeCtrl as vm'
 
+homeConfig.$inject = ['$stateProvider']
+
 module.exports = homeConfig

@@ -13,4 +13,6 @@ mainConfig = ($urlRouterProvider, $locationProvider, $authProvider) ->
   $authProvider.twitter
     url : '/auth/twitter'
 
+mainConfig.$inject = ['$urlRouterProvider', '$locationProvider', '$authProvider']
+
 module.exports = mainConfig

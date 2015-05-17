@@ -4,4 +4,6 @@ Auth = ($http, store) ->
   updateProfile : (profile) ->
     $http.put '/api/v1/me', profile
 
+Auth.$inject = ['$http', 'store']
+
 module.exports = Auth

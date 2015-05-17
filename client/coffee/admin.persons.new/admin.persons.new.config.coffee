@@ -4,4 +4,6 @@ adminPersonsNewConfig = ($stateProvider) ->
     templateUrl : require './admin.persons.new.html'
     controller : 'AdminPersonsNewCtrl as vm'
 
+adminPersonsNewConfig.$inject = ['$stateProvider']
+
 module.exports = adminPersonsNewConfig

@@ -25,4 +25,6 @@ AdminPersonsNewCtrl = ($alert, $state, Upload) ->
 
   return
 
+AdminPersonsNewCtrl.$inject = ['$alert', '$state', 'Upload']
+
 module.exports = AdminPersonsNewCtrl

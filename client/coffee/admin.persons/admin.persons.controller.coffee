@@ -15,4 +15,6 @@ AdminPersonsCtrl = (Person) ->
 
   return
 
+AdminPersonsCtrl.$inject = ['Person']
+
 module.exports = AdminPersonsCtrl

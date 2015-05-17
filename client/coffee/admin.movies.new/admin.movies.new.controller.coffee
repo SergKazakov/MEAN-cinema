@@ -28,4 +28,6 @@ AdminMoviesNewCtrl = (Movie, Person, $alert, $state, Upload) ->
 
   return
 
+AdminMoviesNewCtrl.$inject = ['Movie', 'Person', '$alert', '$state', 'Upload']
+
 module.exports = AdminMoviesNewCtrl
