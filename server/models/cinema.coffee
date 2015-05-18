@@ -12,5 +12,6 @@ cinemaSchema = new Schema
     required : on
   telephone : String
   website : String
+  support3D : Boolean
 
 module.exports = mongoose.model 'Cinema', cinemaSchema

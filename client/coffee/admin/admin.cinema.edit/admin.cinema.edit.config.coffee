@@ -3,6 +3,10 @@ adminCinemaEditConfig = ($stateProvider) ->
     url : '/cinema/:cinemaId/edit'
     templateUrl : require './admin.cinema.edit.html'
     controller : 'AdminCinemaEditCtrl as vm'
+    resolve :
+      cinema : ['Cinema', '$stateParams', (Cinema, $stateParams) ->
+        Cinema.getCinema $stateParams.cinemaId
+      ]
 
 adminCinemaEditConfig.$inject = ['$stateProvider']
 

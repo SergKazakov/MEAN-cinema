@@ -1,9 +1,6 @@
-AdminPersonEditCtrl = (Person, $alert, $state, $stateParams, Upload) ->
+AdminPersonEditCtrl = (Person, person, $alert, $state, $stateParams, Upload) ->
 
-  Person
-    .getPerson $stateParams.personId
-    .success (res) =>
-      @person = res
+  @person = person.data
 
   @editPerson = ->
     if @file and @file.length
@@ -26,6 +23,6 @@ AdminPersonEditCtrl = (Person, $alert, $state, $stateParams, Upload) ->
 
   return
 
-AdminPersonEditCtrl.$inject = ['Person', '$alert', '$state', '$stateParams', 'Upload']
+AdminPersonEditCtrl.$inject = ['Person', 'person', '$alert', '$state', '$stateParams', 'Upload']
 
 module.exports = AdminPersonEditCtrl

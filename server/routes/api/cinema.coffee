@@ -9,6 +9,7 @@ fillCinema = (cinema, newCinema, fileName) ->
   cinema.address      = newCinema.address
   cinema.telephone    = newCinema.telephone
   cinema.website      = newCinema.website
+  cinema.support3D    = newCinema.support3D
   cinema.poster       = "img/media/#{fileName}" if fileName?
   return cinema
 

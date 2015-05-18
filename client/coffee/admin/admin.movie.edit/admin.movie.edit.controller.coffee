@@ -1,9 +1,6 @@
-AdminMovieEditCtrl = (Movie, Person, $alert, $state, $stateParams, Upload) ->
+AdminMovieEditCtrl = (Movie, Person, movie, $alert, $state, $stateParams, Upload) ->
 
-  Movie
-    .getMovie $stateParams.movieId
-    .success (res) =>
-      @movie = res
+  @movie = movie.data
 
   @editMovie = ->
     if @file and @file.length
@@ -28,6 +25,6 @@ AdminMovieEditCtrl = (Movie, Person, $alert, $state, $stateParams, Upload) ->
 
   return
 
-AdminMovieEditCtrl.$inject = ['Movie', 'Person', '$alert', '$state', '$stateParams', 'Upload']
+AdminMovieEditCtrl.$inject = ['Movie', 'Person', 'movie', '$alert', '$state', '$stateParams', 'Upload']
 
 module.exports = AdminMovieEditCtrl

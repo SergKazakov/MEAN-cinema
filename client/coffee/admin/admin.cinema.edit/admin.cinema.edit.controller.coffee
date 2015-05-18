@@ -1,9 +1,6 @@
-AdminCinemaEditCtrl = (Cinema, $alert, $state, $stateParams, Upload) ->
+AdminCinemaEditCtrl = (Cinema, cinema, $alert, $state, $stateParams, Upload) ->
 
-  Cinema
-    .getCinema $stateParams.cinemaId
-    .success (res) =>
-      @cinema = res
+  @cinema = cinema.data
 
   @editCinema = ->
     if @file and @file.length
@@ -25,6 +22,6 @@ AdminCinemaEditCtrl = (Cinema, $alert, $state, $stateParams, Upload) ->
 
   return
 
-AdminCinemaEditCtrl.$inject = ['Cinema', '$alert', '$state', '$stateParams', 'Upload']
+AdminCinemaEditCtrl.$inject = ['Cinema', 'cinema', '$alert', '$state', '$stateParams', 'Upload']
 
 module.exports = AdminCinemaEditCtrl
