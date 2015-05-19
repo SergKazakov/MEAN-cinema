@@ -14,9 +14,15 @@ fillPerson = (person, newPerson, fileName) ->
 router
   .route '/persons'
   .get (req, res, next) ->
-    Person.find {}, (err, persons) ->
-      return next() if err
-      res.status(200).send persons
+    if req.query.name
+      reqex = new RegExp req.query.name, 'i'
+      Person.find name : reqex, (err, actors) ->
+        return next() if err
+        res.status(200).send actors
+    else
+      Person.find {}, (err, persons) ->
+        return next() if err
+        res.status(200).send persons
   .post (req, res, next) ->
     newPerson = JSON.parse req.body.person
     fileName  = req.files.file.name
@@ -44,13 +50,5 @@ router
     Person.findByIdAndRemove req.params.personId, (err, person) ->
       return next() if err
       res.status(200).send person
-
-router
-  .route '/person'
-  .get (req, res, next) ->
-    reqex = new RegExp req.query.name, 'i'
-    Person.find name : reqex, (err, actors) ->
-      return next() if err
-      res.status(200).send actors
 
 module.exports = (app) -> app.use '/api/v1/', router

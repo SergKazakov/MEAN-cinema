@@ -21,7 +21,7 @@ AdminMovieEditCtrl = (Movie, Person, movie, $alert, $state, $stateParams, Upload
       $state.go 'admin.movies'
 
   @loadActors = (name) ->
-    Person.getPersonByName name
+    Person.getPersonsByName name
 
   return
 
