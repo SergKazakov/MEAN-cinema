@@ -1,6 +1,9 @@
-HomeCtrl = ($state) ->
+HomeCtrl = (movies) ->
+
+  @movies = movies.data
+
   return
 
-HomeCtrl.$inject = ['$state']
+HomeCtrl.$inject = ['movies']
 
 module.exports = HomeCtrl

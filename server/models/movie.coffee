@@ -37,6 +37,10 @@ movieSchema = new Schema
   releaseDate :
     type : Date
     default : Date.now
+  status :
+    type : Number
+    default : 2
+    enum : [0, 1, 2]
   directors : [
     type : Schema.Types.ObjectId
     ref : 'Person'
@@ -44,7 +48,6 @@ movieSchema = new Schema
   actors : [
     type : Schema.Types.ObjectId
     ref : 'Person'
-    role : String
   ]
   likes : [
     type : Schema.Types.ObjectId
