@@ -11,7 +11,7 @@ fillCinema = (cinema, newCinema, fileName) ->
   cinema.website      = newCinema.website
   cinema.support3D    = newCinema.support3D
   cinema.poster       = "img/media/#{fileName}" if fileName?
-  return cinema
+  cinema
 
 router
   .route '/cinemas'

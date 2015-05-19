@@ -9,7 +9,7 @@ fillPerson = (person, newPerson, fileName) ->
   person.birthdate  = newPerson.birthdate
   person.birthPlace = newPerson.birthPlace
   person.photo      = "img/media/#{fileName}" if fileName?
-  return person
+  person
 
 router
   .route '/persons'

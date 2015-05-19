@@ -12,12 +12,9 @@ fillMovie = (movie, newMovie, fileName) ->
   movie.synopsis    = newMovie.synopsis
   movie.duration    = parseInt newMovie.duration
   movie.ageRating   = parseInt newMovie.ageRating
+  movie.actors      = newMovie.actors.map (actor) -> actor._id
   movie.poster      = "img/media/#{fileName}" if fileName?
-  if newMovie.actors.length
-    movie.actors = []
-    for actor in newMovie.actors
-      movie.actors.push actor._id
-  return movie
+  movie
 
 router
   .route '/movies'
