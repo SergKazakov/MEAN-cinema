@@ -5,6 +5,7 @@ module.exports = [
   'angular-storage'
   'ngTagsInput'
   'ngFileUpload'
+  'permission'
   require 'angular-resource'
   require 'angular-messages'
   require 'angular-ui-router'

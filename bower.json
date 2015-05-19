@@ -7,7 +7,8 @@
     "angular-strap": "~2.2.1",
     "angular-loading-bar": "~0.7.1",
     "ionicons": "~2.0.1",
-    "ng-tags-input": "~2.3.0"
+    "ng-tags-input": "~2.3.0",
+    "angular-permission": "~0.2.0"
   },
   "devDependencies": {}
 }

@@ -3,12 +3,10 @@ profileConfig = ($stateProvider) ->
     url : '/profile'
     templateUrl : require './profile.html'
     controller : 'ProfileCtrl as vm'
-    resolve :
-      authenticated : ['$q', '$location', '$auth', ($q, $location, $auth) ->
-        deferred = $q.defer()
-        if not $auth.isAuthenticated() then $location.path '/login' else deferred.resolve()
-        deferred.promise
-      ]
+    data :
+      permissions :
+        only : ['user']
+        redirectTo : 'login'
 
 profileConfig.$inject = ['$stateProvider']
 
