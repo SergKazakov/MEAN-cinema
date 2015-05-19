@@ -7,9 +7,9 @@ AdminCinemasCtrl = (Cinema) ->
       @noCinemas = on if not res.length
       @cinemas = res
 
-  @deleteMovie = (cinemaId, index) ->
+  @deleteCinema = (cinemaId, index) ->
     Cinema
-      .deleteMovie cinemaId
+      .deleteCinema cinemaId
       .success (res) =>
         @cinemas.splice index, 1
 

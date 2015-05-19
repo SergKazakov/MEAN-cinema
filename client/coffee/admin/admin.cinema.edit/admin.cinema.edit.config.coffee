@@ -1,7 +1,7 @@
 adminCinemaEditConfig = ($stateProvider) ->
   $stateProvider.state 'admin.cinemaedit',
     url : '/cinema/:cinemaId/edit'
-    templateUrl : require './admin.cinema.edit.html'
+    template : '<admin-cinema action="vm.editCinema()" cinema="vm.cinema" file="vm.file"></admin-cinema>'
     controller : 'AdminCinemaEditCtrl as vm'
     resolve :
       cinema : ['Cinema', '$stateParams', (Cinema, $stateParams) ->

@@ -12,7 +12,6 @@ app            = module.exports = express()
 mongoose.connect conf.mongoUrl
 mongoose.connection.on 'error', (err) ->
   console.log chalk.bgRed.bold "MongoDB connection error: #{err}"
-  process.exit -1
 
 app
   .use morgan 'dev'

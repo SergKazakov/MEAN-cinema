@@ -1,0 +1,33 @@
+<form ng-submit="action()">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" ng-model="cinema.name">
+  </div>
+  <div class="form-group">
+    <label>Poster</label>
+    <img class="photo" ng-if="!file.length" ng-src="{{cinema.poster}}">
+    <img class="photo" ng-if="file.length" ngf-src="file[0]">
+    <span type="text" class="btn btn-primary" ng-model="file" ngf-select>upload poster</span>
+  </div>
+  <div class="form-group">
+    <label>Address</label>
+    <input type="text" class="form-control" ng-model="cinema.address">
+  </div>
+  <div class="form-group">
+    <label>Telephone</label>
+    <input type="text" class="form-control" ng-model="cinema.telephone">
+  </div>
+  <div class="form-group">
+    <label>Website</label>
+    <input type="text" class="form-control" ng-model="cinema.website">
+  </div>
+  <div class="form-group">
+    <label>3D support</label>
+    <input type="checkbox" ng-model="cinema.support3D">
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <textarea class="form-control" ng-model="cinema.description"></textarea>
+  </div>
+  <button class="btn btn-default" type="submit"><i class="ion-checkmark"></i>Submit</button>
+</form>
