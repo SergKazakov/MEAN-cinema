@@ -1,4 +1,4 @@
-<form ng-submit="vm.addPerson()">
+<form ng-submit="vm.action()">
   <div class="form-group">
     <label>Name</label>
     <input type="text" class="form-control" ng-model="vm.person.name">
@@ -9,6 +9,7 @@
   </div>
   <div class="form-group">
     <label>Photo</label>
+    <img class="photo" ng-if="!vm.file.length" ng-src="{{vm.person.photo}}">
     <img class="photo" ng-if="vm.file.length" ngf-src="vm.file[0]">
     <span type="text" class="btn btn-primary" ng-model="vm.file" ngf-select>upload photo</span>
   </div>

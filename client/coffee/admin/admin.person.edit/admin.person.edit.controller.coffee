@@ -2,7 +2,7 @@ AdminPersonEditCtrl = (Person, person, $alert, $state, $stateParams, Upload) ->
 
   @person = person.data
 
-  @editPerson = ->
+  @action = ->
     if @file and @file.length
       promise = Upload.upload
         url : "/api/v1/person/#{@person._id}"

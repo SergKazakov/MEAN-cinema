@@ -1,10 +1,11 @@
-<form ng-submit="vm.addMovie()">
+<form ng-submit="vm.action()">
   <div class="form-group">
     <label>Name</label>
     <input type="text" class="form-control" ng-model="vm.movie.name">
   </div>
   <div class="form-group">
     <label>Poster</label>
+    <img class="photo" ng-if="!vm.file.length" ng-src="{{vm.movie.poster}}">
     <img class="photo" ng-if="vm.file.length" ngf-src="vm.file[0]">
     <span type="text" class="btn btn-primary" ng-model="vm.file" ngf-select>upload poster</span>
   </div>
@@ -35,7 +36,7 @@
     <input type="text" class="form-control" ng-model="vm.movie.releaseDate" bs-datepicker date-format="longDate">
   </div>
   <div class="form-group">
-  <label>Status</label>
+    <label>Status</label>
     <div class="btn-group" ng-model="vm.movie.status" bs-radio-group>
       <label class="btn btn-danger"><input type="radio"  value="0"> Disabled</label>
       <label class="btn btn-primary"><input type="radio" value="1"> Now</label>
@@ -46,5 +47,5 @@
     <label>Synopsis</label>
     <textarea class="form-control" ng-model="vm.movie.synopsis"></textarea>
   </div>
-  <button class="btn btn-default" type="submit">Submit</button>
+  <button class="btn btn-default" type="submit"><i class="ion-checkmark"></i>Submit</button>
 </form>

@@ -1,6 +1,6 @@
 AdminCinemasNewCtrl = (Cinema, $alert, $state, Upload) ->
 
-  @addCinema = ->
+  @action = ->
     if @file and @file.length
       Upload
         .upload

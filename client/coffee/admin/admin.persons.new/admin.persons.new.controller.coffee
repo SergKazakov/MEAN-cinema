@@ -1,6 +1,6 @@
 AdminPersonsNewCtrl = ($alert, $state, Upload) ->
 
-  @addPerson = ->
+  @action = ->
     if @file and @file.length
       Upload
         .upload

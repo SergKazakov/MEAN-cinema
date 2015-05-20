@@ -2,7 +2,7 @@ AdminCinemaEditCtrl = (Cinema, cinema, $alert, $state, $stateParams, Upload) ->
 
   @cinema = cinema.data
 
-  @editCinema = ->
+  @action = ->
     if @file and @file.length
       promise = Upload.upload
         url : "/api/v1/cinema/#{@cinema._id}"

@@ -1,6 +1,6 @@
 module.exports =
   port : process.env.PORT or 3000
-  mongoUrl : process.env.MONGO_URL or 'mongodb://root:root@ds051841.mongolab.com:51841/cinema'
+  mongoUrl : process.env.MONGO_URL or 'mongodb://localhost/cinema'
   tokenSecret : process.env.TOKEN_SECRET or 'A hard to guess string'
   googleSecret : process.env.GOOGLE_SECRET or '99sV-h9AJxgQS-Wj5UASECgU'
   facebookSecret : process.env.FACEBOOK_SECRET or '4c999318d9cc99b18a404f554084e98b'

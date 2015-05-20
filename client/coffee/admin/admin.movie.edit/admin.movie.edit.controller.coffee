@@ -2,7 +2,7 @@ AdminMovieEditCtrl = (Movie, Person, movie, $alert, $state, $stateParams, Upload
 
   @movie = movie.data
 
-  @editMovie = ->
+  @action = ->
     if @file and @file.length
       promise = Upload.upload
         url : "/api/v1/movie/#{@movie._id}"

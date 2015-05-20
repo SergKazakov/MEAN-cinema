@@ -1,6 +1,6 @@
 AdminMoviesNewCtrl = (Movie, Person, $alert, $state, Upload) ->
 
-  @addMovie = ->
+  @action = ->
     if @file and @file.length
       Upload
         .upload
