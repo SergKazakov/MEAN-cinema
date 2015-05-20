@@ -17,6 +17,7 @@ module.exports = [
   require('../auth/auth').name
   require('../profile/profile').name
   require('../api/api').name
+  require('../movie/movie').name
   require('../admin/admin.index/admin').name
   require('../admin/admin.movies/admin.movies').name
   require('../admin/admin.movies.new/admin.movies.new').name

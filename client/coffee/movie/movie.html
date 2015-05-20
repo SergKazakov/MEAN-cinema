@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>{{vm.movie.name}}</h1>
+  <img ng-src="{{vm.movie.poster}}" alt="">
+  <ul class="nav nav-pills">
+    <li ng-repeat="genre in vm.movie.genre">{{genre.text}}</li>
+  </ul>
+  <ul class="nav nav-pills">
+    <li ng-repeat="actor in vm.movie.actors">{{actor.name}}</li>
+  </ul>
+  <div><i class="ion-clock"></i> {{vm.movie.duration}} min</div>
+  <div>Rating {{vm.movie.ageRating}}+</div>
+  <div>C {{vm.movie.releaseDate | date: 'd MMMM yyyy'}}</div>
+  <p>{{vm.movie.synopsis}}</p>
+</div>
