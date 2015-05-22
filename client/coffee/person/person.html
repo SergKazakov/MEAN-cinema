@@ -9,7 +9,7 @@
   <div>{{vm.person.birthdate | date : 'd MMMM yyyy'}}</div>
   <div>{{vm.person.birthPlace}}</div>
   <h2>Список фильмов</h2>
-  <ul class="nav nav-pills">
+  <ol>
     <li ng-repeat="movie in vm.person.movies">{{movie.name}}</li>
-  </ul>
+  </ol>
 </div>

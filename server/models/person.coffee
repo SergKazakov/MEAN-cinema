@@ -19,9 +19,5 @@ personSchema = new Schema
   photo :
     type : String
     required : on
-  movies : [
-    type : Schema.Types.ObjectId
-    ref : 'Movie'
-  ]
 
 module.exports = mongoose.model 'Person', personSchema

@@ -2,6 +2,7 @@ express    = require 'express'
 router     = express.Router()
 mongoose   = require 'mongoose'
 Person     = require '../../models/person'
+Movie      = require '../../models/movie'
 
 fillPerson = (person, newPerson, fileName) ->
   person.name       = newPerson.name
@@ -31,9 +32,15 @@ router
 router
   .route '/person/:personId'
   .get (req, res, next) ->
-    Person.findById req.params.personId, (err, person) ->
-      return next() if err
-      res.status(200).send person
+    Person
+      .findById req.params.personId
+      .lean()
+      .exec (err, person) ->
+        return next() if err
+        Movie.find actors : person._id, (err, movies) ->
+          return next() if err
+          person.movies = movies
+          res.status(200).send person
   .put (req, res, next) ->
     Person.findById req.params.personId, (err, person) ->
       return next() if err
