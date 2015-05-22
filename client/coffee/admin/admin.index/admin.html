@@ -1,16 +1,7 @@
 <div class="container">
   <ul class="admin-sidebar panel panel-default">
-    <li class="admin-sidebar__item">
-      <a ui-sref="admin" ui-sref-active="admin-sidebar__item_active" class="admin-sidebar__link">Dashboard</a>
-    </li>
-    <li class="admin-sidebar__item">
-      <a ui-sref="admin.movies" ui-sref-active="admin-sidebar__link_active" class="admin-sidebar__link">Movies</a>
-    </li>
-    <li class="admin-sidebar__item">
-      <a ui-sref="admin.persons" ui-sref-active="admin-sidebar__link_active" class="admin-sidebar__link">Actors</a>
-    </li>
-    <li class="admin-sidebar__item">
-      <a ui-sref="admin.cinemas" ui-sref-active="admin-sidebar__link_active" class="admin-sidebar__link">Cinemas</a>
+    <li class="admin-sidebar__item" ng-repeat="item in vm.menu">
+      <a ui-sref="{{item.state}}" ui-sref-active="admin-sidebar__link_active" class="admin-sidebar__link">{{item.title}}</a>
     </li>
   </ul>
   <ui-view class="admin-content panel panel-default"></ui-view>

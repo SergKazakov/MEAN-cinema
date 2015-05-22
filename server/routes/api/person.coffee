@@ -15,14 +15,11 @@ router
   .route '/persons'
   .get (req, res, next) ->
     if req.query.name
-      reqex = new RegExp req.query.name, 'i'
-      Person.find name : reqex, (err, actors) ->
-        return next() if err
-        res.status(200).send actors
-    else
-      Person.find {}, (err, persons) ->
-        return next() if err
-        res.status(200).send persons
+      criterion = name : new RegExp req.query.name, 'i'
+    else criterion = {}
+    Person.find criterion, (err, persons) ->
+      return next() if err
+      res.status(200).send persons
   .post (req, res, next) ->
     newPerson = JSON.parse req.body.person
     fileName  = req.files.file.name

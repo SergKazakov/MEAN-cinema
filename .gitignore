@@ -4,7 +4,7 @@ node_modules
 .grunt
 .DS_Store
 .yo-rc.json
-vendor
 client/js
 client/bower_components
 client/img/media
+.idea

@@ -5,7 +5,9 @@
     <li ng-repeat="genre in vm.movie.genre">{{genre.text}}</li>
   </ul>
   <ul class="nav nav-pills">
-    <li ng-repeat="actor in vm.movie.actors">{{actor.name}}</li>
+    <li ng-repeat="actor in vm.movie.actors">
+      <a ui-sref="person({personId: actor._id})">{{actor.name}}</a>
+    </li>
   </ul>
   <div><i class="ion-clock"></i> {{vm.movie.duration}} min</div>
   <div>Rating {{vm.movie.ageRating}}+</div>

@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>{{vm.person.name}}</h1>
+  <img ng-src="{{vm.person.photo}}" alt="">
+  <ul class="nav nav-pills">
+    <li ng-repeat="item in vm.person.career">
+      {{item.text}}
+    </li>
+  </ul>
+  <div>{{vm.person.birthdate | date : 'd MMMM yyyy'}}</div>
+  <div>{{vm.person.birthPlace}}</div>
+  <h2>Список фильмов</h2>
+  <ul class="nav nav-pills">
+    <li ng-repeat="movie in vm.person.movies">{{movie.name}}</li>
+  </ul>
+</div>

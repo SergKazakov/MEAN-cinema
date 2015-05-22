@@ -13,7 +13,7 @@ fillMovie = (movie, newMovie, fileName) ->
   movie.duration    = parseInt newMovie.duration
   movie.ageRating   = parseInt newMovie.ageRating
   movie.status      = parseInt newMovie.status
-  movie.actors      = newMovie.actors.map (actor) -> actor._id
+  movie.actors      = newMovie.actors
   movie.poster      = "img/media/#{fileName}" if fileName?
   movie
 
@@ -21,13 +21,11 @@ router
   .route '/movies'
   .get (req, res, next) ->
     if req.query.status
-      Movie.find status : req.query.status, (err, movies) ->
-        return next() if err
-        res.status(200).send movies
-    else
-      Movie.find {}, (err, movies) ->
-        return next() if err
-        res.status(200).send movies
+      criterion = status : req.query.status
+    else criterion = {}
+    Movie.find criterion, (err, movies) ->
+      return next() if err
+      res.status(200).send movies
   .post (req, res, next) ->
     newMovie  = JSON.parse req.body.movie
     fileName  = req.files.file.name
