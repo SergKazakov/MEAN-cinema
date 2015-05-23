@@ -1,8 +1,8 @@
 jwt        = require 'jwt-simple'
 express    = require 'express'
 router     = express.Router()
-User       = require '../../models/user'
-conf       = require '../../config/config'
+User       = alias.require '@models/user'
+conf       = alias.require '@config'
 request    = require 'request'
 createJWT  = require './createJWT'
 

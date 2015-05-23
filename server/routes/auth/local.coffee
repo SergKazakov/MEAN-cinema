@@ -1,6 +1,6 @@
 express   = require 'express'
 router    = express.Router()
-User      = require '../../models/user'
+User      = alias.require '@models/user'
 createJWT = require './createJWT'
 
 router

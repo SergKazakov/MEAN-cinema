@@ -1,7 +1,7 @@
 mongoose          = require 'mongoose'
 Schema            = mongoose.Schema
-Movie             = require './movie'
 mongoosePaginate  = require 'mongoose-paginate'
+Movie             = require './movie'
 
 personSchema = new Schema
   name :

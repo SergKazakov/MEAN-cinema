@@ -1,7 +1,7 @@
 express    = require 'express'
 router     = express.Router()
 mongoose   = require 'mongoose'
-Cinema      = require '../../models/cinema'
+Cinema     = alias.require '@models/cinema'
 
 fillCinema = (cinema, newCinema, fileName) ->
   cinema.name         = newCinema.name

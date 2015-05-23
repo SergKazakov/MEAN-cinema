@@ -6,8 +6,15 @@ path           = require 'path'
 mongoose       = require 'mongoose'
 multer         = require 'multer'
 chalk          = require 'chalk'
-conf           = require './server/config/config'
+Alias          = require 'require-alias'
 app            = module.exports = express()
+
+global.alias = new Alias
+  aliases :
+    '@config' : './server/config/config'
+    '@models' : './server/models'
+
+conf = alias.require '@config'
 
 mongoose.connect conf.mongoUrl
 mongoose.connection.on 'error', (err) ->

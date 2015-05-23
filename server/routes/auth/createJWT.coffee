@@ -1,6 +1,6 @@
 jwt     = require 'jwt-simple'
 moment  = require 'moment'
-conf    = require '../../config/config'
+conf    = alias.require '@config'
 
 module.exports = (user) ->
   payload =
