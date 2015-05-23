@@ -18,9 +18,18 @@ router
     if req.query.name
       criterion = name : new RegExp req.query.name, 'i'
     else criterion = {}
-    Person.find criterion, (err, persons) ->
-      return next() if err
-      res.status(200).send persons
+    if req.query.page
+      Person.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
+        return next() if err
+        res.status(200).send
+          items : paginatedResults
+          count : itemCount
+      ,
+        sortBy : name : 1
+    else
+      Person.find criterion, (err, persons) ->
+        return next() if err
+        res.status(200).send persons
   .post (req, res, next) ->
     newPerson = JSON.parse req.body.person
     fileName  = req.files.file.name

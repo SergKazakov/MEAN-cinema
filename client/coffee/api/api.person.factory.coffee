@@ -7,6 +7,8 @@ Person = ($http) ->
     $http.get "/api/v1/person/#{personId}"
   getPersonsByName : (personName) ->
     $http.get "/api/v1/persons?name=#{personName}"
+  getPersonsByPage : (pageNumber) ->
+    $http.get "/api/v1/persons?page=#{pageNumber}"
   editPerson : (person) ->
     $http.put "/api/v1/person/#{person._id}", person
   deletePerson : (personId) ->

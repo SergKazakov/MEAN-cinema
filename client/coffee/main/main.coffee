@@ -9,6 +9,7 @@ require 'bower/angular-strap/dist/angular-strap'
 require 'bower/angular-strap/dist/angular-strap.tpl'
 require 'bower/ng-tags-input/ng-tags-input.min'
 require 'bower/angular-permission/dist/angular-permission'
+require 'bower/angular-utils-pagination/dirPagination'
 
 angular
   .element document

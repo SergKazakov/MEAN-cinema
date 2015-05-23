@@ -1,6 +1,7 @@
-mongoose = require 'mongoose'
-Schema   = mongoose.Schema
-Movie    = require './movie'
+mongoose          = require 'mongoose'
+Schema            = mongoose.Schema
+Movie             = require './movie'
+mongoosePaginate  = require 'mongoose-paginate'
 
 personSchema = new Schema
   name :
@@ -19,5 +20,7 @@ personSchema = new Schema
   photo :
     type : String
     required : on
+
+personSchema.plugin mongoosePaginate
 
 module.exports = mongoose.model 'Person', personSchema

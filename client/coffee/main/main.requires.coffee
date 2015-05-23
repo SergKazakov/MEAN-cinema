@@ -6,6 +6,7 @@ module.exports = [
   'ngTagsInput'
   'ngFileUpload'
   'permission'
+  'angularUtils.directives.dirPagination'
   require 'angular-resource'
   require 'angular-messages'
   require 'angular-ui-router'

@@ -1,11 +1,16 @@
-AdminPersonsCtrl = (Person) ->
-  @noPersons = no
+AdminPersonsCtrl = (Person, persons) ->
 
-  Person
-    .getPersons()
-    .success (res) =>
-      @noPersons = on if not res.length
-      @persons = res
+  @persons      = persons.data.items
+  @totalPersons = persons.data.count
+  @noPersons    = unless @persons then on else no
+  @currentPage  = 1
+
+  @changePage = (newPageNumber) ->
+    Person
+      .getPersonsByPage newPageNumber
+      .success (res) =>
+        @persons      = res.items
+        @totalPersons = res.count
 
   @deletePerson = (personId, index) ->
     Person
@@ -15,6 +20,6 @@ AdminPersonsCtrl = (Person) ->
 
   return
 
-AdminPersonsCtrl.$inject = ['Person']
+AdminPersonsCtrl.$inject = ['Person', 'persons']
 
 module.exports = AdminPersonsCtrl
