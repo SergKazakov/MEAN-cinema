@@ -1,5 +1,16 @@
-AdminMoviesCtrl = (Movie) ->
-  @noMovies = no
+AdminMoviesCtrl = (Movie, movies) ->
+
+  @movies      = movies.data.items
+  @totalMovies = movies.data.count
+  @noMovies    = unless @movies then on else no
+  @currentPage = 1
+
+  @changePage = (newPageNumber) ->
+    Movie
+      .getMoviesByPage newPageNumber
+      .success (res) =>
+        @movies      = res.items
+        @totalMovies = res.count
 
   Movie
     .getMovies()
@@ -15,6 +26,6 @@ AdminMoviesCtrl = (Movie) ->
 
   return
 
-AdminMoviesCtrl.$inject = ['Movie']
+AdminMoviesCtrl.$inject = ['Movie', 'movies']
 
 module.exports = AdminMoviesCtrl

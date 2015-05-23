@@ -1,6 +1,6 @@
 <p ng-if="vm.noMovies">Ooops! There are no movies:(</p>
 <ul class="admin-grid">
-  <li class="admin-grid__item" ng-repeat="movie in vm.movies">
+  <li class="admin-grid__item" pagination-id="personsPagination" dir-paginate="movie in vm.movies | itemsPerPage: 10" total-items="vm.totalMovies" current-page="vm.currentPage">
     <img class="admin-grid__img" ng-src="{{movie.poster}}">
     <div class="admin-grid__overlay">
       <div class="admin-grid__buttons">
@@ -10,4 +10,5 @@
     </div>
   </li>
 </ul>
+<dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="personsPagination"></dir-pagination-controls>
 <a class="btn btn-primary" ui-sref="admin.moviesnew">Add movie</a>

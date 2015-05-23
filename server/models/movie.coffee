@@ -1,7 +1,8 @@
-mongoose = require 'mongoose'
-Schema   = mongoose.Schema
-Person   = require './person'
-User     = require './user'
+mongoose          = require 'mongoose'
+Schema            = mongoose.Schema
+mongoosePaginate  = require 'mongoose-paginate'
+Person            = require './person'
+User              = require './user'
 
 movieSchema = new Schema
   name :
@@ -57,5 +58,7 @@ movieSchema = new Schema
     type : Schema.Types.ObjectId
     ref : 'User'
   ]
+
+movieSchema.plugin mongoosePaginate
 
 module.exports = mongoose.model 'Movie', movieSchema

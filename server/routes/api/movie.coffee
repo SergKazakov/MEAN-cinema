@@ -23,9 +23,18 @@ router
     if req.query.status
       criterion = status : req.query.status
     else criterion = {}
-    Movie.find criterion, (err, movies) ->
-      return next() if err
-      res.status(200).send movies
+    if req.query.page
+      Movie.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
+        return next() if err
+        res.status(200).send
+          items : paginatedResults
+          count : itemCount
+      ,
+        sortBy : name : 1
+    else
+      Movie.find criterion, (err, movies) ->
+        return next() if err
+        res.status(200).send movies
   .post (req, res, next) ->
     newMovie  = JSON.parse req.body.movie
     fileName  = req.files.file.name
