@@ -8,8 +8,7 @@
     <tags-input ng-model="vm.person.career" placeholder="Add a career"></tags-input>
   </div>
   <div class="form-group">
-    <label>Photo</label>
-    <img class="photo" ng-if="!vm.file.length" ng-src="{{vm.person.photo}}">
+    <img class="photo" ng-if="!vm.file.length && vm.person.photo" ng-src="{{vm.person.photo}}">
     <img class="photo" ng-if="vm.file.length" ngf-src="vm.file[0]">
     <span type="text" class="btn btn-primary" ng-model="vm.file" ngf-select>upload photo</span>
   </div>

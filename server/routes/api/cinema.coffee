@@ -16,9 +16,18 @@ fillCinema = (cinema, newCinema, fileName) ->
 router
   .route '/cinemas'
   .get (req, res, next) ->
-    Cinema.find {}, (err, cinemas) ->
-      return next() if err
-      res.status(200).send cinemas
+    if req.query.page
+      Cinema.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
+        return next() if err
+        res.status(200).send
+          items : paginatedResults
+          count : itemCount
+      ,
+        sortBy : name : 1
+    else
+      Cinema.find {}, (err, cinemas) ->
+        return next() if err
+        res.status(200).send cinemas
   .post (req, res, next) ->
     newCinema  = JSON.parse req.body.cinema
     fileName   = req.files.file.name

@@ -12,12 +12,6 @@ AdminMoviesCtrl = (Movie, movies) ->
         @movies      = res.items
         @totalMovies = res.count
 
-  Movie
-    .getMovies()
-    .success (res) =>
-      @noMovies = on if not res.length
-      @movies = res
-
   @deleteMovie = (movieId, index) ->
     Movie
       .deleteMovie movieId

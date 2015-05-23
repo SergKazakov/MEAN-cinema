@@ -1,5 +1,6 @@
-mongoose = require 'mongoose'
-Schema   = mongoose.Schema
+mongoose         = require 'mongoose'
+Schema           = mongoose.Schema
+mongoosePaginate = require 'mongoose-paginate'
 
 cinemaSchema = new Schema
   name :
@@ -13,5 +14,7 @@ cinemaSchema = new Schema
   telephone : String
   website : String
   support3D : Boolean
+
+cinemaSchema.plugin mongoosePaginate
 
 module.exports = mongoose.model 'Cinema', cinemaSchema

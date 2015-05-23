@@ -1,11 +1,16 @@
-AdminCinemasCtrl = (Cinema) ->
-  @noCinemas = no
+AdminCinemasCtrl = (Cinema, cinemas) ->
 
-  Cinema
-    .getCinemas()
-    .success (res) =>
-      @noCinemas = on if not res.length
-      @cinemas = res
+  @cinemas      = cinemas.data.items
+  @totalCinemas = cinemas.data.count
+  @noCinemas    = unless @cinemas then on else no
+  @currentPage = 1
+
+  @changePage = (newPageNumber) ->
+    Cinema
+      .getCinemasByPage newPageNumber
+      .success (res) =>
+        @cinemas      = res.items
+        @totalCinemas = res.count
 
   @deleteCinema = (cinemaId, index) ->
     Cinema
@@ -15,6 +20,6 @@ AdminCinemasCtrl = (Cinema) ->
 
   return
 
-AdminCinemasCtrl.$inject = ['Cinema']
+AdminCinemasCtrl.$inject = ['Cinema', 'cinemas']
 
 module.exports = AdminCinemasCtrl

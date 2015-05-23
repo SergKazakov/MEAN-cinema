@@ -4,8 +4,7 @@
     <input type="text" class="form-control" ng-model="vm.cinema.name">
   </div>
   <div class="form-group">
-    <label>Poster</label>
-    <img class="photo" ng-if="!vm.file.length" ng-src="{{vm.cinema.poster}}">
+    <img class="photo" ng-if="!vm.file.length && vm.cinema.poster" ng-src="{{vm.cinema.poster}}">
     <img class="photo" ng-if="vm.file.length" ngf-src="vm.file[0]">
     <span type="text" class="btn btn-primary" ng-model="vm.file" ngf-select>upload poster</span>
   </div>
