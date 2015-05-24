@@ -20,6 +20,10 @@ personSchema = new Schema
   photo :
     type : String
     required : on
+  gender :
+    type : String
+    enum : ['male', 'female']
+    required : on
 
 personSchema.plugin mongoosePaginate
 

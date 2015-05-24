@@ -20,5 +20,9 @@
     <label>Birthplace</label>
     <input type="text" class="form-control" ng-model="vm.person.birthPlace">
   </div>
+  <div class="form-group">
+    <input type="radio" id="male" ng-model="vm.person.gender" value="male"><label for="male">Male</label>
+    <input type="radio" id="female" ng-model="vm.person.gender" value="female"><label for="female">Female</label>
+  </div>
   <button class="btn btn-default" type="submit"><i class="ion-checkmark"></i>Submit</button>
 </form>

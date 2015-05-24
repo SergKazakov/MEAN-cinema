@@ -9,6 +9,7 @@ fillPerson = (person, newPerson, fileName) ->
   person.career     = newPerson.career
   person.birthdate  = newPerson.birthdate
   person.birthPlace = newPerson.birthPlace
+  person.gender     = newPerson.gender
   person.photo      = "img/media/#{fileName}" if fileName?
   person
 
