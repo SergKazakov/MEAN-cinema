@@ -4,8 +4,11 @@ homeConfig = ($stateProvider) ->
     templateUrl : require './home.html'
     controller : 'HomeCtrl as vm'
     resolve :
-      movies : ['Movie', (Movie) ->
+      newMovies : ['Movie', (Movie) ->
         Movie.getMoviesByStatus 'now'
+      ]
+      upcomingMovies : ['Movie', (Movie) ->
+        Movie.getMoviesByStatus 'upcoming'
       ]
 
 homeConfig.$inject = ['$stateProvider']

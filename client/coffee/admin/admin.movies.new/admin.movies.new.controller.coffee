@@ -23,7 +23,7 @@ AdminMoviesNewCtrl = (Movie, Person, $alert, $state, Upload) ->
         type : 'material'
         duration : 3
 
-  @loadActors = (name) ->
+  @loadPersons = (name) ->
     Person.getPersonsByName name
 
   return

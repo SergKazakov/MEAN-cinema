@@ -1,7 +1,16 @@
 <div class="container">
-  <p>Сегодня в кино</p>
+  <h2>Сегодня в кино</h2>
   <ul class="home-gallery">
-    <li ng-repeat="movie in vm.movies" class="home-gallery__item">
+    <li ng-repeat="movie in vm.newMovies" class="home-gallery__item">
+      <a class="home-gallery__link" ui-sref="movie({movieId : movie._id})">
+        <img class="home-gallery__img" ng-src="{{movie.poster}}" alt="">
+        <span class="home-gallery__name">{{movie.name}}</span>
+      </a>
+    </li>
+  </ul>
+  <h2>Скоро в кино</h2>
+  <ul class="home-gallery">
+    <li ng-repeat="movie in vm.upcomingMovies" class="home-gallery__item">
       <a class="home-gallery__link" ui-sref="movie({movieId : movie._id})">
         <img class="home-gallery__img" ng-src="{{movie.poster}}" alt="">
         <span class="home-gallery__name">{{movie.name}}</span>

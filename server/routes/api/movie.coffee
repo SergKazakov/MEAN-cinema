@@ -14,6 +14,7 @@ fillMovie = (movie, newMovie, fileName) ->
   movie.synopsis    = newMovie.synopsis
   movie.duration    = parseInt newMovie.duration
   movie.ageRating   = parseInt newMovie.ageRating
+  movie.directors   = newMovie.directors
   movie.actors      = newMovie.actors
   movie.poster      = "img/media/#{fileName}" if fileName?
   movie
@@ -58,7 +59,7 @@ router
   .get (req, res, next) ->
     Movie
       .findById req.params.movieId
-      .populate 'actors'
+      .populate 'directors actors'
       .exec (err, movie) ->
         return next() if err
         res.status(200).send movie

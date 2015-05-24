@@ -4,11 +4,22 @@
   <ul class="nav nav-pills">
     <li ng-repeat="genre in vm.movie.genre">{{genre.text}}</li>
   </ul>
-  <ul class="nav nav-pills">
-    <li ng-repeat="actor in vm.movie.actors">
-      <a ui-sref="person({personId: actor._id})">{{actor.name}}</a>
-    </li>
-  </ul>
+  <div ng-if="vm.movie.directors.length">
+    <h3>Режиссеры</h3>
+    <ul class="nav nav-pills">
+      <li ng-repeat="director in vm.movie.directors">
+        <a ui-sref="person({personId: director._id})">{{director.name}}</a>
+      </li>
+    </ul>
+  </div>
+  <div ng-if="vm.movie.actors.length">
+    <h3>Актеры</h3>
+    <ul class="nav nav-pills">
+      <li ng-repeat="actor in vm.movie.actors">
+        <a ui-sref="person({personId: actor._id})">{{actor.name}}</a>
+      </li>
+    </ul>
+  </div>
   <div><i class="ion-clock"></i> {{vm.movie.duration}} min</div>
   <div>Rating {{vm.movie.ageRating}}+</div>
   <div>C {{vm.movie.releaseDate | date: 'd MMMM yyyy'}}</div>

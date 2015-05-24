@@ -3,7 +3,7 @@ AdminCtrl = ->
     title : 'Movies'
     state : 'admin.movies'
   ,
-    title : 'Actors'
+    title : 'Persons'
     state : 'admin.persons'
   ,
     title : 'Cinemas'

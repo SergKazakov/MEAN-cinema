@@ -1,9 +1,10 @@
-HomeCtrl = (movies) ->
+HomeCtrl = (newMovies, upcomingMovies) ->
 
-  @movies = movies.data
+  @newMovies      = newMovies.data
+  @upcomingMovies = upcomingMovies.data
 
   return
 
-HomeCtrl.$inject = ['movies']
+HomeCtrl.$inject = ['newMovies', 'upcomingMovies']
 
 module.exports = HomeCtrl

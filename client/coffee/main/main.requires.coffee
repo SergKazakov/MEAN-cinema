@@ -7,6 +7,7 @@ module.exports = [
   'ngFileUpload'
   'permission'
   'angularUtils.directives.dirPagination'
+  'elif'
   require 'angular-resource'
   require 'angular-messages'
   require 'angular-ui-router'

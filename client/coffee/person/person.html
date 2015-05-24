@@ -8,8 +8,17 @@
   </ul>
   <div>{{vm.person.birthdate | date : 'd MMMM yyyy'}}</div>
   <div>{{vm.person.birthPlace}}</div>
-  <h2>Список фильмов</h2>
-  <ol>
-    <li ng-repeat="movie in vm.person.movies">{{movie.name}}</li>
-  </ol>
+  <div ng-if="vm.person.moviesAsActor.length">
+    <h2 ng-if="vm.person.gender === 'male'">Актер</h2>
+    <h2 ng-else>Актриса</h2>
+    <ol>
+      <li ng-repeat="movie in vm.person.moviesAsActor">{{movie.name}}</li>
+    </ol>
+  </div>
+  <div ng-if="vm.person.moviesAsDirector.length">
+    <h2>Режиссер</h2>
+    <ol>
+      <li ng-repeat="movie in vm.person.moviesAsDirector">{{movie.name}}</li>
+    </ol>
+  </div>
 </div>

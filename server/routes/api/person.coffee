@@ -1,6 +1,7 @@
 express    = require 'express'
 router     = express.Router()
 mongoose   = require 'mongoose'
+async      = require 'async'
 Person     = alias.require '@models/person'
 Movie      = alias.require '@models/movie'
 
@@ -47,9 +48,19 @@ router
       .lean()
       .exec (err, person) ->
         return next() if err
-        Movie.find actors : person._id, (err, movies) ->
+        async.parallel [
+          (cb) ->
+            Movie.find actors : person._id, (err, movies) ->
+              return next() if err
+              cb null, movies
+          (cb) ->
+            Movie.find directors : person._id, (err, movies) ->
+              return next() if err
+              cb null, movies
+        ], (err, results) ->
           return next() if err
-          person.movies = movies
+          person.moviesAsActor = results[0]
+          person.moviesAsDirector = results[1]
           res.status(200).send person
   .put (req, res, next) ->
     Person.findById req.params.personId, (err, person) ->
