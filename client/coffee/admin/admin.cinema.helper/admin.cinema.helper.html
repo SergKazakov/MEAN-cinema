@@ -1,4 +1,6 @@
 <form ng-submit="vm.action()">
+  <p>Дата создания: {{vm.cinema.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}</p>
+  <p>Дата последнего обновления: {{vm.cinema.updatedAt | date : 'dd/MM/yyyy HH:mm:ss'}}</p>
   <div class="form-group">
     <label>Name</label>
     <input type="text" class="form-control" ng-model="vm.cinema.name">

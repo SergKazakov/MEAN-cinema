@@ -1,6 +1,7 @@
 mongoose         = require 'mongoose'
 Schema           = mongoose.Schema
 mongoosePaginate = require 'mongoose-paginate'
+timestamps       = require 'mongoose-timestamp'
 
 cinemaSchema = new Schema
   name :
@@ -15,6 +16,7 @@ cinemaSchema = new Schema
   website : String
   support3D : Boolean
 
+cinemaSchema.plugin timestamps
 cinemaSchema.plugin mongoosePaginate
 
 module.exports = mongoose.model 'Cinema', cinemaSchema

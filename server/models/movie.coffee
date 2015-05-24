@@ -1,6 +1,7 @@
 mongoose          = require 'mongoose'
 Schema            = mongoose.Schema
 mongoosePaginate  = require 'mongoose-paginate'
+timestamps        = require 'mongoose-timestamp'
 Person            = require './person'
 User              = require './user'
 
@@ -58,6 +59,7 @@ movieSchema = new Schema
     ref : 'User'
   ]
 
+movieSchema.plugin timestamps
 movieSchema.plugin mongoosePaginate
 
 module.exports = mongoose.model 'Movie', movieSchema
