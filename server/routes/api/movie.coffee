@@ -1,5 +1,6 @@
 express    = require 'express'
 router     = express.Router()
+moment     = require 'moment'
 mongoose   = require 'mongoose'
 Movie      = alias.require '@models/movie'
 
@@ -8,11 +9,11 @@ fillMovie = (movie, newMovie, fileName) ->
   movie.poster      = newMovie.poster
   movie.country     = newMovie.country
   movie.genre       = newMovie.genre
-  movie.releaseDate = newMovie.releaseDate
+  movie.releaseDate = moment(newMovie.releaseDate).format('YYYY-MM-DD') if newMovie.releaseDate?
+  movie.finishDate  = moment(newMovie.finishDate).format('YYYY-MM-DD')  if newMovie.finishDate?
   movie.synopsis    = newMovie.synopsis
   movie.duration    = parseInt newMovie.duration
   movie.ageRating   = parseInt newMovie.ageRating
-  movie.status      = parseInt newMovie.status
   movie.actors      = newMovie.actors
   movie.poster      = "img/media/#{fileName}" if fileName?
   movie
@@ -20,9 +21,7 @@ fillMovie = (movie, newMovie, fileName) ->
 router
   .route '/movies'
   .get (req, res, next) ->
-    if req.query.status
-      criterion = status : req.query.status
-    else criterion = {}
+    criterion = {}
     if req.query.page
       Movie.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
         return next() if err
@@ -32,6 +31,17 @@ router
       ,
         sortBy : name : 1
     else
+      if req.query.status
+        if req.query.status is 'now'
+          currentDate = new Date()
+          criterion =
+            releaseDate :
+              $lte : currentDate
+            finishDate :
+              $gte : currentDate
+        else if req.query.status is 'upcoming'
+          nextThursday = moment().day('Thursday').format('YYYY-MM-DD')
+          criterion = releaseDate : nextThursday
       Movie.find criterion, (err, movies) ->
         return next() if err
         res.status(200).send movies

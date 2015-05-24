@@ -5,7 +5,7 @@ homeConfig = ($stateProvider) ->
     controller : 'HomeCtrl as vm'
     resolve :
       movies : ['Movie', (Movie) ->
-        Movie.getMoviesByStatus(1)
+        Movie.getMoviesByStatus 'now'
       ]
 
 homeConfig.$inject = ['$stateProvider']

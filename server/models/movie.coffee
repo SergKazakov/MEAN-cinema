@@ -38,10 +38,9 @@ movieSchema = new Schema
   releaseDate :
     type : Date
     default : Date.now
-  status :
-    type : Number
-    default : 2
-    enum : [0, 1, 2]
+  finishDate :
+    type : Date
+    default : Date.now
   directors : [
     type : Schema.Types.ObjectId
     ref : 'Person'
