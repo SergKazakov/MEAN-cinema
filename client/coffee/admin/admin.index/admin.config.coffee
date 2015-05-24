@@ -1,4 +1,4 @@
-adminConfig = ($stateProvider) ->
+adminConfig = ($stateProvider, tagsInputConfigProvider) ->
   $stateProvider.state 'admin',
     url : '/admin'
     absract : on
@@ -8,6 +8,8 @@ adminConfig = ($stateProvider) ->
       permissions :
         only : ['admin']
 
-adminConfig.$inject = ['$stateProvider']
+  tagsInputConfigProvider.setDefaults 'tagsInput', addOnComma : no
+
+adminConfig.$inject = ['$stateProvider', 'tagsInputConfigProvider']
 
 module.exports = adminConfig

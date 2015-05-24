@@ -3,7 +3,6 @@ module.exports = [
   'satellizer'
   'angular-loading-bar'
   'angular-storage'
-  'ngTagsInput'
   'ngFileUpload'
   'permission'
   'angularUtils.directives.dirPagination'
