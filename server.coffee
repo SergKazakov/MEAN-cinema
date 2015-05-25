@@ -11,8 +11,9 @@ app            = module.exports = express()
 
 global.alias = new Alias
   aliases :
-    '@config' : './server/config/config'
+    '@config' : './server/config'
     '@models' : './server/models'
+    '@routes' : './server/routes'
 
 conf = alias.require '@config'
 
@@ -41,18 +42,6 @@ if app.get 'env' is 'production'
     protocol = req.get 'x-forwarded-proto'
     if protocol is 'https' then next() else res.redirect "https://#{req.hostname}#{req.url}"
 
-[
-  'auth/me'
-  'auth/local'
-  'auth/google'
-  'auth/facebook'
-  'auth/twitter'
-  'auth/github'
-  'auth/unlink'
-  'api/movie'
-  'api/person'
-  'api/cinema'
-  'error'
-].map (path) -> require("./server/routes/#{path}") app
+alias.require('@routes') app
 
 app.listen conf.port
