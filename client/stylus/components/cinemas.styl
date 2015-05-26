@@ -9,6 +9,40 @@
     &__link,
     &__img
       display block
+    &__link
+      position relative
+      &:hover
+        .cinemas-list__overlay
+          opacity 1
+    &__like
+      color #ff0
+      width 32px
+      height 32px
+      padding 3rem
+      border-radius 50%
+      top 2rem
+      opacity 0
+      transition opacity 300ms
+      background rgba(0,0,0,0.6)
+      &:hover
+        opacity 1
+      &, &:before
+        position absolute
+        left 50%
+        transform translateX(-50%)
+      &:before
+        top 50%
+        font-size 3.4rem
+        transform translate(-50%, -50%)
+    &__overlay
+      position absolute
+      left 0
+      right 0
+      top 0
+      bottom 0
+      background rgba(0,0,0,0.5)
+      opacity 0
+      transition opacity 300ms
     &__img
       width 100%
     &__name

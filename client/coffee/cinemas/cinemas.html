@@ -5,6 +5,7 @@
       <li class="cinemas-list__item" ng-repeat="cinema in vm.cinemas">
         <a class="cinemas-list__link" ui-sref="cinema({cinemaId : cinema._id})">
           <img class="cinemas-list__img" ng-src="{{cinema.poster}}" alt="">
+          <div class="cinemas-list__overlay"><i class="ion-heart cinemas-list__like"></i></div>
         </a>
         <p class="cinemas-list__name">{{cinema.name}}</p>
         <address class="cinemas-list__address">{{cinema.address}}</address>
