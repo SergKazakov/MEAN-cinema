@@ -1,14 +1,16 @@
 <p ng-if="vm.noPersons">Ooops! There are no persons:(</p>
-<ul class="admin-grid">
-  <li class="admin-grid__item" pagination-id="personsPagination" dir-paginate="person in vm.persons | itemsPerPage: 10" total-items="vm.totalPersons" current-page="vm.currentPage">
-    <img class="admin-grid__img" ng-src="{{person.photo}}">
-    <div class="admin-grid__overlay">
-      <div class="admin-grid__buttons">
-        <a class="btn btn-default" ui-sref="admin.personedit({personId: person._id})">Edit</a>
-        <button ng-click="vm.deletePerson(person._id, $index)" class="btn btn-danger"><i class="ion-close"></i></button>
+<div ng-if="vm.persons.length" class="admin-grid-wr">
+  <ul class="admin-grid">
+    <li class="admin-grid__item" pagination-id="personsPagination" dir-paginate="person in vm.persons | itemsPerPage: 10" total-items="vm.totalPersons" current-page="vm.currentPage">
+      <img class="admin-grid__img" ng-src="{{person.photo}}">
+      <div class="admin-grid__overlay">
+        <div class="admin-grid__buttons">
+          <a class="btn btn-default" ui-sref="admin.personedit({personId: person._id})">Edit</a>
+          <button ng-click="vm.deletePerson(person._id, $index)" class="btn btn-danger"><i class="ion-close"></i></button>
+        </div>
       </div>
-    </div>
-  </li>
-</ul>
-<dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="personsPagination"></dir-pagination-controls>
+    </li>
+  </ul>
+  <dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="personsPagination"></dir-pagination-controls>
+</div>
 <a class="btn btn-primary" ui-sref="admin.personsnew">Add person</a>

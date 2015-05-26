@@ -20,6 +20,8 @@ module.exports = [
   require('../api/api').name
   require('../movie/movie').name
   require('../person/person').name
+  require('../cinema/cinema').name
+  require('../cinemas/cinemas').name
   require('../admin/admin.index/admin').name
   require('../admin/admin.movies/admin.movies').name
   require('../admin/admin.movies.new/admin.movies.new').name

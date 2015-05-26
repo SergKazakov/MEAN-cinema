@@ -2,6 +2,11 @@
   <div class="navbar-header">
     <a ui-sref="home" class="navbar-brand">Cinema</a>
   </div>
+  <ul class="nav navbar-nav">
+    <li>
+      <a ui-sref="cinemas" ui-sref-active="active">Cinemas</a>
+    </li>
+  </ul>
   <ul class="nav navbar-nav pull-right">
     <li ng-if="!vm.isAuthenticated()">
       <a ui-sref="login" ui-sref-active="active">Login</a>

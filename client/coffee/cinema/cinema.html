@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="cinema">
+    <img class="cinema__img" ng-src="{{vm.cinema.poster}}" alt="">
+    <p class="cinema__name">{{vm.cinema.name}}</p>
+    <address class="cinema__address">{{vm.cinema.address}}</address>
+    <a href="{{vm.cinema.website}}" target="_blank" class="btn btn-default cinema__website">Сайт</a>
+    <a href="tel:{{vm.cinema.telephone}}" class="btn btn-default cinema__phone">{{vm.cinema.telephone}}</a>
+    <div class="cinema__3d">Поддержка 3D <span ng-if="vm.cinema.support3D">Да</span><span ng-else>Нет</span></div>
+    <p class="cinema__description">{{vm.cinema.description}}</p>
+  </div>
+  <h2 ng-if="vm.noSessions">Упс! Сеансов нет:((</h2>
+  <div ng-if="vm.cinema.sessions.length" class="cinema-sessions">
+    <h1>Сеансы</h1>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+  <p ng-if="vm.noCinemas">Ooops! There are no cinemas:(</p>
+  <div ng-if="vm.cinemas.length" class="cinemas">
+    <ul class="cinemas-list">
+      <li class="cinemas-list__item" ng-repeat="cinema in vm.cinemas">
+        <a class="cinemas-list__link" ui-sref="cinema({cinemaId : cinema._id})">
+          <img class="cinemas-list__img" ng-src="{{cinema.poster}}" alt="">
+        </a>
+        <p class="cinemas-list__name">{{cinema.name}}</p>
+        <address class="cinemas-list__address">{{cinema.address}}</address>
+      </li>
+    </ul>
+  </div>
+</div>

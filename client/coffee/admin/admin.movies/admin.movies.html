@@ -1,14 +1,16 @@
 <p ng-if="vm.noMovies">Ooops! There are no movies:(</p>
-<ul class="admin-grid">
-  <li class="admin-grid__item" pagination-id="moviesPagination" dir-paginate="movie in vm.movies | itemsPerPage: 10" total-items="vm.totalMovies" current-page="vm.currentPage">
-    <img class="admin-grid__img" ng-src="{{movie.poster}}">
-    <div class="admin-grid__overlay">
-      <div class="admin-grid__buttons">
-        <a class="btn btn-default" ui-sref="admin.movieedit({movieId: movie._id})">Edit</a>
-        <button ng-click="vm.deleteMovie(movie._id, $index)" class="btn btn-danger"><i class="ion-close"></i></button>
+<div ng-if="vm.movies.length" class="admin-grid-wr">
+  <ul class="admin-grid">
+    <li class="admin-grid__item" pagination-id="moviesPagination" dir-paginate="movie in vm.movies | itemsPerPage: 10" total-items="vm.totalMovies" current-page="vm.currentPage">
+      <img class="admin-grid__img" ng-src="{{movie.poster}}">
+      <div class="admin-grid__overlay">
+        <div class="admin-grid__buttons">
+          <a class="btn btn-default" ui-sref="admin.movieedit({movieId: movie._id})">Edit</a>
+          <button ng-click="vm.deleteMovie(movie._id, $index)" class="btn btn-danger"><i class="ion-close"></i></button>
+        </div>
       </div>
-    </div>
-  </li>
-</ul>
-<dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="moviesPagination"></dir-pagination-controls>
+    </li>
+  </ul>
+  <dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="moviesPagination"></dir-pagination-controls>
+</div>
 <a class="btn btn-primary" ui-sref="admin.moviesnew">Add movie</a>

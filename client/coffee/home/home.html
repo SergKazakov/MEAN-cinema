@@ -1,6 +1,7 @@
 <div class="container">
   <h2>Сегодня в кино</h2>
-  <ul class="home-gallery">
+  <h3 ng-if="vm.noNewMovies">Пусто:((</h3>
+  <ul ng-if="vm.newMovies.length" class="home-gallery">
     <li ng-repeat="movie in vm.newMovies" class="home-gallery__item">
       <a class="home-gallery__link" ui-sref="movie({movieId : movie._id})">
         <img class="home-gallery__img" ng-src="{{movie.poster}}" alt="">
@@ -9,7 +10,8 @@
     </li>
   </ul>
   <h2>Скоро в кино</h2>
-  <ul class="home-gallery">
+  <h3 ng-if="vm.noUpcomingMovies">Пусто:((</h3>
+  <ul ng-if="vm.upcomingMovies.length" class="home-gallery">
     <li ng-repeat="movie in vm.upcomingMovies" class="home-gallery__item">
       <a class="home-gallery__link" ui-sref="movie({movieId : movie._id})">
         <img class="home-gallery__img" ng-src="{{movie.poster}}" alt="">
