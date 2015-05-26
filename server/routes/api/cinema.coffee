@@ -16,6 +16,7 @@ fillCinema = (cinema, newCinema, fileName) ->
 router
   .route '/cinemas'
   .get (req, res, next) ->
+    criterion = {}
     if req.query.page
       Cinema.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
         return next() if err
@@ -25,7 +26,8 @@ router
       ,
         sortBy : name : 1
     else
-      Cinema.find {}, (err, cinemas) ->
+      criterion = name : new RegExp req.query.name, 'i' if req.query.name
+      Cinema.find criterion, (err, cinemas) ->
         return next() if err
         res.status(200).send cinemas
   .post (req, res, next) ->

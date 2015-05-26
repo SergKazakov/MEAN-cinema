@@ -43,6 +43,7 @@ router
         else if req.query.status is 'upcoming'
           nextThursday = moment().day('Thursday').format('YYYY-MM-DD')
           criterion = releaseDate : nextThursday
+      else if req.query.name then criterion = name : new RegExp req.query.name, 'i'
       Movie.find criterion, (err, movies) ->
         return next() if err
         res.status(200).send movies
