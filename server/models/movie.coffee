@@ -9,6 +9,9 @@ movieSchema = new Schema
   name :
     type : String
     required : on
+  originalName :
+    type : String
+    required : on
   poster :
     type : String
     required : on

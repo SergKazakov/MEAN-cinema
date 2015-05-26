@@ -5,18 +5,19 @@ mongoose   = require 'mongoose'
 Movie      = alias.require '@models/movie'
 
 fillMovie = (movie, newMovie, fileName) ->
-  movie.name        = newMovie.name
-  movie.poster      = newMovie.poster
-  movie.country     = newMovie.country
-  movie.genre       = newMovie.genre
-  movie.releaseDate = moment(newMovie.releaseDate).format('YYYY-MM-DD') if newMovie.releaseDate?
-  movie.finishDate  = moment(newMovie.finishDate).format('YYYY-MM-DD')  if newMovie.finishDate?
-  movie.synopsis    = newMovie.synopsis
-  movie.duration    = parseInt newMovie.duration
-  movie.ageRating   = parseInt newMovie.ageRating
-  movie.directors   = newMovie.directors
-  movie.actors      = newMovie.actors
-  movie.poster      = "img/media/#{fileName}" if fileName?
+  movie.name          = newMovie.name
+  movie.originalName  = newMovie.originalName
+  movie.poster        = newMovie.poster
+  movie.country       = newMovie.country
+  movie.genre         = newMovie.genre
+  movie.releaseDate   = moment(newMovie.releaseDate).format('YYYY-MM-DD') if newMovie.releaseDate?
+  movie.finishDate    = moment(newMovie.finishDate).format('YYYY-MM-DD')  if newMovie.finishDate?
+  movie.synopsis      = newMovie.synopsis
+  movie.duration      = parseInt newMovie.duration
+  movie.ageRating     = parseInt newMovie.ageRating
+  movie.directors     = newMovie.directors
+  movie.actors        = newMovie.actors
+  movie.poster        = "img/media/#{fileName}" if fileName?
   movie
 
 router

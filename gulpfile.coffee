@@ -18,6 +18,8 @@ gulp.task 'nodemon', ->
     ext : 'coffee'
     script : 'server.coffee'
 
+gulp.task 'mongo', $.shell.task ['"C:/Program Files/MongoDB 2.6 Standard/bin/mongod.exe" --dbpath C:/mongodb']
+
 gulp.task 'coffeelint', ->
   gulp.src [
       './*.coffee'
