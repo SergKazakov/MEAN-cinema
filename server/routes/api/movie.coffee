@@ -35,7 +35,7 @@ router
     else
       if req.query.status
         if req.query.status is 'now'
-          currentDate = new Date()
+          currentDate = moment().format('YYYY-MM-DD')
           criterion =
             releaseDate :
               $lte : currentDate
