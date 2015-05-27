@@ -2,14 +2,21 @@ mongoose          = require 'mongoose'
 Schema            = mongoose.Schema
 mongoosePaginate  = require 'mongoose-paginate'
 timestamps        = require 'mongoose-timestamp'
-Cinema            = require '@models/cinema'
+Cinema            = alias.require '@models/cinema'
+Seat              = alias.require '@models/seat'
 
 hallSchema = new Schema
+  name :
+    type : String
+    required : on
   cinemaId :
     type : Schema.Types.ObjectId
     ref : 'Cinema'
-    required : on
-  totalSeatNumber : Number
+  priceList : [Number]
+  plan : [
+    type : Schema.Types.ObjectId
+    ref : 'Seat'
+  ]
 
 hallSchema.plugin timestamps
 hallSchema.plugin mongoosePaginate

@@ -2,7 +2,7 @@ mongoose          = require 'mongoose'
 Schema            = mongoose.Schema
 mongoosePaginate  = require 'mongoose-paginate'
 timestamps        = require 'mongoose-timestamp'
-Movie             = require './movie'
+Movie             = alias.require '@models/movie'
 
 personSchema = new Schema
   name :
