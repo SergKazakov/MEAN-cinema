@@ -1,7 +1,8 @@
-gulp        = require 'gulp'
-$           = require('gulp-load-plugins')()
-wiredep     = require('wiredep').stream
-runSequence = require 'run-sequence'
+gulp         = require 'gulp'
+$            = require('gulp-load-plugins')()
+wiredep      = require('wiredep').stream
+runSequence  = require 'run-sequence'
+childProcess = require 'child_process'
 
 gulp.task 'webpack', ->
   gulp.src './client/coffee/main/main.coffee'
@@ -17,8 +18,6 @@ gulp.task 'nodemon', ->
   $.nodemon
     ext : 'coffee'
     script : 'server.coffee'
-
-gulp.task 'mongo', $.shell.task ['"C:/Program Files/MongoDB 2.6 Standard/bin/mongod.exe" --dbpath C:/mongodb']
 
 gulp.task 'coffeelint', ->
   gulp.src [
@@ -38,5 +37,8 @@ gulp.task 'watch', ->
     .on 'change', $.livereload.changed
   gulp.watch ['./*.coffee', './server/**/*.coffee', '!./client'], ['coffeelint']
 
+
 gulp.task 'default', ->
+  childProcess.exec '"C:/Program Files/MongoDB 2.6 Standard/bin/mongod.exe" --dbpath C:/mongodb' , (err, stdout, stderr) ->
+    console.log stdout
   runSequence 'nodemon', 'coffeelint', 'watch', 'webpack'
