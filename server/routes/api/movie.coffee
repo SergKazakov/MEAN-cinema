@@ -1,27 +1,18 @@
 express    = require 'express'
 router     = express.Router()
 moment     = require 'moment'
+_          = require 'lodash'
 mongoose   = require 'mongoose'
 Movie      = alias.require '@models/movie'
 
 createMovie = (movie, req) ->
-  newMovie  = if req.files.file? then JSON.parse req.body.movie else req.body
-  fileName  = if req.files.file? then req.files.file.name else null
-
-  movie.name          = newMovie.name
-  movie.originalName  = newMovie.originalName
-  movie.poster        = newMovie.poster
-  movie.country       = newMovie.country
-  movie.genre         = newMovie.genre
-  movie.releaseDate   = moment(newMovie.releaseDate).format('YYYY-MM-DD') if newMovie.releaseDate?
-  movie.finishDate    = moment(newMovie.finishDate).format('YYYY-MM-DD')  if newMovie.finishDate?
-  movie.synopsis      = newMovie.synopsis
-  movie.duration      = Number newMovie.duration
-  movie.ageRating     = Number newMovie.ageRating
-  movie.directors     = newMovie.directors
-  movie.actors        = newMovie.actors
-  movie.poster        = "img/media/#{fileName}" if fileName?
-  movie
+  newMovie              = if req.files.file? then JSON.parse req.body.movie else req.body
+  newMovie.releaseDate  = moment(newMovie.releaseDate).format('YYYY-MM-DD') if newMovie.releaseDate?
+  newMovie.finishDate   = moment(newMovie.finishDate).format('YYYY-MM-DD')  if newMovie.finishDate?
+  newMovie.duration     = Number newMovie.duration
+  newMovie.ageRating    = Number newMovie.ageRating
+  newMovie.poster       = "img/media/#{req.files.file.name}" if req.files.file?
+  _.assign movie, newMovie
 
 router
   .route '/movies'
@@ -46,6 +37,7 @@ router
               $gte : currentDate
         else if req.query.status is 'upcoming'
           nextThursday = moment().day('Thursday').format('YYYY-MM-DD')
+          nextThursday = moment().day(11).format('YYYY-MM-DD') if moment().format('YYYY-MM-DD') is nextThursday
           criterion = releaseDate : nextThursday
       else if req.query.name then criterion = name : new RegExp req.query.name, 'i'
       Movie.find criterion, (err, movies) ->

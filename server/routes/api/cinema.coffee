@@ -5,12 +5,9 @@ mongoose   = require 'mongoose'
 Cinema     = alias.require '@models/cinema'
 
 createCinema = (cinema, req) ->
-  newCinema = if req.files.file? then JSON.parse req.body.cinema else req.body
-  fileName  = if req.files.file? then req.files.file.name else null
-
+  newCinema         = if req.files.file? then JSON.parse req.body.cinema else req.body
+  newCinema.poster  = "img/media/#{req.files.file.name}" if req.files.file?
   _.assign cinema, newCinema
-  cinema.poster = "img/media/#{fileName}" if fileName?
-  cinema
 
 router
   .route '/cinemas'

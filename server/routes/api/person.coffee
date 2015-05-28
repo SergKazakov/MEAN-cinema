@@ -7,12 +7,9 @@ Person     = alias.require '@models/person'
 Movie      = alias.require '@models/movie'
 
 createPerson = (person, req) ->
-  newPerson = if req.files.file? then JSON.parse req.body.person else req.body
-  fileName  = if req.files.file? then req.files.file.name else null
-
+  newPerson       = if req.files.file? then JSON.parse req.body.person else req.body
+  newPerson.photo = "img/media/#{req.files.file.name}" if req.files.file?
   _.assign person, newPerson
-  person.photo = "img/media/#{fileName}" if fileName?
-  person
 
 router
   .route '/persons'
