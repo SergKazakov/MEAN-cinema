@@ -1,16 +1,15 @@
 express    = require 'express'
 router     = express.Router()
+_          = require 'lodash'
 mongoose   = require 'mongoose'
 Cinema     = alias.require '@models/cinema'
 
-fillCinema = (cinema, newCinema, fileName) ->
-  cinema.name         = newCinema.name
-  cinema.description  = newCinema.description
-  cinema.address      = newCinema.address
-  cinema.telephone    = newCinema.telephone
-  cinema.website      = newCinema.website
-  cinema.support3D    = newCinema.support3D
-  cinema.poster       = "img/media/#{fileName}" if fileName?
+createCinema = (cinema, req) ->
+  newCinema = if req.files.file? then JSON.parse req.body.cinema else req.body
+  fileName  = if req.files.file? then req.files.file.name else null
+
+  _.assign cinema, newCinema
+  cinema.poster = "img/media/#{fileName}" if fileName?
   cinema
 
 router
@@ -31,9 +30,7 @@ router
         return next() if err
         res.status(200).send cinemas
   .post (req, res, next) ->
-    newCinema  = JSON.parse req.body.cinema
-    fileName   = req.files.file.name
-    fillCinema new Cinema(), newCinema, fileName
+    createCinema new Cinema(), req
       .save (err, cinema) ->
         return next() if err
         res.status(200).send cinema
@@ -48,9 +45,7 @@ router
   .put (req, res, next) ->
     Cinema.findById req.params.cinemaId, (err, cinema) ->
       return next() if err
-      newCinema = if req.files.file? then JSON.parse req.body.cinema else req.body
-      fileName  = if req.files.file? then req.files.file.name else null
-      fillCinema cinema, newCinema, fileName
+      createCinema cinema, req
         .save (err, cinema) ->
           return next() if err
           res.status(200).send cinema

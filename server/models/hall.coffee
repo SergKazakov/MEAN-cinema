@@ -9,7 +9,7 @@ hallSchema = new Schema
   name :
     type : String
     required : on
-  cinemaId :
+  cinema :
     type : Schema.Types.ObjectId
     ref : 'Cinema'
   priceList : [Number]

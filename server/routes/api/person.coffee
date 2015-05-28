@@ -1,17 +1,17 @@
 express    = require 'express'
 router     = express.Router()
+_          = require 'lodash'
 mongoose   = require 'mongoose'
 async      = require 'async'
 Person     = alias.require '@models/person'
 Movie      = alias.require '@models/movie'
 
-fillPerson = (person, newPerson, fileName) ->
-  person.name       = newPerson.name
-  person.career     = newPerson.career
-  person.birthdate  = newPerson.birthdate
-  person.birthPlace = newPerson.birthPlace
-  person.gender     = newPerson.gender
-  person.photo      = "img/media/#{fileName}" if fileName?
+createPerson = (person, req) ->
+  newPerson = if req.files.file? then JSON.parse req.body.person else req.body
+  fileName  = if req.files.file? then req.files.file.name else null
+
+  _.assign person, newPerson
+  person.photo = "img/media/#{fileName}" if fileName?
   person
 
 router
@@ -33,9 +33,7 @@ router
         return next() if err
         res.status(200).send persons
   .post (req, res, next) ->
-    newPerson = JSON.parse req.body.person
-    fileName  = req.files.file.name
-    fillPerson new Person(), newPerson, fileName
+    createPerson new Person(), req
       .save (err, person) ->
         return next() if err
         res.status(200).send person
@@ -65,9 +63,7 @@ router
   .put (req, res, next) ->
     Person.findById req.params.personId, (err, person) ->
       return next() if err
-      newPerson = if req.files.file? then JSON.parse req.body.person else req.body
-      fileName  = if req.files.file? then req.files.file.name else null
-      fillPerson person, newPerson, fileName
+      createPerson person, req
         .save (err, person) ->
           return next() if err
           res.status(200).send person

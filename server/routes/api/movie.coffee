@@ -4,7 +4,10 @@ moment     = require 'moment'
 mongoose   = require 'mongoose'
 Movie      = alias.require '@models/movie'
 
-fillMovie = (movie, newMovie, fileName) ->
+createMovie = (movie, req) ->
+  newMovie  = if req.files.file? then JSON.parse req.body.movie else req.body
+  fileName  = if req.files.file? then req.files.file.name else null
+
   movie.name          = newMovie.name
   movie.originalName  = newMovie.originalName
   movie.poster        = newMovie.poster
@@ -49,9 +52,7 @@ router
         return next() if err
         res.status(200).send movies
   .post (req, res, next) ->
-    newMovie  = JSON.parse req.body.movie
-    fileName  = req.files.file.name
-    fillMovie new Movie(), newMovie, fileName
+    createMovie new Movie(), req
       .save (err, movie) ->
         return next() if err
         res.status(200).send movie
@@ -68,9 +69,7 @@ router
   .put (req, res, next) ->
     Movie.findById req.params.movieId, (err, movie) ->
       return next() if err
-      newMovie  = if req.files.file? then JSON.parse req.body.movie else req.body
-      fileName  = if req.files.file? then req.files.file.name else null
-      fillMovie movie, newMovie, fileName
+      createMovie movie, req
         .save (err, movie) ->
           return next() if err
           res.status(200).send movie

@@ -6,11 +6,11 @@ Movie             = require '@models/movie'
 Hall              = require '@models/hall'
 
 sessionSchema = new Schema
-  movieId :
+  movie :
     type : Schema.Types.ObjectId
     ref : 'Movie'
     required : on
-  hallId :
+  hall :
     type : Schema.Types.ObjectId
     ref : 'Hall'
     required : on
