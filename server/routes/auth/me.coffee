@@ -1,6 +1,6 @@
 express             = require 'express'
 router              = express.Router()
-User                = alias.require '@models/user'
+User                = require('mongoose').model 'User'
 ensureAuthenticated = require './ensureAuthenticated'
 
 router

@@ -1,3 +1,5 @@
+alias.require '@models'
+
 module.exports = (app) ->
   [
     'auth/me'
@@ -10,5 +12,7 @@ module.exports = (app) ->
     'api/movie'
     'api/person'
     'api/cinema'
+    'api/hall'
+    'api/session'
     'error'
   ].map (path) -> require("./#{path}") app

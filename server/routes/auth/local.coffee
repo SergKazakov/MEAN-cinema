@@ -1,6 +1,6 @@
 express   = require 'express'
 router    = express.Router()
-User      = alias.require '@models/user'
+User      = require('mongoose').model 'User'
 createJWT = require './createJWT'
 
 router

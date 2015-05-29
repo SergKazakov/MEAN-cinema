@@ -1,7 +1,7 @@
 jwt        = require 'jwt-simple'
 express    = require 'express'
 router     = express.Router()
-User       = alias.require '@models/user'
+User       = require('mongoose').model 'User'
 conf       = alias.require '@config'
 request    = require 'request'
 createJWT  = require './createJWT'

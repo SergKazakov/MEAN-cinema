@@ -2,7 +2,7 @@ express    = require 'express'
 router     = express.Router()
 _          = require 'lodash'
 mongoose   = require 'mongoose'
-Cinema     = alias.require '@models/cinema'
+Cinema     = mongoose.model 'Cinema'
 
 createCinema = (cinema, req) ->
   newCinema         = if req.files.file? then JSON.parse req.body.cinema else req.body

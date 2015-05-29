@@ -29,6 +29,7 @@
     "ng-file-upload": "^4.2.4",
     "normalize.css": "^3.0.3",
     "npm": "^2.10.1",
+    "pretty-error": "^1.1.2",
     "request": "^2.55.0",
     "require-alias": "^1.0.5",
     "satellizer": "^0.10.1"

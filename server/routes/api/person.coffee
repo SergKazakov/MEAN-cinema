@@ -3,8 +3,8 @@ router     = express.Router()
 _          = require 'lodash'
 mongoose   = require 'mongoose'
 async      = require 'async'
-Person     = alias.require '@models/person'
-Movie      = alias.require '@models/movie'
+Person     = mongoose.model 'Person'
+Movie      = mongoose.model 'Movie'
 
 createPerson = (person, req) ->
   newPerson       = if req.files.file? then JSON.parse req.body.person else req.body

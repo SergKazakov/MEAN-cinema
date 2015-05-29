@@ -2,7 +2,6 @@ mongoose         = require 'mongoose'
 Schema           = mongoose.Schema
 mongoosePaginate = require 'mongoose-paginate'
 timestamps       = require 'mongoose-timestamp'
-Hall             = alias.require '@models/Hall'
 
 cinemaSchema = new Schema
   name :

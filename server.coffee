@@ -9,6 +9,8 @@ chalk          = require 'chalk'
 Alias          = require 'require-alias'
 app            = module.exports = express()
 
+require('pretty-error').start()
+
 global.alias = new Alias
   aliases :
     '@config' : './server/config'

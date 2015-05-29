@@ -3,7 +3,7 @@ router     = express.Router()
 moment     = require 'moment'
 _          = require 'lodash'
 mongoose   = require 'mongoose'
-Movie      = alias.require '@models/movie'
+Movie      = mongoose.model 'Movie'
 
 createMovie = (movie, req) ->
   newMovie              = if req.files.file? then JSON.parse req.body.movie else req.body
@@ -36,8 +36,9 @@ router
             finishDate :
               $gte : currentDate
         else if req.query.status is 'upcoming'
-          nextThursday = moment().day('Thursday').format('YYYY-MM-DD')
-          nextThursday = moment().day(11).format('YYYY-MM-DD') if moment().format('YYYY-MM-DD') is nextThursday
+          nextThursday = moment().day('Thursday')
+          now = moment()
+          nextThursday = if now.diff(nextThursday) >= 0 then moment().day(11).format('YYYY-MM-DD') else nextThursday.format('YYYY-MM-DD')
           criterion = releaseDate : nextThursday
       else if req.query.name then criterion = name : new RegExp req.query.name, 'i'
       Movie.find criterion, (err, movies) ->
