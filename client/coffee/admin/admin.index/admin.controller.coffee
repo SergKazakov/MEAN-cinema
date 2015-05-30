@@ -1,12 +1,12 @@
 AdminCtrl = ->
   @menu = [
-    title : 'Movies'
+    title : 'Фильмы'
     state : 'admin.movies'
   ,
-    title : 'Persons'
+    title : 'Люди'
     state : 'admin.persons'
   ,
-    title : 'Cinemas'
+    title : 'Кинотеатры'
     state : 'admin.cinemas'
   ]
 

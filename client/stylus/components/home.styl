@@ -5,22 +5,19 @@
       width 25%
       display inline-block
       position relative
-      &:after
-        position absolute
-        content ''
-        left 0
-        bottom 0
-        top 0
-        right 0
-        transition all 300ms
-      &:hover
-        &:after
-          background rgba(0,0,0,0.7)
-        .home-gallery__name
-          opacity 1
-    &__img,
-    &__link
+    &__img
       display block
+    &__link
+      position absolute
+      left 0
+      right 0
+      top 0
+      bottom 0
+      background rgba(0,0,0,0.6)
+      opacity 0
+      transition opacity 300ms
+      &:hover
+        opacity 1
     &__name
       position absolute
       top 50%
@@ -30,8 +27,5 @@
       color #fff
       padding 1rem
       border 1px solid
-      z-index 1
-      opacity 0
       text-align center
-      transition all 300ms
 

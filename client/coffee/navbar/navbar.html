@@ -1,31 +1,32 @@
 <div class="navbar navbar-default navbar-static-top">
-  <div class="navbar-header">
-    <a ui-sref="home" class="navbar-brand">Cinema</a>
+  <div class="container">
+    <a ui-sref="home" class="logo"><i class="ion-film-marker"></i></a>
+    <ul class="nav navbar-nav">
+      <li>
+        <a ui-sref="cinemas" ui-sref-active="active">Кинотетры</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      <li ng-if="!vm.isAuthenticated()">
+        <a ui-sref="login" ui-sref-active="active">Войти</a>
+      </li>
+      <li ng-if="!vm.isAuthenticated()">
+        <a ui-sref="signup" ui-sref-active="active">Зерегистрироваться</a>
+      </li>
+      <li ng-if="vm.isAuthenticated()">
+        <a ui-sref="profile" ui-sref-active="active">
+          <span class="header-avatar__img-wr">
+            <img ng-src="{{currentUser.picture || 'http://placehold.it/25x25'}}" class="header-avatar__img"/>
+          </span>
+          Привет, <span ng-bind="currentUser.displayName"></span>
+        </a>
+      </li>
+      <li ng-if="vm.isAuthenticated() && currentUser.role === 'Admin'">
+        <a ui-sref="admin.movies" ui-sref-active="active"><i class="ion-android-settings"></i>Админка</a>
+      </li>
+      <li ng-if="vm.isAuthenticated()">
+        <a href="#" ng-click="vm.logout($event)">Выйти</a>
+      </li>
+    </ul>
   </div>
-  <ul class="nav navbar-nav">
-    <li>
-      <a ui-sref="cinemas" ui-sref-active="active">Cinemas</a>
-    </li>
-  </ul>
-  <ul class="nav navbar-nav pull-right">
-    <li ng-if="!vm.isAuthenticated()">
-      <a ui-sref="login" ui-sref-active="active">Login</a>
-    </li>
-    <li ng-if="!vm.isAuthenticated()">
-      <a ui-sref="signup" ui-sref-active="active">Sign up</a>
-    </li>
-    <li ng-if="vm.isAuthenticated()">
-      <a ui-sref="profile" ui-sref-active="active">
-        <span class="header-avatar__img-wr">
-          <img ng-src="{{currentUser.picture || 'http://placehold.it/25x25'}}" class="header-avatar__img"/>
-        </span>Hi, {{currentUser.displayName}}
-      </a>
-    </li>
-    <li ng-if="vm.isAuthenticated() && currentUser.role === 'Admin'">
-      <a ui-sref="admin.movies" ui-sref-active="active">Dashboard</a>
-    </li>
-    <li ng-if="vm.isAuthenticated()">
-      <a href="#" ng-click="vm.logout($event)">Logout</a>
-    </li>
-  </ul>
 </div>

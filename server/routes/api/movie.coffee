@@ -9,8 +9,6 @@ createMovie = (movie, req) ->
   newMovie              = if req.files.file? then JSON.parse req.body.movie else req.body
   newMovie.releaseDate  = moment(newMovie.releaseDate).format('YYYY-MM-DD') if newMovie.releaseDate?
   newMovie.finishDate   = moment(newMovie.finishDate).format('YYYY-MM-DD')  if newMovie.finishDate?
-  newMovie.duration     = Number newMovie.duration
-  newMovie.ageRating    = Number newMovie.ageRating
   newMovie.poster       = "img/media/#{req.files.file.name}" if req.files.file?
   _.assign movie, newMovie
 

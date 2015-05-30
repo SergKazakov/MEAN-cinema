@@ -1,30 +1,30 @@
 <form ng-submit="vm.action()">
-  <p>Дата создания: {{vm.person.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}</p>
-  <p>Дата последнего обновления: {{vm.person.updatedAt | date : 'dd/MM/yyyy HH:mm:ss'}}</p>
+  <p ng-if="vm.person.createdAt">Дата создания: {{vm.person.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}</p>
+  <p ng-if="vm.person.updatedAt">Дата последнего обновления: {{vm.person.updatedAt | date : 'dd/MM/yyyy HH:mm:ss'}}</p>
   <div class="form-group">
-    <label>Name</label>
+    <label>Имя</label>
     <input type="text" class="form-control" ng-model="vm.person.name">
   </div>
   <div class="form-group">
-    <label>Career</label>
-    <tags-input ng-model="vm.person.career" placeholder="Add a career"></tags-input>
+    <label>Карьера</label>
+    <tags-input ng-model="vm.person.career" placeholder="Добавить карьеру"></tags-input>
   </div>
   <div class="form-group">
     <img class="photo" ng-if="!vm.file.length && vm.person.photo" ng-src="{{vm.person.photo}}">
     <img class="photo" ng-if="vm.file.length" ngf-src="vm.file[0]">
-    <span type="text" class="btn btn-primary" ng-model="vm.file" ngf-select>upload photo</span>
+    <span type="text" class="btn btn-primary" ng-model="vm.file" ngf-select>Загрузить постер</span>
   </div>
   <div class="form-group">
-    <label>Birthdate</label>
+    <label>Дата рождения</label>
     <input type="text" class="form-control" ng-model="vm.person.birthdate" bs-datepicker date-format="longDate">
   </div>
   <div class="form-group">
-    <label>Birthplace</label>
+    <label>Место рождения</label>
     <input type="text" class="form-control" ng-model="vm.person.birthPlace">
   </div>
   <div class="form-group">
-    <input type="radio" id="male" ng-model="vm.person.gender" value="male"><label for="male">Male</label>
-    <input type="radio" id="female" ng-model="vm.person.gender" value="female"><label for="female">Female</label>
+    <input type="radio" id="male" ng-model="vm.person.gender" value="male"><label for="male">М</label>
+    <input type="radio" id="female" ng-model="vm.person.gender" value="female"><label for="female">Ж</label>
   </div>
-  <button class="btn btn-default" type="submit"><i class="ion-checkmark"></i>Submit</button>
+  <button class="btn btn-default" type="submit"><i class="ion-checkmark"></i>Сохранить</button>
 </form>
