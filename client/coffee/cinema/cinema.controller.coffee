@@ -1,9 +1,10 @@
-CinemaCtrl = (cinema) ->
+CinemaCtrl = (cinema, sessions) ->
   @cinema     = cinema.data
-  @noSessions = unless @cinema.sessions then on else no
+  @sessions   = sessions.data
+  @noSessions = unless @sessions.length then on else no
 
   return
 
-CinemaCtrl.$inject = ['cinema']
+CinemaCtrl.$inject = ['cinema', 'sessions']
 
 module.exports = CinemaCtrl

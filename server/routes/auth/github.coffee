@@ -21,7 +21,7 @@ router
       url : accessTokenUrl
       qs : params
     , (err, response, accessToken) ->
-      return next() if err
+      return next(err) if err
       accessToken = qs.parse accessToken
       headers = 'User-Agent' : 'Satellizer'
 
@@ -31,7 +31,7 @@ router
         headers : headers
         json : on
       , (err, response, profile) ->
-        return next() if err
+        return next(err) if err
         if req.headers.authorization
           User.findOne github : profile.id, (err, existingUser) ->
             return res.status(409).send message : 'There is already a GitHub account that belongs to you' if existingUser
@@ -43,13 +43,13 @@ router
               user.picture = user.picture or profile.avatar_url
               user.displayName = user.displayName or profile.name
               user.save (err) ->
-                return next() if err
+                return next(err) if err
                 res.send
                   user : user
                   token : createJWT user
         else
           User.findOne github : profile.id, (err, existingUser) ->
-            return next() if err
+            return next(err) if err
             if existingUser
               return res.send
                 user : existingUser
@@ -59,7 +59,7 @@ router
               picture : profile.avatar_url
               displayName : profile.name
             user.save (err) ->
-              return next() if err
+              return next(err) if err
               res.send
                 user : user
                 token : createJWT user

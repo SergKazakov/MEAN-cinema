@@ -21,7 +21,7 @@ router
       qs : params
       json : on
     , (err, response, accessToken) ->
-      return next() if err
+      return next(err) if err
       return res.status(500).send message : accessToken.error.message if response.statusCode is not 200
 
       request.get
@@ -29,7 +29,7 @@ router
         qs : accessToken
         json : on
       , (err, response, profile) ->
-        return next() if err
+        return next(err) if err
         return res.status(500).send message : profile.error.message if response.statusCode is not 200
         if req.headers.authorization
           User.findOne facebook : profile.id, (err, existingUser) ->
@@ -42,13 +42,13 @@ router
               user.picture = user.picture or "https://graph.facebook.com/v2.3/#{profile.id}/picture?type=large"
               user.displayName = user.displayName or profile.name
               user.save (err) ->
-                return next() if err
+                return next(err) if err
                 res.send
                   user : user
                   token : createJWT user
         else
           User.findOne facebook : profile.id, (err, existingUser) ->
-            return next() if err
+            return next(err) if err
             if existingUser
               return res.send
                 user : existingUser
@@ -58,7 +58,7 @@ router
               picture : "https://graph.facebook.com/#{profile.id}/picture?type=large"
               displayName : profile.name
             user.save (err) ->
-              return next() if err
+              return next(err) if err
               res.send
                 user : user
                 token : createJWT user

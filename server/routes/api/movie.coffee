@@ -18,7 +18,7 @@ router
     criterion = {}
     if req.query.page
       Movie.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send
           items : paginatedResults
           count : itemCount
@@ -40,12 +40,12 @@ router
           criterion = releaseDate : nextThursday
       else if req.query.name then criterion = name : new RegExp req.query.name, 'i'
       Movie.find criterion, (err, movies) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send movies
   .post (req, res, next) ->
     createMovie new Movie(), req
       .save (err, movie) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send movie
 
 router
@@ -55,18 +55,18 @@ router
       .findById req.params.movieId
       .populate 'directors actors'
       .exec (err, movie) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send movie
   .put (req, res, next) ->
     Movie.findById req.params.movieId, (err, movie) ->
-      return next() if err
+      return next(err) if err
       createMovie movie, req
         .save (err, movie) ->
-          return next() if err
+          return next(err) if err
           res.status(200).send movie
   .delete (req, res, next) ->
     Movie.findByIdAndRemove req.params.movieId, (err, movie) ->
-      return next() if err
+      return next(err) if err
       res.status(200).send movie
 
 module.exports = (app) -> app.use '/api/v1/', router

@@ -19,7 +19,7 @@ router
     else criterion = {}
     if req.query.page
       Person.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send
           items : paginatedResults
           count : itemCount
@@ -27,12 +27,12 @@ router
         sortBy : name : 1
     else
       Person.find criterion, (err, persons) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send persons
   .post (req, res, next) ->
     createPerson new Person(), req
       .save (err, person) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send person
 
 router
@@ -42,31 +42,31 @@ router
       .findById req.params.personId
       .lean()
       .exec (err, person) ->
-        return next() if err
+        return next(err) if err
         async.parallel [
           (cb) ->
             Movie.find actors : person._id, (err, movies) ->
-              return next() if err
+              return next(err) if err
               cb null, movies
           (cb) ->
             Movie.find directors : person._id, (err, movies) ->
-              return next() if err
+              return next(err) if err
               cb null, movies
         ], (err, results) ->
-          return next() if err
+          return next(err) if err
           person.moviesAsActor = results[0]
           person.moviesAsDirector = results[1]
           res.status(200).send person
   .put (req, res, next) ->
     Person.findById req.params.personId, (err, person) ->
-      return next() if err
+      return next(err) if err
       createPerson person, req
         .save (err, person) ->
-          return next() if err
+          return next(err) if err
           res.status(200).send person
   .delete (req, res, next) ->
     Person.findByIdAndRemove req.params.personId, (err, person) ->
-      return next() if err
+      return next(err) if err
       res.status(200).send person
 
 module.exports = (app) -> app.use '/api/v1/', router

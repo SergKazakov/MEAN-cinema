@@ -23,7 +23,7 @@ router
         url : requestTokenUrl
         oauth : requestTokenOauth
       , (err, response, body) ->
-        return next() if err
+        return next(err) if err
         oauthToken = qs.parse body
         params = qs.stringify oauth_token : oauthToken.oauth_token
 
@@ -39,11 +39,11 @@ router
         url : accessTokenUrl
         oauth : accessTokenOauth
       , (err, response, profile) ->
-        return next() if err
+        return next(err) if err
         profile = qs.parse profile
         if req.headers.authorization
           User.findOne twitter : profile.user_id, (err, existingUser) ->
-            return next() if err
+            return next(err) if err
             return res.status(409).send message : 'There is already a Twitter account that belongs to you' if existingUser
             token = req.headers.authorization.split(' ')[1]
             payload = jwt.decode token, conf.tokenSecret
@@ -52,13 +52,13 @@ router
               user.twitter = profile.user_id
               user.displayName = user.displayName or profile.screen_name
               user.save (err) ->
-                return next() if err
+                return next(err) if err
                 res.send
                   user : user
                   token : createJWT user
         else
           User.findOne twitter : profile.user_id, (err, existingUser) ->
-            return next() if err
+            return next(err) if err
             if existingUser
               return res.send
                 user : existingUser
@@ -67,7 +67,7 @@ router
               twitter : profile.user_id
               displayName : profile.screen_name
             user.save (err) ->
-              return next() if err
+              return next(err) if err
               res.send
                 user : user
                 token : createJWT user

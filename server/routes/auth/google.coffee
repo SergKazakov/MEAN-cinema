@@ -21,7 +21,7 @@ router
       json : on
       form : params
     , (err, response, token) ->
-      return next() if err
+      return next(err) if err
       accessToken = token.access_token
       headers = Authorization : "Bearer #{accessToken}"
 
@@ -30,7 +30,7 @@ router
         headers : headers
         json : on
       , (err, response, profile) ->
-        return next() if err
+        return next(err) if err
         if req.headers.authorization
           User.findOne google : profile.sub, (err, existingUser) ->
             return res.status(409).send message : 'There is already a Google account that belongs to you' if existingUser
@@ -42,13 +42,13 @@ router
               user.picture = user.picture or profile.picture.replace 'sz=50', 'sz=200'
               user.displayName = user.displayName or profile.name
               user.save (err) ->
-                return next() if err
+                return next(err) if err
                 res.send
                   user : user
                   token : createJWT user
         else
           User.findOne google : profile.sub, (err, existingUser) ->
-            return next() if err
+            return next(err) if err
             if existingUser
               return res.send
                 user : existingUser
@@ -58,7 +58,7 @@ router
               picture : profile.picture.replace 'sz=50', 'sz=200'
               displayName : profile.name
             user.save (err) ->
-              return next() if err
+              return next(err) if err
               res.send
                 user : user
                 token : createJWT user

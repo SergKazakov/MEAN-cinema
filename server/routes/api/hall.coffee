@@ -10,7 +10,7 @@ router
   .get (req, res, next) ->
     if req.query.page
       Hall.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send
           items : paginatedResults
           count : itemCount
@@ -19,12 +19,12 @@ router
         populate : 'cinema'
     else
       Hall.find {}, (err, halls) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send halls
   .post (req, res, next) ->
     hall = new Hall req.body
     hall.save (err, hall) ->
-      return next() if err
+      return next(err) if err
       Cinema.findOneAndUpdate
         _id : hall.cinema
       ,
@@ -32,7 +32,7 @@ router
           halls : hall._id
         upsert : on,
         (err, cinema) ->
-          return next() if err
+          return next(err) if err
           res.status(200).send hall
 
 router
@@ -42,14 +42,14 @@ router
       .findById req.params.hallId
       .populate 'cinema'
       .exec (err, hall) ->
-        return next() if err
+        return next(err) if err
         res.status(200).send hall
   .put (req, res, next) ->
     Hall.findById req.params.hallId, (err, hall) ->
-      return next() if err
+      return next(err) if err
       _.assign hall, req.body
       hall.save (err, hall) ->
-        return next() if err
+        return next(err) if err
         Cinema.findOneAndUpdate
           _id : hall.cinema
         ,
@@ -57,11 +57,11 @@ router
             halls : hall._id
           upsert : on,
           (err, cinema) ->
-            return next() if err
+            return next(err) if err
             res.status(200).send hall
   .delete (req, res, next) ->
     Hall.findByIdAndRemove req.params.hallId, (err, hall) ->
-      return next() if err
+      return next(err) if err
       res.status(200).send hall
 
 module.exports = (app) -> app.use '/api/v1/', router
