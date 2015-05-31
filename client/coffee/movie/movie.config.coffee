@@ -7,6 +7,9 @@ movieConfig = ($stateProvider) ->
       movie : ['Movie', '$stateParams', (Movie, $stateParams) ->
         Movie.getMovie $stateParams.movieId
       ]
+      sessions : ['Session', '$stateParams', (Session, $stateParams) ->
+        Session.getSessionsByMovie $stateParams.movieId
+      ]
 
 movieConfig.$inject = ['$stateProvider']
 

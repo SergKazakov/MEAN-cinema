@@ -33,6 +33,16 @@ router
           return next(err) if err
           sessions = _.filter sessions, (item) -> item if item.hall.cinema.toString() is req.query.cinema
           res.status(200).send sessions
+    else if req.query.movie
+      now = req.query.date or moment()
+      midnight = moment().hours(23).minutes(59).seconds(59)
+      Session
+        .find movie : req.query.movie
+        .where('date').gte(now).lte(midnight)
+        .deepPopulate 'movie hall hall.cinema'
+        .exec (err, sessions) ->
+          return next(err) if err
+          res.status(200).send sessions
     else
       Session.find {}, (err, sessions) ->
         return next(err) if err
