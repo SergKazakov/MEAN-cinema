@@ -5,7 +5,7 @@ AdminHallsNewCtrl = (Hall, Cinema, $alert, $state) ->
       .createHall @hall
       .success (res) ->
         $alert
-          content : 'Hall has been added'
+          content : 'Зал добавлен'
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3

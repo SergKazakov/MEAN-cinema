@@ -8,7 +8,7 @@ LoginCtrl = ($rootScope, $alert, $auth, store) ->
         store.set 'profile', response.data.user
         $rootScope.currentUser = store.get 'profile'
         $alert
-          content : 'You have successfully logged in'
+          content : 'Вы успешно вошли'
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
@@ -26,7 +26,7 @@ LoginCtrl = ($rootScope, $alert, $auth, store) ->
         store.set 'profile', response.data.user
         $rootScope.currentUser = store.get 'profile'
         $alert
-          content : 'You have successfully logged in'
+          content : 'Вы успешно вошли'
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3

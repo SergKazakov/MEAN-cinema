@@ -1,37 +1,45 @@
 <div class="container">
   <div class="panel panel-default">
-    <div class="panel-heading">Profile</div>
+    <div class="panel-heading">Профиль</div>
     <div class="panel-body">
-      <legend><i class="ion-clipboard"></i> Edit My Profile</legend>
+      <legend><i class="ion-clipboard"></i> Редактировать профиль</legend>
       <form method="post" ng-submit="vm.updateProfile()">
         <div class="form-group">
-          <label class="control-label">Profile Picture</label><img ng-src="{{vm.user.picture || 'http://placehold.it/100x100'}}" class="profile-picture"/>
+          <label class="control-label">Аватарка</label><img ng-src="{{vm.user.picture || 'http://placehold.it/100x100'}}" class="profile-picture"/>
         </div>
         <div class="form-group">
-          <label class="control-label"><i class="ion-person"></i> Display Name</label>
+          <label class="control-label"><i class="ion-person"></i> Имя</label>
           <input type="text" ng-model="vm.user.displayName" class="form-control"/>
         </div>
         <div ng-if="vm.user.email" class="form-group">
-          <label class="control-label"><i class="ion-at"></i> Email Address</label>
+          <label class="control-label"><i class="ion-at"></i> E-mail</label>
           <input type="email" ng-model="vm.user.email" class="form-control"/>
         </div>
-        <button class="btn btn-lg btn-success">Update Information</button>
+        <button class="btn btn-lg btn-success">Обновить информацию</button>
       </form>
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading">Accounts</div>
+    <div class="panel-heading">Аккаунты</div>
     <div class="panel-body">
-      <legend><i class="ion-link"></i> Linked Accounts</legend>
+      <legend><i class="ion-link"></i> Привязанные аккаунты</legend>
       <div class="btn-group-vertical">
-        <button ng-if="vm.user.facebook" ng-click="vm.unlink('facebook')" class="btn btn-sm btn-danger"><i class="ion-social-facebook"></i> Unlink Facebook Account</button>
-        <button ng-if="!vm.user.facebook" ng-click="vm.link('facebook')" class="btn btn-sm btn-primary"><i class="ion-social-facebook"></i> Link Facebook Account</button>
-        <button ng-if="vm.user.google" ng-click="vm.unlink('google')" class="btn btn-sm btn-danger"><i class="ion-social-googleplus"></i> Unlink Google Account</button>
-        <button ng-if="!vm.user.google" ng-click="vm.link('google')" class="btn btn-sm btn-primary"><i class="ion-social-googleplus"></i> Link Google Account</button>
-        <button ng-if="vm.user.twitter" ng-click="vm.unlink('twitter')" class="btn btn-sm btn-danger"><i class="ion-social-twitter"></i> Unlink Twitter Account</button>
-        <button ng-if="!vm.user.twitter" ng-click="vm.link('twitter')" class="btn btn-sm btn-primary"><i class="ion-social-twitter"></i> Link Twitter Account</button>
-        <button ng-if="vm.user.github" ng-click="vm.unlink('github')" class="btn btn-sm btn-danger"><i class="ion-social-github"></i> Unlink GitHub Account</button>
-        <button ng-if="!vm.user.github" ng-click="vm.link('github')" class="btn btn-sm btn-primary"><i class="ion-social-github"></i> Link GitHub Account</button>
+        <button ng-if="vm.user.facebook" ng-click="vm.unlink('facebook')" class="btn btn-sm btn-danger">
+          <i class="ion-social-facebook"></i> Facebook</button>
+        <button ng-if="!vm.user.facebook" ng-click="vm.link('facebook')" class="btn btn-sm btn-primary">
+          <i class="ion-social-facebook"></i> Facebook</button>
+        <button ng-if="vm.user.google" ng-click="vm.unlink('google')" class="btn btn-sm btn-danger">
+          <i class="ion-social-googleplus"></i> Google</button>
+        <button ng-if="!vm.user.google" ng-click="vm.link('google')" class="btn btn-sm btn-primary">
+          <i class="ion-social-googleplus"></i> Google</button>
+        <button ng-if="vm.user.twitter" ng-click="vm.unlink('twitter')" class="btn btn-sm btn-danger">
+          <i class="ion-social-twitter"></i> Twitter</button>
+        <button ng-if="!vm.user.twitter" ng-click="vm.link('twitter')" class="btn btn-sm btn-primary">
+          <i class="ion-social-twitter"></i> Twitter</button>
+        <button ng-if="vm.user.github" ng-click="vm.unlink('github')" class="btn btn-sm btn-danger">
+          <i class="ion-social-github"></i> GitHub</button>
+        <button ng-if="!vm.user.github" ng-click="vm.link('github')" class="btn btn-sm btn-primary">
+          <i class="ion-social-github"></i> GitHub</button>
       </div>
     </div>
   </div>

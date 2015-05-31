@@ -14,7 +14,7 @@ AdminMovieEditCtrl = (Movie, Person, movie, $alert, $state, Upload) ->
       promise = Movie.editMovie @movie
     promise.success (res) ->
       $alert
-        content : 'Movie has been added'
+        content : 'Фильм добавлен'
         animation : 'fadeZoomFadeDown'
         type : 'material'
         duration : 3

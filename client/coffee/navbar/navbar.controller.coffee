@@ -8,7 +8,7 @@ NavbarCtrl = ($auth, $alert, Auth, store, $rootScope) ->
       .then ->
         store.remove 'profile'
         $alert
-          content : 'You have been logged out'
+          content : 'Вы успешно вышли'
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3

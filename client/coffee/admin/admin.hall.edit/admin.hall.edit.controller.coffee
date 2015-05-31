@@ -7,7 +7,7 @@ AdminHallEditCtrl = (Hall, hall, Cinema, $alert, $state) ->
       .editHall @hall
       .success (res) ->
         $alert
-          content : 'Hall has been added'
+          content : 'Зал добавлен'
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3

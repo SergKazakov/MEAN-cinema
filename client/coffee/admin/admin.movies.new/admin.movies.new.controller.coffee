@@ -11,14 +11,14 @@ AdminMoviesNewCtrl = (Movie, Person, $alert, $state, Upload) ->
           file : @file
         .success (res) ->
           $alert
-            content : 'Movie has been added'
+            content : 'Фильм добавлен'
             animation : 'fadeZoomFadeDown'
             type : 'material'
             duration : 3
           $state.go 'admin.movies.all'
     else
       $alert
-        content : 'Poster is required!'
+        content : 'Постер обязателен!'
         animation : 'fadeZoomFadeDown'
         type : 'material'
         duration : 3

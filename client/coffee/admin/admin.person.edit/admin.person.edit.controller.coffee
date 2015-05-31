@@ -15,7 +15,7 @@ AdminPersonEditCtrl = (Person, person, $alert, $state, Upload) ->
 
     promise.success (res) ->
       $alert
-        content : 'Person has been added'
+        content : 'Актер добавлен'
         animation : 'fadeZoomFadeDown'
         type : 'material'
         duration : 3

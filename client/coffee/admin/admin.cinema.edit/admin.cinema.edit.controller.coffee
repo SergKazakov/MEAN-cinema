@@ -14,7 +14,7 @@ AdminCinemaEditCtrl = (Cinema, cinema, $alert, $state, Upload) ->
       promise = Cinema.editCinema @cinema
     promise.success (res) ->
       $alert
-        content : 'Cinema has been added'
+        content : 'Кинотеатр добавлен'
         animation : 'fadeZoomFadeDown'
         type : 'material'
         duration : 3

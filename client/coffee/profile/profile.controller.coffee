@@ -22,7 +22,7 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
         store.set 'profile', response
         $rootScope.currentUser = store.get 'profile'
         $alert
-          content : 'Profile has been updated'
+          content : 'Профиль обновлен'
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
@@ -32,7 +32,7 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
       .link provider
       .then ->
         $alert
-          content : "You have successfully linked #{provider} account"
+          content : "Вы успешно привязали #{provider}"
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
@@ -50,7 +50,7 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
       .unlink provider
       .then ->
         $alert
-          content : "You have successfully unlinked #{provider} account"
+          content : "Вы успешно отвязали #{provider}"
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
@@ -58,7 +58,7 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
         @getProfile()
       .catch (response) ->
         $alert
-          content : if response.data then response.data.message else "Could not unlink #{provider} account"
+          content : if response.data then response.data.message else "Невозможно привязать #{provider}"
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
