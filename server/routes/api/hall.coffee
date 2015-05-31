@@ -9,13 +9,14 @@ router
   .route '/halls'
   .get (req, res, next) ->
     if req.query.page
-      Movie.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
+      Hall.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
         return next() if err
         res.status(200).send
           items : paginatedResults
           count : itemCount
       ,
-        sortBy : name : 1
+        sortBy : createdAt : -1
+        populate : 'cinema'
     else
       Hall.find {}, (err, halls) ->
         return next() if err
@@ -24,7 +25,15 @@ router
     hall = new Hall req.body
     hall.save (err, hall) ->
       return next() if err
-      res.status(200).send hall
+      Cinema.findOneAndUpdate
+        _id : hall.cinema
+      ,
+        $addToSet :
+          halls : hall._id
+        upsert : on,
+        (err, cinema) ->
+          return next() if err
+          res.status(200).send hall
 
 router
   .route '/hall/:hallId'
@@ -41,7 +50,15 @@ router
       _.assign hall, req.body
       hall.save (err, hall) ->
         return next() if err
-        res.status(200).send hall
+        Cinema.findOneAndUpdate
+          _id : hall.cinema
+        ,
+          $addToSet :
+            halls : hall._id
+          upsert : on,
+          (err, cinema) ->
+            return next() if err
+            res.status(200).send hall
   .delete (req, res, next) ->
     Hall.findByIdAndRemove req.params.hallId, (err, hall) ->
       return next() if err

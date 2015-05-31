@@ -1,7 +1,7 @@
-mongoose          = require 'mongoose'
-Schema            = mongoose.Schema
-mongoosePaginate  = require 'mongoose-paginate'
-timestamps        = require 'mongoose-timestamp'
+mongoose     = require 'mongoose'
+Schema       = mongoose.Schema
+deepPopulate = require 'mongoose-deep-populate'
+timestamps   = require 'mongoose-timestamp'
 
 sessionSchema = new Schema
   movie :
@@ -20,6 +20,11 @@ sessionSchema = new Schema
     enum : ['2D', '3D', 'IMAX 2D', 'IMAX 3D']
 
 sessionSchema.plugin timestamps
-sessionSchema.plugin mongoosePaginate
+sessionSchema.plugin deepPopulate,
+  whitelist : [
+    'movie'
+    'hall'
+    'hall.cinema'
+  ]
 
 module.exports = mongoose.model 'Session', sessionSchema

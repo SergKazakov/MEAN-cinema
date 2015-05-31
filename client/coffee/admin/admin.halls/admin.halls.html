@@ -1,0 +1,40 @@
+<p ng-if="vm.noHalls">Упс! Пока залов нет:(</p>
+<div ng-else class="admin-table-wr">
+  <table class="table admin-table">
+    <thead>
+      <th class="admin-table__th" colspan="2">
+        Кинотеатр
+      </th>
+      <th class="admin-table__th admin-table__th_center">
+        Название зала
+      </th>
+      <th class="admin-table__th admin-table__th_center">
+        Редактировать
+      </th>
+      <th class="admin-table__th admin-table__th_center">
+        Удалить
+      </th>
+    </thead>
+    <tr class="admin-table__row" pagination-id="hallsPagination" dir-paginate="hall in vm.halls | itemsPerPage: 10" total-items="vm.totalHalls" current-page="vm.currentPage">
+      <td class="admin-table__td">
+        <a class="admin-table__link" ui-sref="cinema({cinemaId : hall.cinema._id})">
+          <img class="admin-table__img" ng-src="{{hall.cinema.poster}}" alt="">
+        </a>
+      </td>
+      <td class="admin-table__td">
+        <b>{{hall.cinema.name}}</b>
+      </td>
+      <td class="admin-table__td admin-table__td_center">
+        {{hall.name}}
+      </td>
+      <td class="admin-table__td admin-table__td_center">
+        <a class="btn btn-primary ion-edit" ui-sref="admin.halledit({hallId : hall._id})"></a>
+      </td>
+      <td class="admin-table__td admin-table__td_center">
+        <button ng-click="vm.deleteHall(hall._id, $index)" class="btn btn-danger ion-close"></button>
+      </td>
+    </tr>
+  </table>
+  <dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="hallsPagination"></dir-pagination-controls>
+</div>
+<a class="btn btn-primary" ui-sref="admin.hallsnew">Добавить зал</a>

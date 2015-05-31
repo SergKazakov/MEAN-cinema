@@ -9,6 +9,9 @@ AdminCtrl = ->
     title : 'Кинотеатры'
     state : 'admin.cinemas'
   ,
+    title : 'Залы'
+    state : 'admin.halls'
+  ,
     title : 'Сеансы'
     state : 'admin.sessions'
   ]

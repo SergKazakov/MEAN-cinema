@@ -1,4 +1,4 @@
-AdminSessionEditCtrl = (Session, session, Movie, $alert, $state) ->
+AdminSessionEditCtrl = (Session, session, Cinema, Movie, $alert, $state) ->
 
   @session = session.data
 
@@ -9,7 +9,7 @@ AdminSessionEditCtrl = (Session, session, Movie, $alert, $state) ->
       .editSession @session
       .success (res) ->
         $alert
-          content : 'Session has been added'
+          content : 'Сеанс добавлен'
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
@@ -18,10 +18,15 @@ AdminSessionEditCtrl = (Session, session, Movie, $alert, $state) ->
   @loadMovies = (name) ->
     Movie
       .getMoviesByName name
-      .then (res) -> res.data
+      .then (res) => @movies = res.data
+
+  @loadCinemas = (name) ->
+    Cinema
+      .getCinemasByName name
+      .then (res) => @cinemas = res.data
 
   return
 
-AdminSessionEditCtrl.$inject = ['Session', 'session', 'Movie', '$alert', '$state']
+AdminSessionEditCtrl.$inject = ['Session', 'session', 'Cinema', 'Movie', '$alert', '$state']
 
 module.exports = AdminSessionEditCtrl

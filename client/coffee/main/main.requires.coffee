@@ -7,6 +7,7 @@ module.exports = [
   'permission'
   'angularUtils.directives.dirPagination'
   'elif'
+  'ui.select'
   require 'angular-resource'
   require 'angular-messages'
   require 'angular-ui-router'
@@ -33,6 +34,9 @@ module.exports = [
   require('../admin/admin.cinemas/admin.cinemas').name
   require('../admin/admin.cinemas.new/admin.cinemas.new').name
   require('../admin/admin.cinema.edit/admin.cinema.edit').name
+  require('../admin/admin.halls/admin.halls').name
+  require('../admin/admin.halls.new/admin.halls.new').name
+  require('../admin/admin.hall.edit/admin.hall.edit').name
   require('../admin/admin.sessions/admin.sessions').name
   require('../admin/admin.sessions.new/admin.sessions.new').name
   require('../admin/admin.session.edit/admin.session.edit').name

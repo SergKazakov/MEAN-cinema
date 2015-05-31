@@ -8,13 +8,18 @@ router
   .route '/sessions'
   .get (req, res, next) ->
     if req.query.page
-      Session.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
-        return next() if err
-        res.status(200).send
-          items : paginatedResults
-          count : itemCount
-      ,
-        populate : 'movie hall'
+      Session
+        .find {}
+        .deepPopulate 'movie hall hall.cinema'
+        .skip (req.query.page - 1) * 10
+        .limit 10
+        .exec (err, results) ->
+          return next() if err
+          Session.count {}, (err, count) ->
+            return next() if err
+            res.status(200).send
+              items : results
+              count : count
     else
       Session.find {}, (err, sessions) ->
         return next() if err
@@ -31,7 +36,7 @@ router
   .get (req, res, next) ->
     Session
       .findById req.params.sessionId
-      .populate 'movie hall'
+      .deepPopulate 'movie hall hall.cinema'
       .exec (err, session) ->
         return next() if err
         res.status(200).send session

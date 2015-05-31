@@ -21,11 +21,15 @@ router
           count : itemCount
       ,
         sortBy : name : 1
+        populate : 'halls'
     else
       criterion = name : new RegExp req.query.name, 'i' if req.query.name
-      Cinema.find criterion, (err, cinemas) ->
-        return next() if err
-        res.status(200).send cinemas
+      Cinema
+        .find criterion
+        .populate 'halls'
+        .exec (err, cinemas) ->
+          return next() if err
+          res.status(200).send cinemas
   .post (req, res, next) ->
     createCinema new Cinema(), req
       .save (err, cinema) ->
