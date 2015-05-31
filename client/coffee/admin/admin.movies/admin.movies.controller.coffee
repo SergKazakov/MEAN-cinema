@@ -2,7 +2,7 @@ AdminMoviesCtrl = (Movie, movies) ->
 
   @movies      = movies.data.items
   @totalMovies = movies.data.count
-  @noMovies    = unless @movies then on else no
+  @noMovies    = unless @movies.length then on else no
   @currentPage = 1
 
   @changePage = (newPageNumber) ->

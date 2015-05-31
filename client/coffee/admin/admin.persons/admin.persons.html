@@ -1,12 +1,12 @@
 <p ng-if="vm.noPersons">Упс! Пока актеров нет:(</p>
-<div ng-if="vm.persons.length" class="admin-grid-wr">
+<div ng-else class="admin-grid-wr">
   <ul class="admin-grid">
     <li class="admin-grid__item" pagination-id="personsPagination" dir-paginate="person in vm.persons | itemsPerPage: 10" total-items="vm.totalPersons" current-page="vm.currentPage">
       <img class="admin-grid__img" ng-src="{{person.photo}}">
       <div class="admin-grid__overlay">
         <div class="admin-grid__buttons">
-          <a class="btn btn-default" ui-sref="admin.personedit({personId: person._id})">Edit</a>
-          <button ng-click="vm.deletePerson(person._id, $index)" class="btn btn-danger"><i class="ion-close"></i></button>
+          <a class="btn btn-default ion-edit" ui-sref="admin.personedit({personId: person._id})"></a>
+          <button ng-click="vm.deletePerson(person._id, $index)" class="btn btn-danger ion-close"></button>
         </div>
       </div>
     </li>

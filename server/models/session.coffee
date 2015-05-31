@@ -11,14 +11,13 @@ sessionSchema = new Schema
   hall :
     type : Schema.Types.ObjectId
     ref : 'Hall'
-    required : on
   date :
     type : Date
     default : Date.now
   format :
     type : String
     default : '2D'
-    enum : ['2D', '3D', 'IMAX']
+    enum : ['2D', '3D', 'IMAX 2D', 'IMAX 3D']
 
 sessionSchema.plugin timestamps
 sessionSchema.plugin mongoosePaginate

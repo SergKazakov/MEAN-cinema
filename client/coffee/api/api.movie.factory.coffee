@@ -1,6 +1,8 @@
 Movie = ($http) ->
   getMovies : ->
     $http.get '/api/v1/movies'
+  getMoviesByName : (movieName) ->
+    $http.get "/api/v1/movies?name=#{movieName}"
   getMoviesByStatus : (status) ->
     $http.get "/api/v1/movies?status=#{status}"
   getMoviesByPage : (pageNumber) ->

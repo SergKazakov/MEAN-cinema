@@ -1,12 +1,12 @@
 <p ng-if="vm.noMovies">Упс! Пока фильмов нет:(</p>
-<div ng-if="vm.movies.length" class="admin-grid-wr">
+<div ng-else class="admin-grid-wr">
   <ul class="admin-grid">
     <li class="admin-grid__item" pagination-id="moviesPagination" dir-paginate="movie in vm.movies | itemsPerPage: 10" total-items="vm.totalMovies" current-page="vm.currentPage">
       <img class="admin-grid__img" ng-src="{{movie.poster}}">
       <div class="admin-grid__overlay">
         <div class="admin-grid__buttons">
-          <a class="btn btn-default" ui-sref="admin.movieedit({movieId: movie._id})">Edit</a>
-          <button ng-click="vm.deleteMovie(movie._id, $index)" class="btn btn-danger"><i class="ion-close"></i></button>
+          <a class="btn btn-default ion-edit" ui-sref="admin.movieedit({movieId: movie._id})"></a>
+          <button ng-click="vm.deleteMovie(movie._id, $index)" class="btn btn-danger ion-close"></button>
         </div>
       </div>
     </li>

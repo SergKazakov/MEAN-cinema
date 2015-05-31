@@ -20,8 +20,7 @@ module.exports =
         test : /\.coffee$/,
         exclude : /node_modules/
         loader : 'coffeelint-loader'
-      ]
-    ,
+    ]
     loaders : [
         test : /\.coffee$/
         loader : 'coffee-loader'
@@ -37,6 +36,13 @@ module.exports =
       ,
         test : /\.html$/
         loader : "ngtemplate?relativeTo=#{path.resolve __dirname, './client' }/!html"
+    ]
+    noParse : [
+      path.join bowerRoot, '/angular'
+      path.join bowerRoot, '/angular-route'
+      path.join bowerRoot, '/angular-ui-router'
+      path.join bowerRoot, '/angular-mocks'
+      path.join bowerRoot, '/jquery'
     ]
   resolve :
     alias :

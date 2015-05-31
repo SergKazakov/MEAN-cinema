@@ -7,12 +7,22 @@ Session    = mongoose.model 'Session'
 router
   .route '/sessions'
   .get (req, res, next) ->
-    Session.find {}, (err, sessions) ->
-      return next() if err
-      res.status(200).send sessions
+    if req.query.page
+      Session.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
+        return next() if err
+        res.status(200).send
+          items : paginatedResults
+          count : itemCount
+      ,
+        populate : 'movie hall'
+    else
+      Session.find {}, (err, sessions) ->
+        return next() if err
+        res.status(200).send sessions
   .post (req, res, next) ->
     session = new Session req.body
     session.save (err, session) ->
+      console.log err
       return next() if err
       res.status(200).send session
 

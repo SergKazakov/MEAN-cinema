@@ -1,0 +1,23 @@
+<p ng-if="vm.noSessions">Упс! Пока сеансов нет:(</p>
+<div ng-else class="admin-table-wr">
+  <table class="table admin-table">
+    <tr class="admin-table__row" pagination-id="sessionsPagination" dir-paginate="session in vm.sessions | itemsPerPage: 10" total-items="vm.totalSessions" current-page="vm.currentPage">
+      <td class="admin-table__td">
+        <a class="admin-table__link" ui-sref="movie({movieId : session.movie._id})">
+          <img class="admin-table__img" ng-src="{{session.movie.poster}}" alt="">
+        </a>
+      </td>
+      <td class="admin-table__td">{{session.movie.name}}</td>
+      <td class="admin-table__td">{{session.date | date : 'dd/MM/yyyy HH:mm:ss'}}</td>
+      <td class="admin-table__td">{{session.format}}</td>
+      <td class="admin-table__td">
+        <a class="btn btn-primary ion-edit" ui-sref="admin.sessionedit({sessionId : session._id})"></a>
+      </td>
+      <td class="admin-table__td">
+        <button ng-click="vm.deleteSession(session._id, $index)" class="btn btn-danger ion-close"></button>
+      </td>
+    </tr>
+  </table>
+  <dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="sessionsPagination"></dir-pagination-controls>
+</div>
+<a class="btn btn-primary" ui-sref="admin.sessionsnew">Добавить сеанс</a>

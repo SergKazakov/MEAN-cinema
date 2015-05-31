@@ -2,7 +2,7 @@ AdminPersonsCtrl = (Person, persons) ->
 
   @persons      = persons.data.items
   @totalPersons = persons.data.count
-  @noPersons    = unless @persons then on else no
+  @noPersons    = unless @persons.length then on else no
   @currentPage  = 1
 
   @changePage = (newPageNumber) ->

@@ -11,6 +11,7 @@ module.exports = [
   require 'angular-messages'
   require 'angular-ui-router'
   require 'angular-animate'
+  require 'angular-sanitize'
   require('../navbar/navbar').name
   require('../home/home').name
   require('../login/login').name
@@ -32,4 +33,7 @@ module.exports = [
   require('../admin/admin.cinemas/admin.cinemas').name
   require('../admin/admin.cinemas.new/admin.cinemas.new').name
   require('../admin/admin.cinema.edit/admin.cinema.edit').name
+  require('../admin/admin.sessions/admin.sessions').name
+  require('../admin/admin.sessions.new/admin.sessions.new').name
+  require('../admin/admin.session.edit/admin.session.edit').name
 ]

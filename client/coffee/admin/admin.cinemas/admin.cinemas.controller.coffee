@@ -2,7 +2,7 @@ AdminCinemasCtrl = (Cinema, cinemas) ->
 
   @cinemas      = cinemas.data.items
   @totalCinemas = cinemas.data.count
-  @noCinemas    = unless @cinemas then on else no
+  @noCinemas    = unless @cinemas.length then on else no
   @currentPage = 1
 
   @changePage = (newPageNumber) ->

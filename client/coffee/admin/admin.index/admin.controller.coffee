@@ -8,6 +8,9 @@ AdminCtrl = ->
   ,
     title : 'Кинотеатры'
     state : 'admin.cinemas'
+  ,
+    title : 'Сеансы'
+    state : 'admin.sessions'
   ]
 
   return

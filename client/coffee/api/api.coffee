@@ -3,3 +3,4 @@ module.exports = angular
   .factory 'Movie', require './api.movie.factory'
   .factory 'Person', require './api.person.factory'
   .factory 'Cinema', require './api.cinema.factory'
+  .factory 'Session', require './api.session.factory'
