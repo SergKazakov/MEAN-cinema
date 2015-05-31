@@ -1,6 +1,6 @@
 adminHallsConfig = ($stateProvider) ->
-  $stateProvider.state 'admin.halls',
-    url : '/halls'
+  $stateProvider.state 'admin.halls.all',
+    url : ''
     templateUrl : require './admin.halls.html'
     controller : 'AdminHallsCtrl as vm'
     resolve :

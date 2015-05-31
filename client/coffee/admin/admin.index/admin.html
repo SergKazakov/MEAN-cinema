@@ -1,7 +1,7 @@
 <div class="container">
   <ul class="admin-sidebar panel panel-default">
     <li class="admin-sidebar__item" ng-repeat="item in vm.menu">
-      <a ui-sref="{{item.state}}" ui-sref-active="admin-sidebar__link_active" class="admin-sidebar__link">{{item.title}}</a>
+      <a ui-sref="{{item.state}}" ng-class="{'admin-sidebar__link_active' : vm.state.includes(item.parent)}" class="admin-sidebar__link">{{item.title}}</a>
     </li>
   </ul>
   <ui-view class="admin-content panel panel-default"></ui-view>

@@ -19,7 +19,7 @@ AdminPersonEditCtrl = (Person, person, $alert, $state, Upload) ->
         animation : 'fadeZoomFadeDown'
         type : 'material'
         duration : 3
-      $state.go 'admin.persons'
+      $state.go 'admin.persons.all'
 
   return
 

@@ -1,6 +1,6 @@
 adminPersonsNewConfig = ($stateProvider) ->
-  $stateProvider.state 'admin.personsnew',
-    url : '/persons/new'
+  $stateProvider.state 'admin.persons.new',
+    url : '/new'
     templateUrl : require '../admin.person.helper/admin.person.helper.html'
     controller : 'AdminPersonsNewCtrl as vm'
 

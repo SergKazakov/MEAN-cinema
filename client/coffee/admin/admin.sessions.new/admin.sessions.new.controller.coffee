@@ -11,7 +11,7 @@ AdminSessionsNewCtrl = (Session, Cinema, Movie, $alert, $state) ->
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
-        $state.go 'admin.sessions'
+        $state.go 'admin.sessions.all'
 
   @loadMovies = (name) ->
     Movie

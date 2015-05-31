@@ -25,18 +25,23 @@ module.exports = [
   require('../cinema/cinema').name
   require('../cinemas/cinemas').name
   require('../admin/admin.index/admin').name
+  require('../admin/admin.movies.index/admin.movies.index').name
   require('../admin/admin.movies/admin.movies').name
   require('../admin/admin.movies.new/admin.movies.new').name
   require('../admin/admin.movie.edit/admin.movie.edit').name
+  require('../admin/admin.persons.index/admin.persons.index').name
   require('../admin/admin.persons/admin.persons').name
   require('../admin/admin.persons.new/admin.persons.new').name
   require('../admin/admin.person.edit/admin.person.edit').name
+  require('../admin/admin.cinemas.index/admin.cinemas.index').name
   require('../admin/admin.cinemas/admin.cinemas').name
   require('../admin/admin.cinemas.new/admin.cinemas.new').name
   require('../admin/admin.cinema.edit/admin.cinema.edit').name
+  require('../admin/admin.halls.index/admin.halls.index').name
   require('../admin/admin.halls/admin.halls').name
   require('../admin/admin.halls.new/admin.halls.new').name
   require('../admin/admin.hall.edit/admin.hall.edit').name
+  require('../admin/admin.sessions.index/admin.sessions.index').name
   require('../admin/admin.sessions/admin.sessions').name
   require('../admin/admin.sessions.new/admin.sessions.new').name
   require('../admin/admin.session.edit/admin.session.edit').name

@@ -15,7 +15,7 @@ AdminMoviesNewCtrl = (Movie, Person, $alert, $state, Upload) ->
             animation : 'fadeZoomFadeDown'
             type : 'material'
             duration : 3
-          $state.go 'admin.movies'
+          $state.go 'admin.movies.all'
     else
       $alert
         content : 'Poster is required!'

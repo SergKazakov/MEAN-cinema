@@ -22,7 +22,7 @@
         </a>
       </li>
       <li ng-if="vm.isAuthenticated() && currentUser.role === 'Admin'">
-        <a ui-sref="admin.movies" ui-sref-active="active">Админка</a>
+        <a ui-sref="admin.movies.all" ui-sref-active="active">Админка</a>
       </li>
       <li ng-if="vm.isAuthenticated()">
         <a href="#" ng-click="vm.logout($event)">Выйти</a>

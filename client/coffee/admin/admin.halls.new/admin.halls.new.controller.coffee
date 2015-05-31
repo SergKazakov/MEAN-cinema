@@ -9,7 +9,7 @@ AdminHallsNewCtrl = (Hall, Cinema, $alert, $state) ->
           animation : 'fadeZoomFadeDown'
           type : 'material'
           duration : 3
-        $state.go 'admin.halls'
+        $state.go 'admin.halls.all'
 
   @loadCinemas = (name) ->
     Cinema

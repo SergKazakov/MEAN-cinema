@@ -1,6 +1,6 @@
 adminPersonEditConfig = ($stateProvider) ->
-  $stateProvider.state 'admin.personedit',
-    url : '/person/:personId/edit'
+  $stateProvider.state 'admin.persons.edit',
+    url : '/:personId/edit'
     templateUrl : require '../admin.person.helper/admin.person.helper.html'
     controller : 'AdminPersonEditCtrl as vm'
     resolve :

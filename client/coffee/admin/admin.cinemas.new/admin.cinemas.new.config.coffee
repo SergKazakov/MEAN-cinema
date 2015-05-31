@@ -1,6 +1,6 @@
 adminCinemasNewConfig = ($stateProvider) ->
-  $stateProvider.state 'admin.cinemasnew',
-    url : '/cinemas/new'
+  $stateProvider.state 'admin.cinemas.new',
+    url : '/new'
     templateUrl : require '../admin.cinema.helper/admin.cinema.helper.html'
     controller : 'AdminCinemasNewCtrl as vm'
 

@@ -5,7 +5,7 @@
       <img class="admin-grid__img" ng-src="{{movie.poster}}">
       <div class="admin-grid__overlay">
         <div class="admin-grid__buttons">
-          <a class="btn btn-default ion-edit" ui-sref="admin.movieedit({movieId: movie._id})"></a>
+          <a class="btn btn-default ion-edit" ui-sref="admin.movies.edit({movieId: movie._id})"></a>
           <button ng-click="vm.deleteMovie(movie._id, $index)" class="btn btn-danger ion-close"></button>
         </div>
       </div>
@@ -13,4 +13,4 @@
   </ul>
   <dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="moviesPagination"></dir-pagination-controls>
 </div>
-<a class="btn btn-primary" ui-sref="admin.moviesnew">Добавить фильм</a>
+<a class="btn btn-primary" ui-sref="admin.movies.new">Добавить фильм</a>

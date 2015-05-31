@@ -1,21 +1,31 @@
-AdminCtrl = ->
+AdminCtrl = ($state) ->
+
+  @state = $state
+
   @menu = [
     title : 'Фильмы'
-    state : 'admin.movies'
+    state : 'admin.movies.all'
+    parent : 'admin.movies'
   ,
     title : 'Люди'
-    state : 'admin.persons'
+    state : 'admin.persons.all'
+    parent : 'admin.persons'
   ,
     title : 'Кинотеатры'
-    state : 'admin.cinemas'
+    state : 'admin.cinemas.all'
+    parent : 'admin.cinemas'
   ,
     title : 'Залы'
-    state : 'admin.halls'
+    state : 'admin.halls.all'
+    parent : 'admin.halls'
   ,
     title : 'Сеансы'
-    state : 'admin.sessions'
+    state : 'admin.sessions.all'
+    parent : 'admin.sessions'
   ]
 
   return
+
+AdminCtrl.$inject = ['$state']
 
 module.exports = AdminCtrl

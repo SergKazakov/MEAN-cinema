@@ -18,7 +18,7 @@ AdminMovieEditCtrl = (Movie, Person, movie, $alert, $state, Upload) ->
         animation : 'fadeZoomFadeDown'
         type : 'material'
         duration : 3
-      $state.go 'admin.movies'
+      $state.go 'admin.movies.all'
 
   @loadPersons = (name) ->
     Person.getPersonsByName name

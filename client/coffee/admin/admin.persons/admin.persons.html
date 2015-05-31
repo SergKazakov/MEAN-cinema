@@ -5,7 +5,7 @@
       <img class="admin-grid__img" ng-src="{{person.photo}}">
       <div class="admin-grid__overlay">
         <div class="admin-grid__buttons">
-          <a class="btn btn-default ion-edit" ui-sref="admin.personedit({personId: person._id})"></a>
+          <a class="btn btn-default ion-edit" ui-sref="admin.persons.edit({personId: person._id})"></a>
           <button ng-click="vm.deletePerson(person._id, $index)" class="btn btn-danger ion-close"></button>
         </div>
       </div>
@@ -13,4 +13,4 @@
   </ul>
   <dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="personsPagination"></dir-pagination-controls>
 </div>
-<a class="btn btn-primary" ui-sref="admin.personsnew">Добавить актера</a>
+<a class="btn btn-primary" ui-sref="admin.persons.new">Добавить актера</a>

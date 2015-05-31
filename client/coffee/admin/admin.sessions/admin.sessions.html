@@ -40,7 +40,7 @@
       <td class="admin-table__td admin-table__td_center">{{session.date | date : 'dd/MM/yyyy HH:mm:ss'}}</td>
       <td class="admin-table__td admin-table__td_center">{{session.format}}</td>
       <td class="admin-table__td admin-table__td_center">
-        <a class="btn btn-primary ion-edit" ui-sref="admin.sessionedit({sessionId : session._id})"></a>
+        <a class="btn btn-primary ion-edit" ui-sref="admin.sessions.edit({sessionId : session._id})"></a>
       </td>
       <td class="admin-table__td">
         <button ng-click="vm.deleteSession(session._id, $index)" class="btn btn-danger ion-close"></button>
@@ -49,4 +49,4 @@
   </table>
   <dir-pagination-controls class="pagination-wr" boundary-links="true" on-page-change="vm.changePage(newPageNumber)" pagination-id="sessionsPagination"></dir-pagination-controls>
 </div>
-<a class="btn btn-primary" ui-sref="admin.sessionsnew">Добавить сеанс</a>
+<a class="btn btn-primary" ui-sref="admin.sessions.new">Добавить сеанс</a>

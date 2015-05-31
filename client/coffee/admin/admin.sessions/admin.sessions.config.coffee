@@ -1,6 +1,6 @@
 adminSessionsConfig = ($stateProvider) ->
-  $stateProvider.state 'admin.sessions',
-    url : '/sessions'
+  $stateProvider.state 'admin.sessions.all',
+    url : ''
     templateUrl : require './admin.sessions.html'
     controller : 'AdminSessionsCtrl as vm'
     resolve :
