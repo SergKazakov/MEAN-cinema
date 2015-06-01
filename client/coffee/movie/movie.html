@@ -43,13 +43,13 @@
       </thead>
       <tr class="cinema-sessions-table__tr" ng-repeat="session in vm.sessions">
         <td class="cinema-sessions-table__td">
-          <a ui-sref="cinema({cinemaId: session.hall.cinema._id})">
-            <img class="cinema-sessions-table__img" ng-src="{{session.hall.cinema.poster}}" alt="">
+          <a ui-sref="cinema({cinemaId: session.cinema._id})">
+            <img class="cinema-sessions-table__img" ng-src="{{session.cinema.poster}}" alt="">
           </a>
         </td>
         <td class="cinema-sessions-table__td">
-          <p>{{session.hall.cinema.name}}</p>
-          <p>{{session.hall.cinema.address}}</p>
+          <p>{{session.cinema.name}}</p>
+          <p>{{session.cinema.address}}</p>
         </td>
         <td class="cinema-sessions-table__td">
           {{session.hall.name}}

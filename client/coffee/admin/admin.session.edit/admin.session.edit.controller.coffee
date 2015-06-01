@@ -25,6 +25,9 @@ AdminSessionEditCtrl = (Session, session, Cinema, Movie, $alert, $state) ->
       .getCinemasByName name
       .then (res) => @cinemas = res.data
 
+  @loadHalls = (item, model) ->
+    @session.hall = if model.halls.length then model.halls[0] else ''
+
   return
 
 AdminSessionEditCtrl.$inject = ['Session', 'session', 'Cinema', 'Movie', '$alert', '$state']

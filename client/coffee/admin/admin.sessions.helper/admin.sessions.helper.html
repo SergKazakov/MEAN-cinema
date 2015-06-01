@@ -19,7 +19,7 @@
   </div>
   <div class="form-group">
     <label>Кинотеатр</label>
-    <ui-select ng-model="vm.session.cinema" theme="bootstrap" ng-disabled="disabled" reset-search-input="false">
+    <ui-select ng-model="vm.session.cinema" theme="bootstrap" ng-disabled="disabled" reset-search-input="false" on-select="vm.loadHalls($item, $model)">
       <ui-select-match placeholder="Добавить кинотеатр">{{$select.selected.name}}</ui-select-match>
       <ui-select-choices repeat="cinema in vm.cinemas track by $index" refresh="vm.loadCinemas($select.search)" refresh-delay="0">
         <div ng-bind-html="cinema.name"></div>
