@@ -1,0 +1,37 @@
+.entity
+  @extend $cf
+  margin 0 -1rem
+  &-wr
+    padding 0 1rem
+  &__header
+    margin 0 -1rem
+  &__poster,
+  &-info
+    float left
+  &__poster
+    width 25%
+  &-info
+    width 75%
+    padding 1rem
+    &-list
+      &__item
+        display table
+        width 100%
+        padding 1.8rem 0
+        &+&
+          border-top 1px solid #ccc
+      &__label,
+      &__value
+        display table-cell
+      &__label
+        width 25%
+        text-transform uppercase
+        font-size 1.8rem
+      &__value
+        width 75%
+        color #aaa
+      &__tag
+        display inline-block
+        color #aaa
+        &+&
+          margin-left 1rem
