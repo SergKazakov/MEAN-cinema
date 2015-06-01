@@ -1,0 +1,23 @@
+module.exports = [
+  'ngTagsInput'
+  require('../admin.movies.index/admin.movies.index').name
+  require('../admin.movies/admin.movies').name
+  require('../admin.movies.new/admin.movies.new').name
+  require('../admin.movie.edit/admin.movie.edit').name
+  require('../admin.persons.index/admin.persons.index').name
+  require('../admin.persons/admin.persons').name
+  require('../admin.persons.new/admin.persons.new').name
+  require('../admin.person.edit/admin.person.edit').name
+  require('../admin.cinemas.index/admin.cinemas.index').name
+  require('../admin.cinemas/admin.cinemas').name
+  require('../admin.cinemas.new/admin.cinemas.new').name
+  require('../admin.cinema.edit/admin.cinema.edit').name
+  require('../admin.halls.index/admin.halls.index').name
+  require('../admin.halls/admin.halls').name
+  require('../admin.halls.new/admin.halls.new').name
+  require('../admin.hall.edit/admin.hall.edit').name
+  require('../admin.sessions.index/admin.sessions.index').name
+  require('../admin.sessions/admin.sessions').name
+  require('../admin.sessions.new/admin.sessions.new').name
+  require('../admin.session.edit/admin.session.edit').name
+]
