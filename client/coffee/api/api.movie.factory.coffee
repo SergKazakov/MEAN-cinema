@@ -10,11 +10,11 @@ Movie = ($http) ->
   createMovie : (movie) ->
     $http.post '/api/v1/movies', movie
   getMovie : (movieId) ->
-    $http.get "/api/v1/movie/#{movieId}"
+    $http.get "/api/v1/movies/#{movieId}"
   editMovie : (movie) ->
-    $http.put "/api/v1/movie/#{movie._id}", movie
+    $http.put "/api/v1/movies/#{movie._id}", movie
   deleteMovie : (movieId) ->
-    $http.delete "/api/v1/movie/#{movieId}"
+    $http.delete "/api/v1/movies/#{movieId}"
 
 Movie.$inject = ['$http']
 

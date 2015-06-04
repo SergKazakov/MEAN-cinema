@@ -37,7 +37,7 @@ router
         res.status(200).send cinema
 
 router
-  .route '/cinema/:cinemaId'
+  .route '/cinemas/:cinemaId'
   .get (req, res, next) ->
     Cinema
       .findById req.params.cinemaId, (err, cinema) ->

@@ -52,7 +52,7 @@ router
       res.status(200).send session
 
 router
-  .route '/session/:sessionId'
+  .route '/sessions/:sessionId'
   .get (req, res, next) ->
     Session
       .findById req.params.sessionId

@@ -36,7 +36,7 @@ router
           res.status(200).send hall
 
 router
-  .route '/hall/:hallId'
+  .route '/halls/:hallId'
   .get (req, res, next) ->
     Hall
       .findById req.params.hallId

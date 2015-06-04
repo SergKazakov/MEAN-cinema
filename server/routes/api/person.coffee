@@ -36,7 +36,7 @@ router
         res.status(200).send person
 
 router
-  .route '/person/:personId'
+  .route '/persons/:personId'
   .get (req, res, next) ->
     Person
       .findById req.params.personId

@@ -8,11 +8,11 @@ Person = ($http) ->
   createPerson : (person) ->
     $http.post '/api/v1/persons', person
   getPerson : (personId) ->
-    $http.get "/api/v1/person/#{personId}"
+    $http.get "/api/v1/persons/#{personId}"
   editPerson : (person) ->
-    $http.put "/api/v1/person/#{person._id}", person
+    $http.put "/api/v1/persons/#{person._id}", person
   deletePerson : (personId) ->
-    $http.delete "/api/v1/person/#{personId}"
+    $http.delete "/api/v1/persons/#{personId}"
 
 Person.$inject = ['$http']
 

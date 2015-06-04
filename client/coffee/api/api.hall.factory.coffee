@@ -6,11 +6,11 @@ Hall = ($http) ->
   createHall : (hall) ->
     $http.post '/api/v1/halls', hall
   getHall : (hallId) ->
-    $http.get "/api/v1/hall/#{hallId}"
+    $http.get "/api/v1/halls/#{hallId}"
   editHall : (hall) ->
-    $http.put "/api/v1/hall/#{hall._id}", hall
+    $http.put "/api/v1/halls/#{hall._id}", hall
   deleteHall : (hallId) ->
-    $http.delete "/api/v1/hall/#{hallId}"
+    $http.delete "/api/v1/halls/#{hallId}"
 
 Hall.$inject = ['$http']
 

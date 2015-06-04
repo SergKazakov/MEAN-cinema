@@ -49,7 +49,7 @@ router
         res.status(200).send movie
 
 router
-  .route '/movie/:movieId'
+  .route '/movies/:movieId'
   .get (req, res, next) ->
     Movie
       .findById req.params.movieId

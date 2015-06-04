@@ -5,7 +5,7 @@ AdminMovieEditCtrl = (Movie, Person, movie, $alert, $state, Upload) ->
   @action = ->
     if @file and @file.length
       promise = Upload.upload
-        url : "/api/v1/movie/#{@movie._id}"
+        url : "/api/v1/movies/#{@movie._id}"
         method : 'PUT'
         fields :
           movie : @movie

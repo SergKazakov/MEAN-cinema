@@ -5,7 +5,7 @@ AdminPersonEditCtrl = (Person, person, $alert, $state, Upload) ->
   @action = ->
     if @file and @file.length
       promise = Upload.upload
-        url : "/api/v1/person/#{@person._id}"
+        url : "/api/v1/persons/#{@person._id}"
         method : 'PUT'
         fields :
           person : @person
