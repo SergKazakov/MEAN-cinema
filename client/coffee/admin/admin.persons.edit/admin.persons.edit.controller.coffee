@@ -1,4 +1,4 @@
-AdminPersonEditCtrl = (Person, person, $alert, $state, Upload) ->
+AdminPersonsEditCtrl = (Person, person, $alert, $state, Upload) ->
 
   @person = person.data
 
@@ -23,6 +23,6 @@ AdminPersonEditCtrl = (Person, person, $alert, $state, Upload) ->
 
   return
 
-AdminPersonEditCtrl.$inject = ['Person', 'person', '$alert', '$state', 'Upload']
+AdminPersonsEditCtrl.$inject = ['Person', 'person', '$alert', '$state', 'Upload']
 
-module.exports = AdminPersonEditCtrl
+module.exports = AdminPersonsEditCtrl

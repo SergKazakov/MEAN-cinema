@@ -1,4 +1,4 @@
-AdminCinemaEditCtrl = (Cinema, cinema, $alert, $state, Upload) ->
+AdminCinemasEditCtrl = (Cinema, cinema, $alert, $state, Upload) ->
 
   @cinema = cinema.data
 
@@ -22,6 +22,6 @@ AdminCinemaEditCtrl = (Cinema, cinema, $alert, $state, Upload) ->
 
   return
 
-AdminCinemaEditCtrl.$inject = ['Cinema', 'cinema', '$alert', '$state', 'Upload']
+AdminCinemasEditCtrl.$inject = ['Cinema', 'cinema', '$alert', '$state', 'Upload']
 
-module.exports = AdminCinemaEditCtrl
+module.exports = AdminCinemasEditCtrl

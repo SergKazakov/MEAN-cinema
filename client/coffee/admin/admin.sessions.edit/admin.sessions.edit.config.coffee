@@ -1,13 +1,13 @@
-adminSessionEditConfig = ($stateProvider) ->
+adminSessionsEditConfig = ($stateProvider) ->
   $stateProvider.state 'admin.sessions.edit',
     url : '/:sessionId/edit'
     templateUrl : require '../admin.sessions.helper/admin.sessions.helper.html'
-    controller : 'AdminSessionEditCtrl as vm'
+    controller : 'AdminSessionsEditCtrl as vm'
     resolve :
       session : ['Session', '$stateParams', (Session, $stateParams) ->
         Session.getSession $stateParams.sessionId
       ]
 
-adminSessionEditConfig.$inject = ['$stateProvider']
+adminSessionsEditConfig.$inject = ['$stateProvider']
 
-module.exports = adminSessionEditConfig
+module.exports = adminSessionsEditConfig

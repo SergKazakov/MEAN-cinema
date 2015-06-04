@@ -1,4 +1,4 @@
-AdminSessionEditCtrl = (Session, session, Cinema, Movie, $alert, $state) ->
+AdminSessionsEditCtrl = (Session, session, Cinema, Movie, $alert, $state) ->
 
   @session = session.data
 
@@ -30,6 +30,6 @@ AdminSessionEditCtrl = (Session, session, Cinema, Movie, $alert, $state) ->
 
   return
 
-AdminSessionEditCtrl.$inject = ['Session', 'session', 'Cinema', 'Movie', '$alert', '$state']
+AdminSessionsEditCtrl.$inject = ['Session', 'session', 'Cinema', 'Movie', '$alert', '$state']
 
-module.exports = AdminSessionEditCtrl
+module.exports = AdminSessionsEditCtrl

@@ -1,7 +1,7 @@
 adminCinemasNewConfig = ($stateProvider) ->
   $stateProvider.state 'admin.cinemas.new',
     url : '/new'
-    templateUrl : require '../admin.cinema.helper/admin.cinema.helper.html'
+    templateUrl : require '../admin.cinemas.helper/admin.cinemas.helper.html'
     controller : 'AdminCinemasNewCtrl as vm'
 
 adminCinemasNewConfig.$inject = ['$stateProvider']

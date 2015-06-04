@@ -1,4 +1,4 @@
-AdminHallEditCtrl = (Hall, hall, Cinema, $alert, $state) ->
+AdminHallsEditCtrl = (Hall, hall, Cinema, $alert, $state) ->
 
   @hall = hall.data
 
@@ -20,6 +20,6 @@ AdminHallEditCtrl = (Hall, hall, Cinema, $alert, $state) ->
 
   return
 
-AdminHallEditCtrl.$inject = ['Hall', 'hall', 'Cinema', '$alert', '$state']
+AdminHallsEditCtrl.$inject = ['Hall', 'hall', 'Cinema', '$alert', '$state']
 
-module.exports = AdminHallEditCtrl
+module.exports = AdminHallsEditCtrl
