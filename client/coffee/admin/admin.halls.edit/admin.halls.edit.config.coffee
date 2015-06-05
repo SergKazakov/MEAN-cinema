@@ -1,7 +1,7 @@
 adminHallsEditConfig = ($stateProvider) ->
   $stateProvider.state 'admin.halls.edit',
     url : '/:hallId/edit'
-    templateUrl : require '../admin.halls.helper/admin.halls.helper.html'
+    template : require '../admin.halls.helper/admin.halls.helper.html'
     controller : 'AdminHallsEditCtrl as vm'
     resolve :
       hall : ['Hall', '$stateParams', (Hall, $stateParams) ->

@@ -6,7 +6,7 @@ childProcess = require 'child_process'
 
 gulp.task 'webpack', ->
   gulp.src './client/coffee/main/main.coffee'
-    .pipe $.webpack require './webpack.config.coffee'
+    .pipe $.webpack require('./webpack.config.coffee') {}
     .pipe gulp.dest './client/js'
 
 gulp.task 'wiredep', ->
@@ -48,6 +48,25 @@ gulp.task 'watch', ->
     .on 'change', $.livereload.changed
   gulp.watch ['./*.coffee', './server/**/*.coffee', '!./client'], ['coffeelint']
 
+gulp.task 'clean', require('del').bind null, ['dist']
+
+gulp.task 'webpack-production', ->
+  gulp.src './client/coffee/main/main.coffee'
+    .pipe $.webpack require('./webpack.config.coffee') production : on
+    .pipe gulp.dest './client/js'
+
+gulp.task 'copy', ->
+  gulp.src [
+    './client/img/**'
+    './client/js/bundle.js'
+    './client/index.html'
+    './client/favicon.ico'
+  ]
+  , base : './client'
+    .pipe gulp.dest './dist'
+
+gulp.task 'build', ->
+  runSequence ['webpack-production', 'clean'], 'copy'
 
 gulp.task 'default', ->
   childProcess.exec '"C:/Program Files/MongoDB 2.6 Standard/bin/mongod.exe" --dbpath C:/mongodb' , (err, stdout, stderr) ->

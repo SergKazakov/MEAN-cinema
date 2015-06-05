@@ -1,7 +1,7 @@
 homeConfig = ($stateProvider) ->
   $stateProvider.state 'home',
     url : '/'
-    templateUrl : require './home.html'
+    template : require './home.html'
     controller : 'HomeCtrl as vm'
     resolve :
       newMovies : ['Movie', (Movie) ->

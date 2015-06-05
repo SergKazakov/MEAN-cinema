@@ -1,7 +1,7 @@
 adminPersonsConfig = ($stateProvider) ->
   $stateProvider.state 'admin.persons.all',
     url : ''
-    templateUrl : require './admin.persons.html'
+    template : require './admin.persons.html'
     controller : 'AdminPersonsCtrl as vm'
     resolve :
       persons : ['Person', (Person) ->

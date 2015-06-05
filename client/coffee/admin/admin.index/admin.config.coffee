@@ -2,7 +2,7 @@ adminConfig = ($stateProvider, tagsInputConfigProvider) ->
   $stateProvider.state 'admin',
     url : '/admin'
     absract : on
-    templateUrl : require './admin.html'
+    template : require './admin.html'
     controller : 'AdminCtrl as vm'
     data :
       permissions :
