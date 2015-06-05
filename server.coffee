@@ -23,6 +23,8 @@ mongoose.connect conf.mongoUrl
 mongoose.connection.on 'error', (err) ->
   console.log chalk.bgRed.bold "MongoDB connection error: #{err}"
 
+if app.get('env') is 'development' then staticPath = 'client' else staticPath = 'dist'
+
 app
   .use morgan 'dev'
   .use bodyParser.json()
@@ -31,12 +33,11 @@ app
   .set 'views', path.join __dirname, 'server/views'
   .engine 'html', require('ejs').renderFile
   .set 'view engine', 'html'
-  .use express.static path.join __dirname, 'client'
+  .use express.static path.join __dirname, staticPath
   .use multer
-    dest : './client/img/media/'
+    dest : "./#{staticPath}/img/media/"
     rename : (fieldname, filename) ->
       filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
-
 
 # Force HTTPS on Heroku
 if app.get 'env' is 'production'

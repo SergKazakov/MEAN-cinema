@@ -19,6 +19,7 @@ gulp.task 'nodemon', ->
     ext : 'coffee'
     script : 'server.coffee'
     env :
+      'NODE_ENV' : 'development'
       'PORT' : 3000
       'MONGO_URL' : 'mongodb://localhost/cinema'
       'TOKEN_SECRET' : 'A hard to guess string'
