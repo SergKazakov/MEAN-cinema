@@ -57,6 +57,13 @@ module.exports =
   plugins : [
     new WebpackNotifierPlugin()
     new webpack.optimize.DedupePlugin()
+    new webpack.DefinePlugin
+      process :
+        env :
+          FACEBOOK_ID : JSON.stringify '1653435961554069'
+          GOOGLE_ID : JSON.stringify '476828247245-ve3nh4f0fbcg0elggblkvctse9a26821.apps.googleusercontent.com'
+          GITHUB_ID : JSON.stringify 'fdf1e069c66bb5a88004'
+          TWITTER_URL : JSON.stringify '/auth/twitter'
   ]
   postcss : [
     autoprefixer
