@@ -13,9 +13,9 @@ require('pretty-error').start()
 
 global.alias = new Alias
   aliases :
-    '@config' : './server/config'
-    '@models' : './server/models'
-    '@routes' : './server/routes'
+    '@config' : './config'
+    '@models' : './models'
+    '@routes' : './routes'
 
 conf = alias.require '@config'
 
@@ -23,19 +23,20 @@ mongoose.connect conf.mongoUrl
 mongoose.connection.on 'error', (err) ->
   console.log chalk.bgRed.bold "MongoDB connection error: #{err}"
 
-if app.get('env') is 'development' then staticPath = 'client' else staticPath = 'dist'
+if app.get('env') is 'development' then staticPath = 'client' else staticPath = 'public'
+staticPath = path.normalize "#{__dirname}/../#{staticPath}"
 
 app
   .use morgan 'dev'
   .use bodyParser.json()
   .use bodyParser.urlencoded extended : on
   .use methodOverride()
-  .set 'views', path.join __dirname, 'server/views'
+  .set 'views', path.join __dirname, 'views'
   .engine 'html', require('ejs').renderFile
   .set 'view engine', 'html'
-  .use express.static path.join __dirname, staticPath
+  .use express.static staticPath
   .use multer
-    dest : "./#{staticPath}/img/media/"
+    dest : "#{staticPath}/img/media/"
     rename : (fieldname, filename) ->
       filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
 

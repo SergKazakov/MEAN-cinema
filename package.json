@@ -66,8 +66,5 @@
   "engines": {
     "node": "latest",
     "npm": "latest"
-  },
-  "scripts": {
-    "postinstall": "bower cache clean && bower i"
   }
 }

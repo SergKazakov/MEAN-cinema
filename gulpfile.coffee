@@ -17,7 +17,7 @@ gulp.task 'wiredep', ->
 gulp.task 'nodemon', ->
   $.nodemon
     ext : 'coffee'
-    script : 'server.coffee'
+    script : 'server/index.coffee'
     env :
       'NODE_ENV' : 'development'
       'PORT' : 3000
@@ -31,11 +31,7 @@ gulp.task 'nodemon', ->
       'GITHUB_SECRET' : '6038e35e20e6b4fc86e7a0694329eee7f8cf9814'
 
 gulp.task 'coffeelint', ->
-  gulp.src [
-      './*.coffee'
-      './server/**/*.coffee'
-      '!./client'
-    ]
+  gulp.src './server/**/*.coffee'
     .pipe $.coffeelint()
     .pipe $.coffeelint.reporter()
 
@@ -57,12 +53,14 @@ gulp.task 'webpack-production', ->
 
 gulp.task 'copy', ->
   gulp.src [
-    './client/img/**'
     './client/js/bundle.js'
     './client/index.html'
     './client/favicon.ico'
+    './server/**'
+    'package.json'
+    'Procfile'
   ]
-  , base : './client'
+  , base : '.'
     .pipe gulp.dest './dist'
 
 gulp.task 'build', ->
