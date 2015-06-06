@@ -23,8 +23,7 @@ mongoose.connect conf.mongoUrl
 mongoose.connection.on 'error', (err) ->
   console.log chalk.bgRed.bold "MongoDB connection error: #{err}"
 
-if app.get('env') is 'development' then staticPath = 'client' else staticPath = 'public'
-staticPath = path.normalize "#{__dirname}/../#{staticPath}"
+staticPath = path.normalize "#{__dirname}/../client"
 
 app
   .use morgan 'dev'
@@ -41,7 +40,7 @@ app
       filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
 
 # Force HTTPS on Heroku
-if app.get 'env' is 'production'
+if app.get('env') is 'production'
   app.use (req, res, next) ->
     protocol = req.get 'x-forwarded-proto'
     if protocol is 'https' then next() else res.redirect "https://#{req.hostname}#{req.url}"
