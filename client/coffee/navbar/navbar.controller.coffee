@@ -5,12 +5,7 @@ NavbarCtrl = ($auth, $alert, Auth, $rootScope) ->
     e.preventDefault()
     $auth
       .logout()
-      .then ->
-        $alert
-          content : 'Вы успешно вышли'
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+      .then -> $alert content : 'Вы успешно вышли'
 
   return
 

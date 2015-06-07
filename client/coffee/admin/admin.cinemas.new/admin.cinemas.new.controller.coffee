@@ -10,18 +10,10 @@ AdminCinemasNewCtrl = (Cinema, $alert, $state, Upload) ->
             cinema : @cinema
           file : @file
         .success (res) ->
-          $alert
-            content : 'Кинотеатр добавлен'
-            animation : 'fadeZoomFadeDown'
-            type : 'material'
-            duration : 3
+          $alert content : 'Кинотеатр добавлен'
           $state.go 'admin.cinemas.all'
     else
-      $alert
-        content : 'Постер обязателен!'
-        animation : 'fadeZoomFadeDown'
-        type : 'material'
-        duration : 3
+      $alert content : 'Постер обязателен!'
 
   return
 

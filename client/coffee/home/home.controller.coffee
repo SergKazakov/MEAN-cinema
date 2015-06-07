@@ -2,8 +2,8 @@ HomeCtrl = (newMovies, upcomingMovies) ->
 
   @newMovies          = newMovies.data
   @upcomingMovies     = upcomingMovies.data
-  @noNewMovies        = unless @newMovies then on else no
-  @noUpcomingMovies   = unless @upcomingMovies then on else no
+  @noNewMovies        = unless @newMovies.length then on else no
+  @noUpcomingMovies   = unless @upcomingMovies.length then on else no
 
   return
 

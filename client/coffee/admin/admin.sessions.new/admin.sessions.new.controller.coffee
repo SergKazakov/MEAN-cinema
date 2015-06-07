@@ -6,11 +6,7 @@ AdminSessionsNewCtrl = (Session, Cinema, Movie, $alert, $state) ->
     Session
       .createSession @session
       .success (res) ->
-        $alert
-          content : 'Сеанс добавлен'
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+        $alert content : 'Сеанс добавлен'
         $state.go 'admin.sessions.all'
 
   @loadMovies = (name) ->

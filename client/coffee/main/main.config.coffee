@@ -1,4 +1,4 @@
-mainConfig = ($urlRouterProvider, $locationProvider, $authProvider) ->
+mainConfig = ($urlRouterProvider, $locationProvider, $authProvider, $alertProvider) ->
   $urlRouterProvider.otherwise '/'
 
   $authProvider.facebook
@@ -13,6 +13,11 @@ mainConfig = ($urlRouterProvider, $locationProvider, $authProvider) ->
   $authProvider.twitter
     url : process.env.TWITTER_URL
 
-mainConfig.$inject = ['$urlRouterProvider', '$locationProvider', '$authProvider']
+  angular.extend $alertProvider.defaults,
+    animation : 'fadeZoomFadeDown'
+    type : 'material'
+    duration : 3
+
+mainConfig.$inject = ['$urlRouterProvider', '$locationProvider', '$authProvider', '$alertProvider']
 
 module.exports = mainConfig

@@ -6,34 +6,18 @@ LoginCtrl = ($rootScope, $alert, $auth, jwtHelper) ->
         password : @password
       .then (response) ->
         $rootScope.currentUser = jwtHelper.decodeToken(response.data.token).sub
-        $alert
-          content : 'Вы успешно вошли'
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+        $alert content : 'Вы успешно вошли'
       .catch (response) ->
-        $alert
-          content : response.data.message
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+        $alert content : response.data.message
 
   @authenticate = (provider) ->
     $auth
       .authenticate provider
       .then (response) ->
         $rootScope.currentUser = jwtHelper.decodeToken(response.data.token).sub
-        $alert
-          content : 'Вы успешно вошли'
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+        $alert content : 'Вы успешно вошли'
       .catch (response) ->
-        $alert
-          content : if response.data then response.data.message else response
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+        $alert content : if response.data then response.data.message else response
 
   return
 

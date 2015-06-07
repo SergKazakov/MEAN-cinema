@@ -14,11 +14,7 @@ AdminPersonsEditCtrl = (Person, person, $alert, $state, Upload) ->
       promise = Person.editPerson @person
 
     promise.success (res) ->
-      $alert
-        content : 'Актер добавлен'
-        animation : 'fadeZoomFadeDown'
-        type : 'material'
-        duration : 3
+      $alert content : 'Актер добавлен'
       $state.go 'admin.persons.all'
 
   return

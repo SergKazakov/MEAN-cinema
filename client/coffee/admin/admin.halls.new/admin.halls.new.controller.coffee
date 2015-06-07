@@ -4,11 +4,7 @@ AdminHallsNewCtrl = (Hall, Cinema, $alert, $state) ->
     Hall
       .createHall @hall
       .success (res) ->
-        $alert
-          content : 'Зал добавлен'
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+        $alert content : 'Зал добавлен'
         $state.go 'admin.halls.all'
 
   @loadCinemas = (name) ->

@@ -10,18 +10,10 @@ AdminMoviesNewCtrl = (Movie, Person, $alert, $state, Upload) ->
             movie : @movie
           file : @file
         .success (res) ->
-          $alert
-            content : 'Фильм добавлен'
-            animation : 'fadeZoomFadeDown'
-            type : 'material'
-            duration : 3
+          $alert content : 'Фильм добавлен'
           $state.go 'admin.movies.all'
     else
-      $alert
-        content : 'Постер обязателен!'
-        animation : 'fadeZoomFadeDown'
-        type : 'material'
-        duration : 3
+      $alert content : 'Постер обязателен!'
 
   @loadPersons = (name) ->
     Person.getPersonsByName name

@@ -1,6 +1,6 @@
 CinemasCtrl = (cinemas) ->
   @cinemas    = cinemas.data
-  @noCinemas  = unless @cinemas then on else no
+  @noCinemas  = unless @cinemas.length then on else no
 
   return
 

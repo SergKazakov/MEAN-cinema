@@ -2,14 +2,8 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth) ->
   @getProfile = ->
     Auth
       .getProfile()
-      .success (response) =>
-        @user = response
-      .error (error) ->
-        $alert
-          content : error.message
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+      .success (response) => @user = response
+      .error (error) -> $alert content : error.message
 
   @getProfile()
 
@@ -20,47 +14,22 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth) ->
         email : @user.email
       .success (response) ->
         $rootScope.currentUser = response
-        $alert
-          content : 'Профиль обновлен'
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+        $alert content : 'Профиль обновлен'
 
   @link = (provider) ->
     $auth
       .link provider
-      .then ->
-        $alert
-          content : "Вы успешно привязали #{provider}"
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
-      .then =>
-        @getProfile()
-      .catch (response) ->
-        $alert
-          content : response.data.message
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+      .then -> $alert content : "Вы успешно привязали #{provider}"
+      .then => @getProfile()
+      .catch (response) -> $alert content : response.data.message
 
   @unlink = (provider) ->
     $auth
       .unlink provider
-      .then ->
-        $alert
-          content : "Вы успешно отвязали #{provider}"
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
-      .then =>
-        @getProfile()
+      .then -> $alert content : "Вы успешно отвязали #{provider}"
+      .then => @getProfile()
       .catch (response) ->
-        $alert
-          content : if response.data then response.data.message else "Невозможно привязать #{provider}"
-          animation : 'fadeZoomFadeDown'
-          type : 'material'
-          duration : 3
+        $alert content : if response.data then response.data.message else "Невозможно привязать #{provider}"
 
   return
 

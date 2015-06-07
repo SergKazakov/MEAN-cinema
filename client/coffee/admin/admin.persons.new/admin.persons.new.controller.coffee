@@ -10,18 +10,10 @@ AdminPersonsNewCtrl = ($alert, $state, Upload) ->
             person : @person
           file : @file
         .success (res) ->
-          $alert
-            content : 'Актер добавлен'
-            animation : 'fadeZoomFadeDown'
-            type : 'material'
-            duration : 3
+          $alert content : 'Актер добавлен'
           $state.go 'admin.persons.all'
     else
-      $alert
-        content : 'Фото обязательно!'
-        animation : 'fadeZoomFadeDown'
-        type : 'material'
-        duration : 3
+      $alert content : 'Фото обязательно!'
 
   return
 
