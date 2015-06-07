@@ -1,6 +1,7 @@
 express             = require 'express'
 router              = express.Router()
 User                = require('mongoose').model 'User'
+createJWT           = require './createJWT'
 ensureAuthenticated = require './ensureAuthenticated'
 
 router
@@ -17,6 +18,6 @@ router
       user.email = req.body.email or user.email
       user.save (err, user) ->
         return next(err) if err
-        res.status(200).send user
+        res.status(200).send token : createJWT user
 
 module.exports = (app) -> app.use '/api/v1', router

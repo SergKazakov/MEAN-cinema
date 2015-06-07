@@ -1,4 +1,4 @@
-ProfileCtrl = ($rootScope, $auth, $alert, Auth) ->
+ProfileCtrl = ($rootScope, $auth, $alert, Auth, jwtHelper) ->
   @getProfile = ->
     Auth
       .getProfile()
@@ -13,7 +13,8 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth) ->
         displayName : @user.displayName
         email : @user.email
       .success (response) ->
-        $rootScope.currentUser = response
+        $rootScope.currentUser = jwtHelper.decodeToken(response.token).sub
+        $auth.setToken response.token, redirect : no
         $alert content : 'Профиль обновлен'
 
   @link = (provider) ->
@@ -33,6 +34,6 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth) ->
 
   return
 
-ProfileCtrl.$inject = ['$rootScope', '$auth', '$alert', 'Auth']
+ProfileCtrl.$inject = ['$rootScope', '$auth', '$alert', 'Auth', 'jwtHelper']
 
 module.exports = ProfileCtrl
