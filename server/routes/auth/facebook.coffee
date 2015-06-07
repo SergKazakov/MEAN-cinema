@@ -43,24 +43,18 @@ router
               user.displayName = user.displayName or profile.name
               user.save (err) ->
                 return next(err) if err
-                res.send
-                  user : user
-                  token : createJWT user
+                res.send token : createJWT user
         else
           User.findOne facebook : profile.id, (err, existingUser) ->
             return next(err) if err
             if existingUser
-              return res.send
-                user : existingUser
-                token : createJWT existingUser
+              return res.send token : createJWT existingUser
             user = new User
               facebook : profile.id
               picture : "https://graph.facebook.com/#{profile.id}/picture?type=large"
               displayName : profile.name
             user.save (err) ->
               return next(err) if err
-              res.send
-                user : user
-                token : createJWT user
+              res.send token : createJWT user
 
 module.exports = (app) -> app.use '/auth', router

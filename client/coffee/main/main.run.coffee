@@ -1,5 +1,6 @@
-mainRun = ($rootScope, $auth, store, Permission, $q, Auth) ->
-  $rootScope.currentUser = store.get 'profile' if $auth.isAuthenticated()
+mainRun = ($rootScope, $auth, Permission, $q, Auth, jwtHelper, storage) ->
+  if $auth.isAuthenticated()
+    $rootScope.currentUser = jwtHelper.decodeToken(storage.get 'satellizer_token').sub
 
   Permission
     .defineRole 'user', (stateParams) ->
@@ -14,6 +15,6 @@ mainRun = ($rootScope, $auth, store, Permission, $q, Auth) ->
 
       deferred.promise
 
-mainRun.$inject = ['$rootScope', '$auth', 'store', 'Permission', '$q', 'Auth']
+mainRun.$inject = ['$rootScope', '$auth', 'Permission', '$q', 'Auth', 'jwtHelper', 'satellizer.storage']
 
 module.exports = mainRun

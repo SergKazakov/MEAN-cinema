@@ -11,9 +11,7 @@ router
       user.comparePassword req.body.password, (err, isMatch) ->
         return next(err) if (err)
         return res.status(401).send message : 'Wrong email and/or password' if not isMatch
-        res.send
-          user : user
-          token : createJWT user
+        res.send token : createJWT user
 
   .post '/signup', (req, res, next) ->
     User.findOne  email : req.body.email, (err, existingUser) ->
@@ -25,8 +23,6 @@ router
         password : req.body.password
       user.save (err, user) ->
         return next(err) if err
-        res.send
-          user : user
-          token : createJWT user
+        res.send token : createJWT user
 
 module.exports = (app) -> app.use '/auth', router

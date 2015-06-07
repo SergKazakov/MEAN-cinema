@@ -1,4 +1,4 @@
-SignupCtrl = ($rootScope, $alert, $auth, store) ->
+SignupCtrl = ($rootScope, $alert, $auth, jwtHelper) ->
   @signup = ->
     $auth
       .signup
@@ -6,8 +6,7 @@ SignupCtrl = ($rootScope, $alert, $auth, store) ->
         email : @email
         password : @password
       .then (response) ->
-        store.set 'profile', response.data.user
-        $rootScope.currentUser = store.get 'profile'
+        $rootScope.currentUser = jwtHelper.decodeToken(response.data.token).sub
       .catch (response) ->
         if typeof response.data.message is 'object'
           angular.forEach response.data.message, (message) ->
@@ -25,6 +24,6 @@ SignupCtrl = ($rootScope, $alert, $auth, store) ->
 
   return
 
-SignupCtrl.$inject = ['$rootScope', '$alert', '$auth', 'store']
+SignupCtrl.$inject = ['$rootScope', '$alert', '$auth', 'jwtHelper']
 
 module.exports = SignupCtrl

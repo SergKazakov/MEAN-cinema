@@ -2,7 +2,6 @@ module.exports = [
   'mgcrea.ngStrap'
   'satellizer'
   'angular-loading-bar'
-  'angular-storage'
   'ngFileUpload'
   'permission'
   'angularUtils.directives.dirPagination'
@@ -13,6 +12,7 @@ module.exports = [
   require 'angular-ui-router'
   require 'angular-animate'
   require 'angular-sanitize'
+  require 'angular-jwt'
   require('../navbar/navbar').name
   require('../home/home').name
   require('../login/login').name

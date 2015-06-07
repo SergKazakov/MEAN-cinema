@@ -1,12 +1,11 @@
-LoginCtrl = ($rootScope, $alert, $auth, store) ->
+LoginCtrl = ($rootScope, $alert, $auth, jwtHelper) ->
   @login = ->
     $auth
       .login
         email : @email
         password : @password
       .then (response) ->
-        store.set 'profile', response.data.user
-        $rootScope.currentUser = store.get 'profile'
+        $rootScope.currentUser = jwtHelper.decodeToken(response.data.token).sub
         $alert
           content : 'Вы успешно вошли'
           animation : 'fadeZoomFadeDown'
@@ -23,8 +22,7 @@ LoginCtrl = ($rootScope, $alert, $auth, store) ->
     $auth
       .authenticate provider
       .then (response) ->
-        store.set 'profile', response.data.user
-        $rootScope.currentUser = store.get 'profile'
+        $rootScope.currentUser = jwtHelper.decodeToken(response.data.token).sub
         $alert
           content : 'Вы успешно вошли'
           animation : 'fadeZoomFadeDown'
@@ -39,6 +37,6 @@ LoginCtrl = ($rootScope, $alert, $auth, store) ->
 
   return
 
-LoginCtrl.$inject = ['$rootScope', '$alert', '$auth', 'store']
+LoginCtrl.$inject = ['$rootScope', '$alert', '$auth', 'jwtHelper']
 
 module.exports = LoginCtrl

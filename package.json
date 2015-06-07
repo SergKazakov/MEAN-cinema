@@ -4,10 +4,10 @@
   "dependencies": {
     "angular": "1.4.0",
     "angular-animate": "^1.4.0",
+    "angular-jwt": "0.0.9",
     "angular-messages": "^1.4.0",
     "angular-resource": "^1.4.0",
     "angular-sanitize": "^1.4.0",
-    "angular-storage": "0.0.11",
     "angular-ui-router": "^0.2.15",
     "async": "^1.1.0",
     "bcryptjs": "^2.1.0",

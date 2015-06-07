@@ -1,4 +1,4 @@
-ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
+ProfileCtrl = ($rootScope, $auth, $alert, Auth) ->
   @getProfile = ->
     Auth
       .getProfile()
@@ -19,8 +19,7 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
         displayName : @user.displayName
         email : @user.email
       .success (response) ->
-        store.set 'profile', response
-        $rootScope.currentUser = store.get 'profile'
+        $rootScope.currentUser = response
         $alert
           content : 'Профиль обновлен'
           animation : 'fadeZoomFadeDown'
@@ -65,6 +64,6 @@ ProfileCtrl = ($rootScope, $auth, $alert, Auth, store) ->
 
   return
 
-ProfileCtrl.$inject = ['$rootScope', '$auth', '$alert', 'Auth', 'store']
+ProfileCtrl.$inject = ['$rootScope', '$auth', '$alert', 'Auth']
 
 module.exports = ProfileCtrl

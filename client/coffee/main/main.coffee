@@ -1,7 +1,6 @@
 angular = require 'angular'
 
 require 'satellizer'
-require 'angular-storage'
 require 'ng-file-upload'
 
 require 'bower/angular-loading-bar/build/loading-bar.min'

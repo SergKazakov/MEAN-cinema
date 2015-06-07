@@ -1,4 +1,4 @@
-NavbarCtrl = ($auth, $alert, Auth, store, $rootScope) ->
+NavbarCtrl = ($auth, $alert, Auth, $rootScope) ->
   @isAuthenticated = -> $auth.isAuthenticated()
 
   @logout = (e) ->
@@ -6,7 +6,6 @@ NavbarCtrl = ($auth, $alert, Auth, store, $rootScope) ->
     $auth
       .logout()
       .then ->
-        store.remove 'profile'
         $alert
           content : 'Вы успешно вышли'
           animation : 'fadeZoomFadeDown'
@@ -15,6 +14,6 @@ NavbarCtrl = ($auth, $alert, Auth, store, $rootScope) ->
 
   return
 
-NavbarCtrl.$inject = ['$auth', '$alert', 'Auth', 'store', '$rootScope']
+NavbarCtrl.$inject = ['$auth', '$alert', 'Auth', '$rootScope']
 
 module.exports = NavbarCtrl
