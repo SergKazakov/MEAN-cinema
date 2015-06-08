@@ -5,7 +5,9 @@ NavbarCtrl = ($auth, $alert, Auth, $rootScope) ->
     e.preventDefault()
     $auth
       .logout()
-      .then -> $alert content : 'Вы успешно вышли'
+      .then ->
+        $rootScope.currentUser = {}
+        $alert content : 'Вы успешно вышли'
 
   return
 
