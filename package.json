@@ -51,6 +51,8 @@
     "gulp-load-plugins": "^0.10.0",
     "gulp-nodemon": "^2.0.3",
     "gulp-webpack": "^1.4.0",
+    "jade": "^1.10.0",
+    "jade-html-loader": "0.0.2",
     "loader-utils": "^0.2.9",
     "ng-cache-loader": "0.0.9",
     "postcss-loader": "^0.4.3",

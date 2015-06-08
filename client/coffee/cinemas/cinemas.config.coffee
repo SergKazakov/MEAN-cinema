@@ -1,7 +1,7 @@
 cinemasConfig = ($stateProvider) ->
   $stateProvider.state 'cinemas',
     url : '/cinemas'
-    template : require './cinemas.html'
+    template : require './cinemas.jade'
     controller : 'CinemasCtrl as vm'
     resolve :
       cinemas : ['Cinema', (Cinema) ->

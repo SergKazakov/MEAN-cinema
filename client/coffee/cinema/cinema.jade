@@ -1,0 +1,41 @@
+.container
+  .entity-wr.panel.panel-default
+    header.entity__header.panel-heading {{vm.cinema.name}}
+    .entity
+      img.entity__poster(ng-src='{{vm.cinema.poster}}', alt='')
+      .entity-info
+        ul.entity-info-list
+          li.entity-info-list__item
+            .entity-info-list__label Адрес
+            .entity-info-list__value {{vm.cinema.address}}
+          li.entity-info-list__item
+            .entity-info-list__label Сайт
+            .entity-info-list__value
+              a.entity-info-list__tag(href='{{vm.cinema.website}}', target='_blank') {{vm.cinema.website}}
+          li.entity-info-list__item
+            .entity-info-list__label Телефон
+            .entity-info-list__value
+              a.entity-info-list__tag(href='tel:{{vm.cinema.telephone}}') {{vm.cinema.telephone}}
+          li.entity-info-list__item
+            .entity-info-list__label Поддержка 3D
+            .entity-info-list__value
+              span(ng-if='vm.cinema.support3D') Да
+              span(ng-else='') Нет
+    h2 Описание
+    p {{vm.cinema.description}}
+    h2(ng-if='vm.noSessions') Упс! Сеансов нет:(
+    .cinema-sessions(ng-else='')
+      h1 Сеансы
+      table.table.cinema-sessions-table
+        thead
+          tr.cinema-sessions-table__tr
+            th.cinema-sessions-table__th(colspan='2') Название фильма
+            th.cinema-sessions-table__th Зал
+            th.cinema-sessions-table__th Время
+        tr.cinema-sessions-table__tr(ng-repeat='session in vm.sessions')
+          td.cinema-sessions-table__td
+            a(ui-sref='movie({movieId: session.movie._id})')
+              img.cinema-sessions-table__img(ng-src='{{session.movie.poster}}', alt='')
+          td.cinema-sessions-table__td {{session.movie.name}}
+          td.cinema-sessions-table__td {{session.hall.name}}
+          td.cinema-sessions-table__td {{session.date | date : 'dd/MM/yyyy HH:mm:ss'}}

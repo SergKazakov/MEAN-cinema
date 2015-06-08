@@ -1,0 +1,15 @@
+.container
+  h2 Сегодня в кино
+  h3(ng-if='vm.noNewMovies') Пусто:((
+  ul.home-gallery(ng-if='vm.newMovies.length')
+    li.home-gallery__item(ng-repeat='movie in vm.newMovies')
+      img.home-gallery__img(ng-src='{{movie.poster}}', alt='')
+      a.home-gallery__link(ui-sref='movie({movieId : movie._id})')
+        span.home-gallery__name {{movie.name}}
+  h2 Скоро в кино
+  h3(ng-if='vm.noUpcomingMovies') Пусто:((
+  ul.home-gallery(ng-if='vm.upcomingMovies.length')
+    li.home-gallery__item(ng-repeat='movie in vm.upcomingMovies')
+      img.home-gallery__img(ng-src='{{movie.poster}}', alt='')
+      a.home-gallery__link(ui-sref='movie({movieId : movie._id})')
+        span.home-gallery__name {{movie.name}}

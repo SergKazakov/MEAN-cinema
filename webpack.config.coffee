@@ -48,8 +48,8 @@ module.exports = (options) ->
         test : /\.(svg|eot|ttf|woff)/
         loader : 'url-loader'
       ,
-        test : /\.html$/
-        loader : 'ng-cache?prefix=[dir]/[dir]'
+        test : /\.jade$/
+        loader : 'ng-cache?prefix=[dir]/[dir]!jade-html'
     ]
     noParse : [
       path.join bowerRoot, '/angular'

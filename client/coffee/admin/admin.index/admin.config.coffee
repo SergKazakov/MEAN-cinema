@@ -2,7 +2,7 @@ adminConfig = ($stateProvider, tagsInputConfigProvider) ->
   $stateProvider.state 'admin',
     url : '/admin'
     absract : on
-    template : require './admin.html'
+    template : require './admin.jade'
     controller : 'AdminCtrl as vm'
     data :
       permissions :

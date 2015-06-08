@@ -1,0 +1,33 @@
+form(ng-submit='vm.action()')
+  p(ng-if='vm.session.createdAt') Дата создания: {{vm.session.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  p(ng-if='vm.session.updatedAt')
+    | Дата последнего обновления: {{vm.session.updatedAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  .form-group
+    label Дата
+    .form-inline
+      input.form-control(type='text', placeholder='Дата', ng-model='vm.session.date', bs-datepicker='', date-format='longDate')
+      input.form-control(type='text', placeholder='Время', ng-model='vm.session.date', bs-timepicker='', time-format='h:mm:ss a')
+  .form-group
+    label Фильм
+    ui-select(ng-model='vm.session.movie', theme='bootstrap', ng-disabled='disabled', reset-search-input='false')
+      ui-select-match(placeholder='Добавить фильм') {{$select.selected.name}}
+      ui-select-choices(repeat='movie in vm.movies track by $index', refresh='vm.loadMovies($select.search)', refresh-delay='0')
+        div(ng-bind-html='movie.name')
+  .form-group
+    label Кинотеатр
+    ui-select(ng-model='vm.session.cinema', theme='bootstrap', ng-disabled='disabled', reset-search-input='false', on-select='vm.loadHalls($item, $model)')
+      ui-select-match(placeholder='Добавить кинотеатр') {{$select.selected.name}}
+      ui-select-choices(repeat='cinema in vm.cinemas track by $index', refresh='vm.loadCinemas($select.search)', refresh-delay='0')
+        div(ng-bind-html='cinema.name')
+  .form-group
+    label Зал
+    ui-select(ng-model='vm.session.hall', theme='bootstrap', ng-disabled='disabled')
+      ui-select-match(placeholder='Добавить зал') {{$select.selected.name}}
+      ui-select-choices(repeat='hall in vm.session.cinema.halls track by $index')
+        div(ng-bind-html='hall.name')
+  .form-group
+    button.btn.btn-default(type='button', placeholder='Формат', ng-model='vm.session.format', bs-options='value for value in vm.format', bs-select)
+      span.caret
+  button.btn.btn-default(type='submit')
+    i.ion-checkmark
+    | Сохранить

@@ -1,0 +1,46 @@
+form(ng-submit='vm.action()')
+  p(ng-if='vm.movie.createdAt') Дата создания: {{vm.movie.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  p(ng-if='vm.movie.updatedAt')
+    | Дата последнего обновления: {{vm.movie.updatedAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  .form-group
+    label Название
+    input.form-control(type='text', ng-model='vm.movie.name')
+  .form-group
+    label Оригинальное название
+    input.form-control(type='text', ng-model='vm.movie.originalName')
+  .form-group
+    img.photo(ng-if='!vm.file.length && vm.movie.poster', ng-src='{{vm.movie.poster}}')
+    img.photo(ng-if='vm.file.length', ngf-src='vm.file[0]')
+    span.btn.btn-primary(type='text', ng-model='vm.file', ngf-select) Загрузить постер
+  .form-group
+    label Страна
+    input.form-control(type='text', ng-model='vm.movie.country')
+  .form-group
+    label Жанры
+    tags-input(ng-model='vm.movie.genre', placeholder='Добавить жанр')
+  .form-group
+    label Режиссеры
+    tags-input(replace-spaces-with-dashes='false', display-property='name', ng-model='vm.movie.directors', placeholder='Добавить режиссера')
+      auto-complete(source='vm.loadPersons($query)')
+  .form-group
+    label Актеры
+    tags-input(replace-spaces-with-dashes='false', display-property='name', ng-model='vm.movie.actors', placeholder='Добавить актера')
+      auto-complete(source='vm.loadPersons($query)')
+  .form-group
+    label Длительность
+    input.form-control(type='text', ng-model='vm.movie.duration')
+  .form-group
+    label Возрастной рейтинг
+    input.form-control(type='text', ng-model='vm.movie.ageRating')
+  .form-group
+    label Премьера
+    input.form-control(type='text', ng-model='vm.movie.releaseDate', bs-datepicker, date-format='longDate')
+  .form-group
+    label Окончание
+    input.form-control(type='text', ng-model='vm.movie.finishDate', bs-datepicker, date-format='longDate')
+  .form-group
+    label Синопсис
+    textarea.form-control(ng-model='vm.movie.synopsis')
+  button.btn.btn-default(type='submit')
+    i.ion-checkmark
+    | Сохранить

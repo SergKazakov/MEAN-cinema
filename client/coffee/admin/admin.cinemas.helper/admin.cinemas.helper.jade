@@ -1,0 +1,28 @@
+form(ng-submit='vm.action()')
+  p(ng-if='vm.cinema.createdAt') Дата создания: {{vm.cinema.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  p(ng-if='vm.cinema.updatedAt') Дата последнего обновления: {{vm.cinema.updatedAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  .form-group
+    label Название
+    input.form-control(type='text', ng-model='vm.cinema.name')
+  .form-group
+    img.photo(ng-if='!vm.file.length && vm.cinema.poster', ng-src='{{vm.cinema.poster}}')
+    img.photo(ng-if='vm.file.length', ngf-src='vm.file[0]')
+    span.btn.btn-primary(type='text', ng-model='vm.file', ngf-select) Загрузить картинку
+  .form-group
+    label Адрес
+    input.form-control(type='text', ng-model='vm.cinema.address')
+  .form-group
+    label Телефон
+    input.form-control(type='text', ng-model='vm.cinema.telephone')
+  .form-group
+    label Сайт
+    input.form-control(type='text', ng-model='vm.cinema.website')
+  .form-group
+    label Поддержка 3D
+    input(type='checkbox', ng-model='vm.cinema.support3D')
+  .form-group
+    label Описание
+    textarea.form-control(ng-model='vm.cinema.description')
+  button.btn.btn-default(type='submit')
+    i.ion-checkmark
+    | Сохранить

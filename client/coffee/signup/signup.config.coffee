@@ -1,7 +1,7 @@
 signupConfig = ($stateProvider) ->
   $stateProvider.state 'signup',
     url : '/signup'
-    template : require './signup.html'
+    template : require './signup.jade'
     controller : 'SignupCtrl as vm'
 
 signupConfig.$inject = ['$stateProvider']

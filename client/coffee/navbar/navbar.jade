@@ -1,0 +1,23 @@
+.navbar.navbar-default.navbar-static-top
+  .container
+    a.logo(ui-sref='home')
+      i.ion-film-marker
+    ul.nav.navbar-nav
+      li
+        a(ui-sref='cinemas', ui-sref-active='active') Кинотетры
+    ul.nav.navbar-nav.pull-right
+      li(ng-if='!vm.isAuthenticated()')
+        a(ui-sref='login', ui-sref-active='active') Войти
+      li(ng-if='!vm.isAuthenticated()')
+        a(ui-sref='signup', ui-sref-active='active') Зерегистрироваться
+      li(ng-if='vm.isAuthenticated()')
+        a(ui-sref='profile', ui-sref-active='active')
+          span.header-avatar__img-wr
+            img.header-avatar__img(ng-src="{{currentUser.picture || 'http://placehold.it/25x25'}}")
+          | Привет,
+          span(ng-bind='currentUser.displayName')
+      li(ng-if="vm.isAuthenticated() && currentUser.role === 'Admin'")
+        a(ui-sref='admin.movies.all', ui-sref-active='active') Админка
+      li(ng-if='vm.isAuthenticated()')
+        a(href='#', ng-click='vm.logout($event)') Выйти
+

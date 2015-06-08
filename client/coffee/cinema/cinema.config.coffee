@@ -1,7 +1,7 @@
 cinemaConfig = ($stateProvider) ->
   $stateProvider.state 'cinema',
     url : '/cinema/:cinemaId'
-    template : require './cinema.html'
+    template : require './cinema.jade'
     controller : 'CinemaCtrl as vm'
     resolve :
       cinema : ['Cinema', '$stateParams', (Cinema, $stateParams) ->

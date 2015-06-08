@@ -1,7 +1,7 @@
 personConfig = ($stateProvider) ->
   $stateProvider.state 'person',
     url : '/person/:personId'
-    template : require './person.html'
+    template : require './person.jade'
     controller : 'PersonCtrl as vm'
     resolve :
       person : ['Person', '$stateParams', (Person, $stateParams) ->

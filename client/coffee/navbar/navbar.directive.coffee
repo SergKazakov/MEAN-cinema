@@ -1,6 +1,6 @@
 navbarDirective = ->
   restrict : 'E'
-  template : require './navbar.html'
+  template : require './navbar.jade'
   controller : 'NavbarCtrl as vm'
   replace : on
 

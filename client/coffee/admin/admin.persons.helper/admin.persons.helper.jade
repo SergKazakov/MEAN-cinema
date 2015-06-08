@@ -1,0 +1,27 @@
+form(ng-submit='vm.action()')
+  p(ng-if='vm.person.createdAt') Дата создания: {{vm.person.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  p(ng-if='vm.person.updatedAt') Дата последнего обновления: {{vm.person.updatedAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  .form-group
+    label Имя
+    input.form-control(type='text', ng-model='vm.person.name')
+  .form-group
+    label Карьера
+    tags-input(ng-model='vm.person.career', placeholder='Добавить карьеру')
+  .form-group
+    img.photo(ng-if='!vm.file.length && vm.person.photo', ng-src='{{vm.person.photo}}')
+    img.photo(ng-if='vm.file.length', ngf-src='vm.file[0]')
+    span.btn.btn-primary(type='text', ng-model='vm.file', ngf-select='') Загрузить постер
+  .form-group
+    label Дата рождения
+    input.form-control(type='text', ng-model='vm.person.birthdate', bs-datepicker, date-format='longDate')
+  .form-group
+    label Место рождения
+    input.form-control(type='text', ng-model='vm.person.birthPlace')
+  .form-group
+    input#male(type='radio', ng-model='vm.person.gender', value='male')
+    label(for='male') М
+    input#female(type='radio', ng-model='vm.person.gender', value='female')
+    label(for='female') Ж
+  button.btn.btn-default(type='submit')
+    i.ion-checkmark
+    | Сохранить

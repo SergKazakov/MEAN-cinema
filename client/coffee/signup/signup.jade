@@ -1,0 +1,32 @@
+.container
+  .row
+    .center-form.panel
+      .panel-body
+        h2.text-center Зарегистрироваться
+        form(method='post', ng-submit='vm.signup()', name='signupForm')
+          .form-group.has-feedback(ng-class="{ 'has-error' : signupForm.displayName.$invalid && signupForm.displayName.$dirty }")
+            input.form-control.input-lg(type='text', name='displayName', ng-model='vm.displayName', placeholder='Имя', required='required', autofocus='autofocus')
+            span.ion-person.form-control-feedback
+            .help-block.text-danger(ng-if='signupForm.displayName.$dirty', ng-messages='signupForm.displayName.$error')
+              div(ng-message='required') Имя обязательно
+          .form-group.has-feedback(ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }")
+            input#email.form-control.input-lg(type='email', name='email', ng-model='vm.email', placeholder='E-mail', required='required', ng-pattern='/^[A-z]+[a-z0-9._]+@[a-z]+.[a-z.]{2,5}$/')
+            span.ion-at.form-control-feedback
+            .help-block.text-danger(ng-if='signupForm.email.$dirty', ng-messages='signupForm.email.$error')
+              div(ng-message='required') E-mail обязателен
+              div(ng-message='pattern') E-mail имеет неправильный формат
+          .form-group.has-feedback(ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }")
+            input.form-control.input-lg(type='password', name='password', ng-model='vm.password', placeholder='Пароль', required='required')
+            span.ion-key.form-control-feedback
+            .help-block.text-danger(ng-if='signupForm.password.$dirty', ng-messages='signupForm.password.$error')
+              div(ng-message='required') Пароль обязателен
+          .form-group.has-feedback(ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }")
+            input.form-control.input-lg(password-match='vm.password', type='password', name='confirmPassword', ng-model='vm.confirmPassword', placeholder='Подтвердите пароль')
+            span.ion-key.form-control-feedback
+            .help-block.text-danger(ng-if='signupForm.confirmPassword.$dirty', ng-messages='signupForm.confirmPassword.$error')
+              div(ng-message='compareTo') Пароль должен совпадать
+          button.btn.btn-lg.btn-block.btn-primary(type='submit', ng-disabled='signupForm.$invalid') Зарегистрироваться
+          br
+          p.text-center.text-muted
+            | Уже есть аккаунт? 
+            a(ui-sref='login') Войти

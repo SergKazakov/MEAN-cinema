@@ -1,0 +1,5 @@
+.container
+  ul.admin-sidebar.panel.panel-default
+    li.admin-sidebar__item(ng-repeat='item in vm.menu')
+      a.admin-sidebar__link(ui-sref='{{item.state}}', ng-class="{'admin-sidebar__link_active' : vm.state.includes(item.parent)}") {{item.title}}
+  ui-view.admin-content.panel.panel-default

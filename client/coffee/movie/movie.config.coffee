@@ -1,7 +1,7 @@
 movieConfig = ($stateProvider) ->
   $stateProvider.state 'movie',
     url : '/movie/:movieId'
-    template : require './movie.html'
+    template : require './movie.jade'
     controller : 'MovieCtrl as vm'
     resolve :
       movie : ['Movie', '$stateParams', (Movie, $stateParams) ->

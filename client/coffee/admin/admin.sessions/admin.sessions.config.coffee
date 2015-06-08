@@ -1,7 +1,7 @@
 adminSessionsConfig = ($stateProvider) ->
   $stateProvider.state 'admin.sessions.all',
     url : ''
-    template : require './admin.sessions.html'
+    template : require './admin.sessions.jade'
     controller : 'AdminSessionsCtrl as vm'
     resolve :
       sessions : ['Session', (Session) ->

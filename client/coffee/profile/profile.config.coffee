@@ -1,7 +1,7 @@
 profileConfig = ($stateProvider) ->
   $stateProvider.state 'profile',
     url : '/profile'
-    template : require './profile.html'
+    template : require './profile.jade'
     controller : 'ProfileCtrl as vm'
     data :
       permissions :

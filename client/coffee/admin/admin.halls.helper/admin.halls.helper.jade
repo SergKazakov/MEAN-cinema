@@ -1,0 +1,15 @@
+form(ng-submit='vm.action()')
+  p(ng-if='vm.hall.createdAt') Дата создания: {{vm.hall.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  p(ng-if='vm.hall.updatedAt') Дата последнего обновления: {{vm.hall.updatedAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+  .form-group
+    label Название
+    input.form-control(type='text', placeholder='Название', ng-model='vm.hall.name')
+  .form-group
+    label Кинотеатр
+    ui-select(ng-model='vm.hall.cinema', theme='bootstrap', ng-disabled='disabled', reset-search-input='false')
+      ui-select-match(placeholder='Добавить кинотеатр') {{$select.selected.name}}
+      ui-select-choices(repeat='cinema in vm.cinemas track by $index', refresh='vm.loadCinemas($select.search)', refresh-delay='0')
+        div(ng-bind-html='cinema.name')
+  button.btn.btn-default(type='submit')
+    i.ion-checkmark
+    | Сохранить

@@ -1,0 +1,24 @@
+.container
+  .row
+    .center-form.panel
+      .panel-body
+        h2.text-center Войти
+        form(method='post', ng-submit='vm.login()', name='loginForm')
+          .form-group.has-feedback
+            input.form-control.input-lg(type='text', name='email', ng-model='vm.email', placeholder='E-mail', required='required', autofocus='autofocus')
+            span.ion-at.form-control-feedback
+          .form-group.has-feedback
+            input.form-control.input-lg(type='password', name='password', ng-model='vm.password', placeholder='Пароль', required='required')
+            span.ion-key.form-control-feedback
+          button.btn.btn-lg.btn-block.btn-success(type='submit', ng-disabled='loginForm.$invalid') Войти
+          p.text-center.text-muted
+            small
+              | Еще нет аккаунта? 
+              a(ui-sref='signup') Зарегистрироваться
+          .signup-or-separator
+            h6.text или
+            hr
+        button.btn.btn-block.btn-facebook(ng-click="vm.authenticate('facebook')") Facebook
+        button.btn.btn-block.btn-google-plus(ng-click="vm.authenticate('google')") Google
+        button.btn.btn-block.btn-twitter(ng-click="vm.authenticate('twitter')") Twitter
+        button.btn.btn-block.btn-github(ng-click="vm.authenticate('github')") GitHub

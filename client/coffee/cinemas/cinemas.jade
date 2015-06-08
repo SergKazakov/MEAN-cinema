@@ -1,0 +1,11 @@
+.container
+  p(ng-if='vm.noCinemas') Ooops! There are no cinemas:(
+  .cinemas(ng-if='vm.cinemas.length')
+    ul.cinemas-list
+      li.cinemas-list__item(ng-repeat='cinema in vm.cinemas')
+        a.cinemas-list__link(ui-sref='cinema({cinemaId : cinema._id})')
+          img.cinemas-list__img(ng-src='{{cinema.poster}}', alt='')
+          .cinemas-list__overlay
+            i.ion-heart.cinemas-list__like
+        p.cinemas-list__name {{cinema.name}}
+        address.cinemas-list__address {{cinema.address}}

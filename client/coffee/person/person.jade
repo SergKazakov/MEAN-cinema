@@ -1,0 +1,34 @@
+.container
+  .entity-wr.panel.panel-default
+    header.entity__header.panel-heading {{vm.person.name}}
+    .entity
+      img.entity__poster(ng-src='{{vm.person.photo}}', alt='')
+      .entity-info
+        ul.entity-info-list
+          li.entity-info-list__item
+            .entity-info-list__label Карьера
+            .entity-info-list__value
+              span.entity-info-list__tag(ng-repeat='item in vm.person.career') {{item.text}}
+          li.entity-info-list__item
+            .entity-info-list__label Дата рождения
+            .entity-info-list__value {{vm.person.birthdate | date : 'd MMMM yyyy'}}
+          li.entity-info-list__item
+            .entity-info-list__label Место рождения
+            .entity-info-list__value {{vm.person.birthPlace}}
+    div(ng-if='vm.person.moviesAsActor.length')
+      h2(ng-if="vm.person.gender === 'male'") Актер
+      h2(ng-else) Актриса
+      table.table
+        tr(ng-repeat='movie in vm.person.moviesAsActor')
+          td
+            a(ui-sref='movie({movieId: movie._id})')
+              img(style='max-width: 80px', ng-src='{{movie.poster}}', alt='')
+          td(style='vertical-align: middle') {{movie.name}}
+    div(ng-if='vm.person.moviesAsDirector.length')
+      h2 Режиссер
+      table.table
+        tr(ng-repeat='movie in vm.person.moviesAsDirector')
+          td
+            a(ui-sref='movie({movieId: movie._id})')
+              img(style='max-width: 80px', ng-src='{{movie.poster}}', alt='')
+          td(style='vertical-align: middle') {{movie.name}}

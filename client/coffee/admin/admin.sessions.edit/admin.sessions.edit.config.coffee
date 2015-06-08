@@ -1,7 +1,7 @@
 adminSessionsEditConfig = ($stateProvider) ->
   $stateProvider.state 'admin.sessions.edit',
     url : '/:sessionId/edit'
-    template : require '../admin.sessions.helper/admin.sessions.helper.html'
+    template : require '../admin.sessions.helper/admin.sessions.helper.jade'
     controller : 'AdminSessionsEditCtrl as vm'
     resolve :
       session : ['Session', '$stateParams', (Session, $stateParams) ->

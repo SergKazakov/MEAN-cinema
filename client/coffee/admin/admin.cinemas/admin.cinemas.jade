@@ -1,0 +1,11 @@
+p(ng-if='vm.noCinemas') Упс! Пока кинотеатров нет:(
+.admin-grid-wr(ng-else='')
+  ul.admin-grid
+    li.admin-grid__item(pagination-id='cinemasPagination', dir-paginate='cinema in vm.cinemas | itemsPerPage: 10', total-items='vm.totalCinemas', current-page='vm.currentPage')
+      img.admin-grid__img(ng-src='{{cinema.poster}}')
+      .admin-grid__overlay
+        .admin-grid__buttons
+          a.btn.btn-default.ion-edit(ui-sref='admin.cinemas.edit({cinemaId: cinema._id})')
+          button.btn.btn-danger.ion-close(ng-click='vm.deleteCinema(cinema._id, $index)')
+  dir-pagination-controls.pagination-wr(boundary-links='true', on-page-change='vm.changePage(newPageNumber)', pagination-id='cinemasPagination')
+a.btn.btn-primary(ui-sref='admin.cinemas.new') Добавить кинотеатр
