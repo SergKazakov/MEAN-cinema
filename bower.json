@@ -1,5 +1,5 @@
 {
-  "name": "angular-node-cinema",
+  "name": "MEAN-cinema",
   "version": "0.0.1",
   "dependencies": {
     "bootstrap": "~3.3.4",

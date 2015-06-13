@@ -1,1 +1,1 @@
-# angular-node-cinema
+# MEAN-cinema
