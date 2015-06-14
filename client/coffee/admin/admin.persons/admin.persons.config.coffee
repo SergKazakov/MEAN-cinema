@@ -5,7 +5,7 @@ adminPersonsConfig = ($stateProvider) ->
     controller : 'AdminPersonsCtrl as vm'
     resolve :
       persons : ['Person', (Person) ->
-        Person.getPersonsByPage 1
+        Person.getPersonsByPage 1, 10
       ]
 
 adminPersonsConfig.$inject = ['$stateProvider']

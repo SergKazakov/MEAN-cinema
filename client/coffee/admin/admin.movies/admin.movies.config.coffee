@@ -5,7 +5,7 @@ adminMoviesConfig = ($stateProvider) ->
     controller : 'AdminMoviesCtrl as vm'
     resolve :
       movies : ['Movie', (Movie) ->
-        Movie.getMoviesByPage 1
+        Movie.getMoviesByPage 1, 10
       ]
 
 adminMoviesConfig.$inject = ['$stateProvider']

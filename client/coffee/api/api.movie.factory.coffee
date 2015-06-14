@@ -5,8 +5,8 @@ Movie = ($http) ->
     $http.get "/api/v1/movies?name=#{movieName}"
   getMoviesByStatus : (status) ->
     $http.get "/api/v1/movies?status=#{status}"
-  getMoviesByPage : (pageNumber) ->
-    $http.get "/api/v1/movies?page=#{pageNumber}"
+  getMoviesByPage : (pageNumber, pageSize) ->
+    $http.get "/api/v1/movies?page=#{pageNumber}&size=#{pageSize}"
   createMovie : (movie) ->
     $http.post '/api/v1/movies', movie
   getMovie : (movieId) ->

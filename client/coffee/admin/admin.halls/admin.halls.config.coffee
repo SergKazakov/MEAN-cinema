@@ -5,7 +5,7 @@ adminHallsConfig = ($stateProvider) ->
     controller : 'AdminHallsCtrl as vm'
     resolve :
       halls : ['Hall', (Hall) ->
-        Hall.getHallsByPage 1
+        Hall.getHallsByPage 1, 10
       ]
 
 adminHallsConfig.$inject = ['$stateProvider']

@@ -18,7 +18,7 @@ router
       criterion = name : new RegExp req.query.name, 'i'
     else criterion = {}
     if req.query.page
-      Person.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
+      Person.paginate {}, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
         return next(err) if err
         res.status(200).send
           items : paginatedResults

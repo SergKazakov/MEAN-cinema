@@ -1,8 +1,8 @@
 Hall = ($http) ->
   getHalls : ->
     $http.get '/api/v1/halls'
-  getHallsByPage : (pageNumber) ->
-    $http.get "/api/v1/halls?page=#{pageNumber}"
+  getHallsByPage : (pageNumber, pageSize) ->
+    $http.get "/api/v1/halls?page=#{pageNumber}&size=#{pageSize}"
   createHall : (hall) ->
     $http.post '/api/v1/halls', hall
   getHall : (hallId) ->

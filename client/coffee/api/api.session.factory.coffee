@@ -1,8 +1,8 @@
 Session = ($http) ->
   getSessions : ->
     $http.get '/api/v1/sessions'
-  getSessionsByPage : (pageNumber) ->
-    $http.get "/api/v1/sessions?page=#{pageNumber}"
+  getSessionsByPage : (pageNumber, pageSize) ->
+    $http.get "/api/v1/sessions?page=#{pageNumber}&size=#{pageSize}"
   getSessionsByCinema : (cinemaId) ->
     $http.get "/api/v1/sessions?cinema=#{cinemaId}"
   getSessionsByMovie : (movieId) ->

@@ -3,8 +3,8 @@ Person = ($http) ->
     $http.get '/api/v1/persons'
   getPersonsByName : (personName) ->
     $http.get "/api/v1/persons?name=#{personName}"
-  getPersonsByPage : (pageNumber) ->
-    $http.get "/api/v1/persons?page=#{pageNumber}"
+  getPersonsByPage : (pageNumber, pageSize) ->
+    $http.get "/api/v1/persons?page=#{pageNumber}&size=#{pageSize}"
   createPerson : (person) ->
     $http.post '/api/v1/persons', person
   getPerson : (personId) ->

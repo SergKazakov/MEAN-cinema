@@ -2,12 +2,13 @@ AdminHallsCtrl = (Hall, halls) ->
 
   @halls      = halls.data.items
   @totalHalls = halls.data.count
+  @pageSize   = 10
   @noHalls    = unless @halls.length then on else no
   @currentPage = 1
 
   @changePage = (newPageNumber) ->
     Hall
-      .getHallsByPage newPageNumber
+      .getHallsByPage newPageNumber, @pageSize
       .success (res) =>
         @halls      = res.items
         @totalHalls = res.count

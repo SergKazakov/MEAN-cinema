@@ -10,7 +10,7 @@ router
   .route '/sessions'
   .get (req, res, next) ->
     if req.query.page
-      Session.paginate {}, req.query.page, 10, (err, pageCount, paginatedResults, itemCount) ->
+      Session.paginate {}, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
         return next() if err
         res.status(200).send
           items : paginatedResults

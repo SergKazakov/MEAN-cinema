@@ -2,12 +2,13 @@ AdminSessionsCtrl = (Session, sessions) ->
 
   @sessions      = sessions.data.items
   @totalSessions = sessions.data.count
+  @pageSize      = 10
   @noSessions    = unless @sessions.length then on else no
   @currentPage = 1
 
   @changePage = (newPageNumber) ->
     Session
-      .getSessionsByPage newPageNumber
+      .getSessionsByPage newPageNumber, @pageSize
       .success (res) =>
         @sessions      = res.items
         @totalSessions = res.count

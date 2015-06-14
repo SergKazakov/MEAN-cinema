@@ -5,7 +5,7 @@ adminCinemasConfig = ($stateProvider) ->
     controller : 'AdminCinemasCtrl as vm'
     resolve :
       cinemas : ['Cinema', (Cinema) ->
-        Cinema.getCinemasByPage 1
+        Cinema.getCinemasByPage 1, 10
       ]
 
 adminCinemasConfig.$inject = ['$stateProvider']
