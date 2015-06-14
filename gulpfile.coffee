@@ -3,10 +3,11 @@ $            = require('gulp-load-plugins')()
 wiredep      = require('wiredep').stream
 runSequence  = require 'run-sequence'
 childProcess = require 'child_process'
+webpack      = require 'webpack-stream'
 
 gulp.task 'webpack', ->
   gulp.src './client/coffee/main/main.coffee'
-    .pipe $.webpack require('./webpack.config.coffee') {}
+    .pipe webpack require('./webpack.config.coffee') {}
     .pipe gulp.dest './client/js'
 
 gulp.task 'wiredep', ->
@@ -48,7 +49,7 @@ gulp.task 'clean', require('del').bind null, ['dist']
 
 gulp.task 'webpack-production', ->
   gulp.src './client/coffee/main/main.coffee'
-    .pipe $.webpack require('./webpack.config.coffee') production : on
+    .pipe webpack require('./webpack.config.coffee') production : on
     .pipe gulp.dest './client/js'
 
 gulp.task 'copy', ->

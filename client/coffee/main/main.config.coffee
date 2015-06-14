@@ -1,4 +1,4 @@
-mainConfig = ($urlRouterProvider, $locationProvider, $authProvider, $alertProvider) ->
+mainConfig = ($urlRouterProvider, $authProvider, $alertProvider) ->
   $urlRouterProvider.otherwise '/'
 
   $authProvider.facebook
@@ -18,6 +18,6 @@ mainConfig = ($urlRouterProvider, $locationProvider, $authProvider, $alertProvid
     type : 'material'
     duration : 3
 
-mainConfig.$inject = ['$urlRouterProvider', '$locationProvider', '$authProvider', '$alertProvider']
+mainConfig.$inject = ['$urlRouterProvider', '$authProvider', '$alertProvider']
 
 module.exports = mainConfig
