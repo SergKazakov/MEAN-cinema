@@ -13,7 +13,7 @@
       li(ng-if='vm.isAuthenticated()')
         a(ui-sref='profile', ui-sref-active='active')
           span.header-avatar__img-wr
-            img.header-avatar__img(ng-src="{{currentUser.picture || 'http://placehold.it/25x25'}}")
+            img.header-avatar__img(ng-src="{{currentUser.picture}}")
           | Привет,&nbsp;
           span(ng-bind='currentUser.displayName')
       li(ng-if="vm.isAuthenticated() && currentUser.role === 'Admin'")

@@ -11,7 +11,9 @@ userSchema = new Schema
     type : String
     select : no
   displayName : String
-  picture : String
+  picture :
+    type : String
+    default : 'http://placehold.it/100x100'
   role :
     type : String
     default : 'User'
