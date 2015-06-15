@@ -18,6 +18,7 @@ AdminMoviesCtrl = (Movie, movies) ->
       .deleteMovie movieId
       .success (res) =>
         @movies.splice index, 1
+        --@totalMovies
 
   return
 

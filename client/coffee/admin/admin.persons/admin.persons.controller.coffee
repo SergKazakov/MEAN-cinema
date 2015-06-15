@@ -18,6 +18,7 @@ AdminPersonsCtrl = (Person, persons) ->
       .deletePerson personId
       .success (res) =>
         @persons.splice index, 1
+        --@totalPersons
 
   return
 

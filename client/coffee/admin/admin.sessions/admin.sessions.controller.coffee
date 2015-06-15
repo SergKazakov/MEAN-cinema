@@ -4,7 +4,7 @@ AdminSessionsCtrl = (Session, sessions) ->
   @totalSessions = sessions.data.count
   @pageSize      = 10
   @noSessions    = unless @sessions.length then on else no
-  @currentPage = 1
+  @currentPage   = 1
 
   @changePage = (newPageNumber) ->
     Session
@@ -18,6 +18,7 @@ AdminSessionsCtrl = (Session, sessions) ->
       .deleteSession sessionId
       .success (res) =>
         @sessions.splice index, 1
+        --@totalSessions
 
   return
 

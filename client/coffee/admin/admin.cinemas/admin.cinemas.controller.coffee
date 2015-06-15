@@ -18,6 +18,7 @@ AdminCinemasCtrl = (Cinema, cinemas) ->
       .deleteCinema cinemaId
       .success (res) =>
         @cinemas.splice index, 1
+        --@totalCinemas
 
   return
 

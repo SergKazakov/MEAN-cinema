@@ -18,6 +18,7 @@ AdminHallsCtrl = (Hall, halls) ->
       .deleteHall hallId
       .success (res) =>
         @halls.splice index, 1
+        --@totalHalls
 
   return
 
