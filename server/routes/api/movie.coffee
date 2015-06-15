@@ -1,9 +1,11 @@
-express    = require 'express'
-router     = express.Router()
-moment     = require 'moment'
-_          = require 'lodash'
-mongoose   = require 'mongoose'
-Movie      = mongoose.model 'Movie'
+express             = require 'express'
+router              = express.Router()
+moment              = require 'moment'
+_                   = require 'lodash'
+mongoose            = require 'mongoose'
+Movie               = mongoose.model 'Movie'
+ensureAuthenticated = alias.require '@auth/ensureAuthenticated'
+isAdmin             = alias.require '@auth/isAdmin'
 
 createMovie = (movie, req) ->
   newMovie              = if req.files.file? then JSON.parse req.body.movie else req.body
@@ -42,7 +44,7 @@ router
       Movie.find criterion, (err, movies) ->
         return next(err) if err
         res.status(200).send movies
-  .post (req, res, next) ->
+  .post ensureAuthenticated, isAdmin, (req, res, next) ->
     createMovie new Movie(), req
       .save (err, movie) ->
         return next(err) if err
@@ -57,14 +59,14 @@ router
       .exec (err, movie) ->
         return next(err) if err
         res.status(200).send movie
-  .put (req, res, next) ->
+  .put ensureAuthenticated, isAdmin, (req, res, next) ->
     Movie.findById req.params.movieId, (err, movie) ->
       return next(err) if err
       createMovie movie, req
         .save (err, movie) ->
           return next(err) if err
           res.status(200).send movie
-  .delete (req, res, next) ->
+  .delete ensureAuthenticated, isAdmin, (req, res, next) ->
     Movie.findByIdAndRemove req.params.movieId, (err, movie) ->
       return next(err) if err
       res.status(200).send movie

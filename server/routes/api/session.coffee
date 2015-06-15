@@ -1,10 +1,12 @@
-express    = require 'express'
-router     = express.Router()
-mongoose   = require 'mongoose'
-_          = require 'lodash'
-moment     = require 'moment'
-Session    = mongoose.model 'Session'
-Cinema     = mongoose.model 'Cinema'
+express             = require 'express'
+router              = express.Router()
+mongoose            = require 'mongoose'
+_                   = require 'lodash'
+moment              = require 'moment'
+Session             = mongoose.model 'Session'
+Cinema              = mongoose.model 'Cinema'
+ensureAuthenticated = alias.require '@auth/ensureAuthenticated'
+isAdmin             = alias.require '@auth/isAdmin'
 
 router
   .route '/sessions'
@@ -45,7 +47,7 @@ router
         .exec (err, sessions) ->
           return next(err) if err
           res.status(200).send sessions
-  .post (req, res, next) ->
+  .post ensureAuthenticated, isAdmin, (req, res, next) ->
     session = new Session req.body
     session.save (err, session) ->
       return next(err) if err
@@ -60,14 +62,14 @@ router
       .exec (err, session) ->
         return next(err) if err
         res.status(200).send session
-  .put (req, res, next) ->
+  .put ensureAuthenticated, isAdmin, (req, res, next) ->
     Session.findById req.params.sessionId, (err, session) ->
       return next(err) if err
       _.assign session, req.body
       session.save (err, session) ->
         return next(err) if err
         res.status(200).send session
-  .delete (req, res, next) ->
+  .delete ensureAuthenticated, isAdmin, (req, res, next) ->
     Session.findByIdAndRemove req.params.sessionId, (err, session) ->
       return next(err) if err
       res.status(200).send session

@@ -1,10 +1,12 @@
-express    = require 'express'
-router     = express.Router()
-_          = require 'lodash'
-mongoose   = require 'mongoose'
-async      = require 'async'
-Person     = mongoose.model 'Person'
-Movie      = mongoose.model 'Movie'
+express             = require 'express'
+router              = express.Router()
+_                   = require 'lodash'
+mongoose            = require 'mongoose'
+async               = require 'async'
+Person              = mongoose.model 'Person'
+Movie               = mongoose.model 'Movie'
+ensureAuthenticated = alias.require '@auth/ensureAuthenticated'
+isAdmin             = alias.require '@auth/isAdmin'
 
 createPerson = (person, req) ->
   newPerson       = if req.files.file? then JSON.parse req.body.person else req.body
@@ -29,7 +31,7 @@ router
       Person.find criterion, (err, persons) ->
         return next(err) if err
         res.status(200).send persons
-  .post (req, res, next) ->
+  .post ensureAuthenticated, isAdmin, (req, res, next) ->
     createPerson new Person(), req
       .save (err, person) ->
         return next(err) if err
@@ -57,14 +59,14 @@ router
           person.moviesAsActor = results[0]
           person.moviesAsDirector = results[1]
           res.status(200).send person
-  .put (req, res, next) ->
+  .put ensureAuthenticated, isAdmin, (req, res, next) ->
     Person.findById req.params.personId, (err, person) ->
       return next(err) if err
       createPerson person, req
         .save (err, person) ->
           return next(err) if err
           res.status(200).send person
-  .delete (req, res, next) ->
+  .delete ensureAuthenticated, isAdmin, (req, res, next) ->
     Person.findByIdAndRemove req.params.personId, (err, person) ->
       return next(err) if err
       res.status(200).send person

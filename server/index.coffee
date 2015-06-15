@@ -16,6 +16,7 @@ global.alias = new Alias
     '@config' : './config'
     '@models' : './models'
     '@routes' : './routes'
+    '@auth' : './routes/auth'
 
 conf = alias.require '@config'
 
