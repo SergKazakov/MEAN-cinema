@@ -15,6 +15,8 @@ Movie = ($http) ->
     $http.put "/api/v1/movies/#{movie._id}", movie
   deleteMovie : (movieId) ->
     $http.delete "/api/v1/movies/#{movieId}"
+  addMovieReview : (movieId, review) ->
+    $http.post "/api/v1/movies/#{movieId}/reviews", review
 
 Movie.$inject = ['$http']
 

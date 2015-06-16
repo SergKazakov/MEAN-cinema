@@ -7,4 +7,5 @@ module.exports =
     'hall'
     'seat'
     'session'
+    'review'
   ].map (path) -> require("./#{path}")

@@ -27,12 +27,13 @@ router
     hall = new Hall req.body
     hall.save (err, hall) ->
       return next(err) if err
-      Cinema.findOneAndUpdate
-        _id : hall.cinema
+      Cinema.findByIdAndUpdate hall.cinema
       ,
         $addToSet :
           halls : hall._id
-        upsert : on,
+      ,
+        new : on
+      ,
         (err, cinema) ->
           return next(err) if err
           res.status(200).send hall
@@ -52,12 +53,13 @@ router
       _.assign hall, req.body
       hall.save (err, hall) ->
         return next(err) if err
-        Cinema.findOneAndUpdate
-          _id : hall.cinema
+        Cinema.findByIdAndUpdate hall.cinema
         ,
           $addToSet :
             halls : hall._id
-          upsert : on,
+        ,
+          new : on
+        ,
           (err, cinema) ->
             return next(err) if err
             res.status(200).send hall

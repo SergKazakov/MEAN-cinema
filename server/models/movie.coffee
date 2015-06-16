@@ -2,6 +2,7 @@ mongoose          = require 'mongoose'
 Schema            = mongoose.Schema
 mongoosePaginate  = require 'mongoose-paginate'
 timestamps        = require 'mongoose-timestamp'
+deepPopulate      = require 'mongoose-deep-populate'
 
 movieSchema = new Schema
   name :
@@ -51,16 +52,19 @@ movieSchema = new Schema
     type : Schema.Types.ObjectId
     ref : 'Person'
   ]
-  likes : [
+  reviews : [
     type : Schema.Types.ObjectId
-    ref : 'User'
-  ]
-  dislikes : [
-    type : Schema.Types.ObjectId
-    ref : 'User'
+    ref : 'Review'
   ]
 
 movieSchema.plugin timestamps
 movieSchema.plugin mongoosePaginate
+movieSchema.plugin deepPopulate,
+  whitelist : [
+    'directors'
+    'actors'
+    'reviews'
+    'reviews.creator'
+  ]
 
 module.exports = mongoose.model 'Movie', movieSchema

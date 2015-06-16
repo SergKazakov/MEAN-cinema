@@ -2,8 +2,10 @@ express             = require 'express'
 router              = express.Router()
 moment              = require 'moment'
 _                   = require 'lodash'
+async               = require 'async'
 mongoose            = require 'mongoose'
 Movie               = mongoose.model 'Movie'
+Review              = mongoose.model 'Review'
 ensureAuthenticated = alias.require '@auth/ensureAuthenticated'
 isAdmin             = alias.require '@auth/isAdmin'
 
@@ -55,7 +57,7 @@ router
   .get (req, res, next) ->
     Movie
       .findById req.params.movieId
-      .populate 'directors actors'
+      .deepPopulate 'directors actors reviews reviews.creator'
       .exec (err, movie) ->
         return next(err) if err
         res.status(200).send movie
@@ -70,5 +72,37 @@ router
     Movie.findByIdAndRemove req.params.movieId, (err, movie) ->
       return next(err) if err
       res.status(200).send movie
+
+router
+  .route '/movies/:movieId/reviews'
+  .post ensureAuthenticated, (req, res, next) ->
+    async.waterfall [
+      (cb) ->
+        review = new Review()
+        _.assign(review, req.body).creator = req.user._id
+        review.save (err, review) ->
+          return next(err) if err
+          cb null, review
+      (review, cb) ->
+        Movie.findByIdAndUpdate req.params.movieId
+        ,
+          $addToSet :
+            reviews : review._id
+        ,
+          new : on
+        ,
+          (err, movie) ->
+            return next(err) if err
+            cb null, movie
+      (movie, cb) ->
+        Review
+          .find _id : $in : movie.reviews
+          .populate 'creator'
+          .exec (err, reviews) ->
+            return next(err) if err
+            cb null, reviews
+    ], (err, result) ->
+      return next(err) if err
+      res.status(200).send result
 
 module.exports = (app) -> app.use '/api/v1/', router

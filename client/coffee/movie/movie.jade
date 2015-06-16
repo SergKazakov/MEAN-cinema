@@ -2,7 +2,7 @@
   .entity-wr.panel.panel-default
     header.entity__header.panel-heading {{vm.movie.name}}
     .entity
-      img.entity__poster(ng-src='{{vm.movie.poster}}', alt='')
+      img.entity__poster(ng-src='{{vm.movie.poster}}')
       .entity-info
         ul.entity-info-list
           li.entity-info-list__item
@@ -20,7 +20,7 @@
           li.entity-info-list__item
             .entity-info-list__label Длительность
             .entity-info-list__value
-              i.ion-clock
+              i.ion-clock&nbsp;
               | {{vm.movie.duration}} минут
           li.entity-info-list__item
             .entity-info-list__label Возраст
@@ -28,11 +28,11 @@
           li.entity-info-list__item
             .entity-info-list__label Премьера
             .entity-info-list__value {{vm.movie.releaseDate | date: 'd MMMM yyyy'}}
-    h2 Описание
+    h2.entity__header.panel-heading Описание
     p {{vm.movie.synopsis}}
-    h2(ng-if='vm.noSessions') Упс! Сеансов нет:(
-    .cinema-sessions(ng-else='')
-      h1 Сеансы
+    h2.entity__header.panel-heading(ng-if='vm.noSessions') Упс! Сеансов нет:(
+    .cinema-sessions(ng-else)
+      h2.entity__header.panel-heading Сеансы
       table.table.cinema-sessions-table
         thead
           tr.cinema-sessions-table__tr
@@ -42,9 +42,32 @@
         tr.cinema-sessions-table__tr(ng-repeat='session in vm.sessions')
           td.cinema-sessions-table__td
             a(ui-sref='cinema({cinemaId: session.cinema._id})')
-              img.cinema-sessions-table__img(ng-src='{{session.cinema.poster}}', alt='')
+              img.cinema-sessions-table__img(ng-src='{{session.cinema.poster}}')
           td.cinema-sessions-table__td
             p {{session.cinema.name}}
             p {{session.cinema.address}}
           td.cinema-sessions-table__td {{session.hall.name}}
           td.cinema-sessions-table__td {{session.date | date : 'dd/MM/yyyy HH:mm:ss'}}
+    h2.entity__header.panel-heading(ng-if='!vm.movie.reviews.length') Упс! Отзывов нет:(
+    .reviews(ng-else)
+      h2.entity__header.panel-heading Отзывы ({{vm.movie.reviews.length}})
+      ul.reviews-list
+        li.reviews-list__item(ng-repeat='review in vm.movie.reviews')
+          header.reviews-list__header
+            a.reviews-list__link(href='#')
+              img.reviews-list__img(ng-src='{{review.creator.picture}}')
+            .reviews-list__info
+              p.reviews-list__info-name {{review.creator.displayName}}
+              p.reviews-list__info-date {{review.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+          p.reviews-list__descr {{review.headline}}
+          p.reviews-list__descr {{review.description}}
+    h2.entity__header.panel-heading Новый отзыв
+    form.reviews-form(ng-submit='vm.addReview()')
+      .form-group
+        label Заголовок
+        input.form-control(type='text' ng-model='vm.review.headline' placeholder='Заголовок')
+      .form-group
+        label Комментарий
+        textarea.form-control(ng-model='vm.review.description' placeholder='Комментарий')
+      button.btn.btn-default(type='submit') Добавить отзыв
+
