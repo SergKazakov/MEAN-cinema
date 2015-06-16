@@ -1,6 +1,6 @@
-h2.entity__header.panel-heading(ng-if='!model.reviews.length') Упс! Отзывов нет:(
+h2.entity__header.panel-heading.panel-heading_border(ng-if='!model.reviews.length') Упс! Отзывов нет:(
 .reviews(ng-else)
-  h2.entity__header.panel-heading Отзывы ({{model.reviews.length}})
+  h2.entity__header.panel-heading.panel-heading_border Отзывы ({{model.reviews.length}})
   ul.reviews-list
     li.reviews-list__item(ng-repeat='review in model.reviews')
       header.reviews-list__header
@@ -11,7 +11,7 @@ h2.entity__header.panel-heading(ng-if='!model.reviews.length') Упс! Отзы�
           p.reviews-list__info-date {{review.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
       p.reviews-list__headline {{review.headline}}
       p.reviews-list__descr {{review.description}}
-h2.entity__header.panel-heading Новый отзыв
+h2.entity__header.panel-heading.panel-heading_border Новый отзыв
 form.reviews-form(ng-submit='action()' name='addReviewForm')
   .form-group
     label Заголовок

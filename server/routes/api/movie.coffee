@@ -93,14 +93,14 @@ router
         ,
           (err, movie) ->
             return next(err) if err
-            cb null, movie
-      (movie, cb) ->
+            cb null, movie, review
+      (movie, review, cb) ->
         Review
-          .find _id : $in : movie.reviews
+          .findById review._id
           .populate 'creator'
-          .exec (err, reviews) ->
+          .exec (err, review) ->
             return next(err) if err
-            cb null, reviews
+            cb null, review
     ], (err, result) ->
       return next(err) if err
       res.status(200).send result

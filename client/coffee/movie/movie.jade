@@ -28,11 +28,11 @@
           li.entity-info-list__item
             .entity-info-list__label Премьера
             .entity-info-list__value {{vm.movie.releaseDate | date: 'd MMMM yyyy'}}
-    h2.entity__header.panel-heading Описание
+    h2.entity__header.panel-heading.panel-heading_border Описание
     p {{vm.movie.synopsis}}
-    h2.entity__header.panel-heading(ng-if='vm.noSessions') Упс! Сеансов нет:(
+    h2.entity__header.panel-heading.panel-heading_border(ng-if='vm.noSessions') Упс! Сеансов нет:(
     .cinema-sessions(ng-else)
-      h2.entity__header.panel-heading Сеансы
+      h2.entity__header.panel-heading.panel-heading_border Сеансы
       table.table.cinema-sessions-table
         thead
           tr.cinema-sessions-table__tr

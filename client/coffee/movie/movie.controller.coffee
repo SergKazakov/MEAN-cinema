@@ -11,7 +11,7 @@ MovieCtrl = (Movie, movie, sessions, $auth, $alert) ->
         .addMovieReview @movie._id, @review
         .success (res) =>
           $alert content : 'Отзыв успешно добавлен'
-          @movie.reviews = res
+          @movie.reviews.push res
           @review = {}
         .error (err) ->  $alert content : err
     else $alert content : 'Только зарегистрированные пользователи могут оставлять отзыв'

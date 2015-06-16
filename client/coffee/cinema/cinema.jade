@@ -21,11 +21,11 @@
             .entity-info-list__value
               span(ng-if='vm.cinema.support3D') Да
               span(ng-else='') Нет
-    h2.entity__header.panel-heading Описание
+    h2.entity__header.panel-heading.panel-heading_border Описание
     p {{vm.cinema.description}}
-    h2.entity__header.panel-heading(ng-if='vm.noSessions') Упс! Сеансов нет:(
+    h2.entity__header.panel-heading.panel-heading_border(ng-if='vm.noSessions') Упс! Сеансов нет:(
     .cinema-sessions(ng-else)
-      h1.entity__header.panel-heading Сеансы
+      h2.entity__header.panel-heading.panel-heading_border Сеансы
       table.table.cinema-sessions-table
         thead
           tr.cinema-sessions-table__tr
