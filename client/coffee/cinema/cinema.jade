@@ -2,7 +2,7 @@
   .entity-wr.panel.panel-default
     header.entity__header.panel-heading {{vm.cinema.name}}
     .entity
-      img.entity__poster(ng-src='{{vm.cinema.poster}}', alt='')
+      img.entity__poster(ng-src='{{vm.cinema.poster}}')
       .entity-info
         ul.entity-info-list
           li.entity-info-list__item
@@ -21,11 +21,11 @@
             .entity-info-list__value
               span(ng-if='vm.cinema.support3D') Да
               span(ng-else='') Нет
-    h2 Описание
+    h2.entity__header.panel-heading Описание
     p {{vm.cinema.description}}
-    h2(ng-if='vm.noSessions') Упс! Сеансов нет:(
-    .cinema-sessions(ng-else='')
-      h1 Сеансы
+    h2.entity__header.panel-heading(ng-if='vm.noSessions') Упс! Сеансов нет:(
+    .cinema-sessions(ng-else)
+      h1.entity__header.panel-heading Сеансы
       table.table.cinema-sessions-table
         thead
           tr.cinema-sessions-table__tr
@@ -35,7 +35,8 @@
         tr.cinema-sessions-table__tr(ng-repeat='session in vm.sessions')
           td.cinema-sessions-table__td
             a(ui-sref='movie({movieId: session.movie._id})')
-              img.cinema-sessions-table__img(ng-src='{{session.movie.poster}}', alt='')
+              img.cinema-sessions-table__img(ng-src='{{session.movie.poster}}')
           td.cinema-sessions-table__td {{session.movie.name}}
           td.cinema-sessions-table__td {{session.hall.name}}
           td.cinema-sessions-table__td {{session.date | date : 'dd/MM/yyyy HH:mm:ss'}}
+    <reviews action='vm.addReview()' model='vm.cinema' review='vm.review'>

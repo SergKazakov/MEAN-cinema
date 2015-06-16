@@ -1,9 +1,9 @@
 _ = require 'lodash'
 
 MovieCtrl = (Movie, movie, sessions, $auth, $alert) ->
-  @movie              = movie.data
-  @sessions           = sessions.data
-  @noSessions         = unless @sessions.length then on else no
+  @movie      = movie.data
+  @sessions   = sessions.data
+  @noSessions = unless @sessions.length then on else no
 
   @addReview = ->
     if $auth.isAuthenticated()

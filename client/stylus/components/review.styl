@@ -2,6 +2,8 @@
   &-list
     &__item
       padding 1.5rem 0
+      &+&
+        border-top 1px solid #cfd9db
     &__header
       @extend $cf
     &__link,
@@ -15,7 +17,11 @@
       object-fit contain
     &__descr
       font-size 1.6rem
-      margin 2rem 0
+      margin 1rem 0
+    &__headline
+      font-weight bold
+      margin 1rem 0
+      text-transform uppercase
   &-form
     margin 2rem 0
 

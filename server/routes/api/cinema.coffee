@@ -1,8 +1,12 @@
-express    = require 'express'
-router     = express.Router()
-_          = require 'lodash'
-mongoose   = require 'mongoose'
-Cinema     = mongoose.model 'Cinema'
+express             = require 'express'
+router              = express.Router()
+_                   = require 'lodash'
+async               = require 'async'
+mongoose            = require 'mongoose'
+Cinema              = mongoose.model 'Cinema'
+Review              = mongoose.model 'Review'
+ensureAuthenticated = alias.require '@auth/ensureAuthenticated'
+isAdmin             = alias.require '@auth/isAdmin'
 
 createCinema = (cinema, req) ->
   newCinema         = if req.files.file? then JSON.parse req.body.cinema else req.body
@@ -30,7 +34,7 @@ router
         .exec (err, cinemas) ->
           return next(err) if err
           res.status(200).send cinemas
-  .post (req, res, next) ->
+  .post ensureAuthenticated, isAdmin, (req, res, next) ->
     createCinema new Cinema(), req
       .save (err, cinema) ->
         return next(err) if err
@@ -43,16 +47,48 @@ router
       .findById req.params.cinemaId, (err, cinema) ->
         return next(err) if err
         res.status(200).send cinema
-  .put (req, res, next) ->
+  .put ensureAuthenticated, isAdmin, (req, res, next) ->
     Cinema.findById req.params.cinemaId, (err, cinema) ->
       return next(err) if err
       createCinema cinema, req
         .save (err, cinema) ->
           return next(err) if err
           res.status(200).send cinema
-  .delete (req, res, next) ->
+  .delete ensureAuthenticated, isAdmin, (req, res, next) ->
     Cinema.findByIdAndRemove req.params.cinemaId, (err, cinema) ->
       return next(err) if err
       res.status(200).send cinema
+
+router
+  .route '/cinemas/:cinemaId/reviews'
+  .post ensureAuthenticated, (req, res, next) ->
+    async.waterfall [
+      (cb) ->
+        review = new Review()
+        _.assign(review, req.body).creator = req.user._id
+        review.save (err, review) ->
+          return next(err) if err
+          cb null, review
+      (review, cb) ->
+        Cinema.findByIdAndUpdate req.params.cinemaId
+        ,
+          $addToSet :
+            reviews : review._id
+        ,
+          new : on
+        ,
+          (err, cinema) ->
+            return next(err) if err
+            cb null, cinema
+      (cinema, cb) ->
+        Review
+          .find _id : $in : cinema.reviews
+          .populate 'creator'
+          .exec (err, reviews) ->
+            return next(err) if err
+            cb null, reviews
+    ], (err, result) ->
+      return next(err) if err
+      res.status(200).send result
 
 module.exports = (app) -> app.use '/api/v1/', router

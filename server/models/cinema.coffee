@@ -16,6 +16,10 @@ cinemaSchema = new Schema
     type : Schema.Types.ObjectId
     ref : 'Hall'
   ]
+  reviews : [
+    type : Schema.Types.ObjectId
+    ref : 'Review'
+  ]
   address :
     type : String
     required : on
