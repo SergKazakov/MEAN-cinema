@@ -1,7 +1,8 @@
-mongoose         = require 'mongoose'
-Schema           = mongoose.Schema
-mongoosePaginate = require 'mongoose-paginate'
-timestamps       = require 'mongoose-timestamp'
+mongoose          = require 'mongoose'
+Schema            = mongoose.Schema
+mongoosePaginate  = require 'mongoose-paginate'
+timestamps        = require 'mongoose-timestamp'
+deepPopulate      = require 'mongoose-deep-populate'
 
 cinemaSchema = new Schema
   name :
@@ -30,5 +31,11 @@ cinemaSchema = new Schema
 
 cinemaSchema.plugin timestamps
 cinemaSchema.plugin mongoosePaginate
+cinemaSchema.plugin deepPopulate,
+  whitelist : [
+    'halls'
+    'reviews'
+    'reviews.creator'
+  ]
 
 module.exports = mongoose.model 'Cinema', cinemaSchema

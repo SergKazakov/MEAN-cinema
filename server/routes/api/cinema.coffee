@@ -44,7 +44,9 @@ router
   .route '/cinemas/:cinemaId'
   .get (req, res, next) ->
     Cinema
-      .findById req.params.cinemaId, (err, cinema) ->
+      .findById req.params.cinemaId
+      .deepPopulate 'halls reviews reviews.creator'
+      .exec (err, cinema) ->
         return next(err) if err
         res.status(200).send cinema
   .put ensureAuthenticated, isAdmin, (req, res, next) ->
