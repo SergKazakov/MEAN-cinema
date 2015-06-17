@@ -33,6 +33,14 @@ AdminMoviesEditCtrl = (Movie, Person, movie, reviews, $alert, $state, Upload) ->
         @reviews.splice index, 1
       .error (err) -> $alert content : err
 
+  @deleteMovie = ->
+    Movie
+      .deleteMovie @movie._id
+      .success (res) ->
+        $alert content : 'Фильм успешно удален'
+        $state.go 'admin.movies.all'
+      .error (err) -> $alert content : err
+
   return
 
 AdminMoviesEditCtrl.$inject = ['Movie', 'Person', 'movie', 'reviews', '$alert', '$state', 'Upload']

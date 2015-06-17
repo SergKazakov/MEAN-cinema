@@ -13,13 +13,6 @@ AdminPersonsCtrl = (Person, persons) ->
         @persons      = res.items
         @totalPersons = res.count
 
-  @deletePerson = (personId, index) ->
-    Person
-      .deletePerson personId
-      .success (res) =>
-        @persons.splice index, 1
-        --@totalPersons
-
   return
 
 AdminPersonsCtrl.$inject = ['Person', 'persons']

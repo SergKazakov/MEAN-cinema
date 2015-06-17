@@ -17,6 +17,14 @@ AdminPersonsEditCtrl = (Person, person, $alert, $state, Upload) ->
       $alert content : 'Актер добавлен'
       $state.go 'admin.persons.all'
 
+  @deletePerson = ->
+    Person
+      .deletePerson @person._id
+      .success (res) ->
+        $alert content : 'Человек успешно удален'
+        $state.go 'admin.persons.all'
+      .error (err) -> $alert content : err
+
   return
 
 AdminPersonsEditCtrl.$inject = ['Person', 'person', '$alert', '$state', 'Upload']

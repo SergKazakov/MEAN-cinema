@@ -30,6 +30,14 @@ AdminCinemasEditCtrl = (Cinema, cinema, reviews, $alert, $state, Upload) ->
         @reviews.splice index, 1
       .error (err) -> $alert content : err
 
+  @deleteCinema = ->
+    Cinema
+      .deleteCinema @cinema._id
+      .success (res) ->
+        $alert content : 'Кинотеатр успешно удален'
+        $state.go 'admin.cinemas.all'
+      .error (err) -> $alert content : err
+
   return
 
 AdminCinemasEditCtrl.$inject = ['Cinema', 'cinema', 'reviews', '$alert', '$state', 'Upload']

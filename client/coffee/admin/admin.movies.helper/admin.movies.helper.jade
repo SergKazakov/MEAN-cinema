@@ -44,6 +44,9 @@ form(ng-submit='vm.action()')
   button.btn.btn-default(type='submit')
     i.ion-checkmark
     | Сохранить
+  a.btn.btn-danger(ng-if='vm.movie._id' href='javascript:void(0)' ng-click='vm.deleteMovie()')
+    i.ion-close
+    | Удалить
 .reviews(ng-if='vm.reviews.length')
   h2.entity__header.panel-heading.panel-heading_border Отзывы ({{vm.reviews.length}})
   ul.reviews-list

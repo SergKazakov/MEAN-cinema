@@ -13,13 +13,6 @@ AdminCinemasCtrl = (Cinema, cinemas) ->
         @cinemas      = res.items
         @totalCinemas = res.count
 
-  @deleteCinema = (cinemaId, index) ->
-    Cinema
-      .deleteCinema cinemaId
-      .success (res) =>
-        @cinemas.splice index, 1
-        --@totalCinemas
-
   return
 
 AdminCinemasCtrl.$inject = ['Cinema', 'cinemas']

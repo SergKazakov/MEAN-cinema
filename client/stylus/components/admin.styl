@@ -41,28 +41,11 @@
         .admin-grid
           &__img
             transform scale(1.1)
-          &__buttons
-            opacity 1
-          &__overlay
-            background rgba(0,0,0,0.1)
+            filter none
     &__img
-      transition transform 300ms
+      transition all 300ms
       width 100%
+      filter brightness(40%)
     &__link,
     &__img
       display block
-    &__buttons
-      position absolute
-      left 50%
-      top 50%
-      transform translate(-50%, -50%)
-      opacity 0
-      transition opacity 300ms
-    &__overlay
-      position absolute
-      left 0
-      right 0
-      top 0
-      bottom 0
-      background rgba(0,0,0,0.6)
-      transition background 300ms
