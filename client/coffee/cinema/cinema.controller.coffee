@@ -1,9 +1,11 @@
 CinemaCtrl = (Cinema, cinema, reviews, sessions, $auth, $alert) ->
   @cinema       = cinema.data
   @sessions     = sessions.data
+  @noSessions   = unless @sessions.length then on else no
   @reviews      = reviews.data.items
   @totalReviews = reviews.data.count
-  @noSessions   = unless @sessions.length then on else no
+  @pageSize     = 5
+  @currentPage  = 1
 
   @addReview = ->
     if $auth.isAuthenticated()
@@ -16,6 +18,13 @@ CinemaCtrl = (Cinema, cinema, reviews, sessions, $auth, $alert) ->
           @review = {}
         .error (err) ->  $alert content : err
     else $alert content : 'Только зарегистрированные пользователи могут оставлять отзыв'
+
+  @changePage = (newPageNumber) ->
+    Cinema
+      .getCinemaReviewsByPage @cinema._id, newPageNumber, @pageSize
+      .success (res) =>
+        @reviews      = res.items
+        @totalReviews = res.count
 
   return
 

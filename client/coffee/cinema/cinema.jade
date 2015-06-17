@@ -39,4 +39,26 @@
           td.cinema-sessions-table__td {{session.movie.name}}
           td.cinema-sessions-table__td {{session.hall.name}}
           td.cinema-sessions-table__td {{session.date | date : 'dd/MM/yyyy HH:mm:ss'}}
-    <reviews action='vm.addReview()' reviews='vm.reviews' review='vm.review'>
+    h2.entity__header.panel-heading.panel-heading_border(ng-if='!vm.reviews.length') Упс! Отзывов нет:(
+    .reviews(ng-else)
+      h2.entity__header.panel-heading.panel-heading_border Отзывы ({{vm.totalReviews}})
+      ul.reviews-list
+        li.reviews-list__item(pagination-id='reviewsPagination' dir-paginate='review in vm.reviews | itemsPerPage: vm.pageSize' total-items='vm.totalReviews' current-page='vm.currentPage')
+          header.reviews-list__header
+            a.reviews-list__link(href='#')
+              img.reviews-list__img(ng-src='{{review.creator.picture}}')
+            .reviews-list__info
+              p.reviews-list__info-name {{review.creator.displayName}}
+              p.reviews-list__info-date {{review.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+          p.reviews-list__headline {{review.headline}}
+          p.reviews-list__descr {{review.description}}
+      dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)' pagination-id='reviewsPagination')
+    h2.entity__header.panel-heading.panel-heading_border Новый отзыв
+    form.reviews-form(ng-submit='vm.addReview()' name='addReviewForm')
+      .form-group
+        label Заголовок
+        input.form-control(type='text' ng-model='vm.review.headline' placeholder='Заголовок' required)
+      .form-group
+        label Комментарий
+        textarea.form-control(ng-model='vm.review.description' placeholder='Комментарий' required)
+      button.btn.btn-primary(type='submit' ng-disabled='addReviewForm.$invalid') Добавить отзыв
