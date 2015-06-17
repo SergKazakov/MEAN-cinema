@@ -26,3 +26,17 @@ form(ng-submit='vm.action()')
   button.btn.btn-default(type='submit')
     i.ion-checkmark
     | Сохранить
+.reviews(ng-if='vm.reviews.length')
+  h2.entity__header.panel-heading.panel-heading_border Отзывы ({{vm.reviews.length}})
+  ul.reviews-list
+    li.reviews-list__item(pagination-id='reviewsPagination' dir-paginate='review in vm.reviews | itemsPerPage: vm.pageSize' current-page='vm.currentPage')
+      header.reviews-list__header
+        a.reviews-list__link(href='#')
+          img.reviews-list__img(ng-src='{{review.creator.picture}}')
+        .reviews-list__info
+          p.reviews-list__info-name {{review.creator.displayName}}
+          p.reviews-list__info-date {{review.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+        button.btn.btn-danger.ion-close.reviews__btn(ng-click='vm.deleteReview(vm.cinema._id, review._id)')
+      p.reviews-list__headline {{review.headline}}
+      p.reviews-list__descr {{review.description}}
+  dir-pagination-controls.pagination-wr(boundary-links='true' pagination-id='reviewsPagination')

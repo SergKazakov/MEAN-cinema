@@ -7,6 +7,9 @@ adminCinemasEditConfig = ($stateProvider) ->
       cinema : ['Cinema', '$stateParams', (Cinema, $stateParams) ->
         Cinema.getCinema $stateParams.cinemaId
       ]
+      reviews : ['Cinema', '$stateParams', (Cinema, $stateParams) ->
+        Cinema.getCinemaReviewsByPage $stateParams.cinemaId, 1, 0
+      ]
 
 adminCinemasEditConfig.$inject = ['$stateProvider']
 

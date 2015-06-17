@@ -1,6 +1,11 @@
-AdminCinemasEditCtrl = (Cinema, cinema, $alert, $state, Upload) ->
+_ = require 'lodash'
 
-  @cinema = cinema.data
+AdminCinemasEditCtrl = (Cinema, cinema, reviews, $alert, $state, Upload) ->
+
+  @cinema       = cinema.data
+  @reviews      = reviews.data.items
+  @pageSize     = 5
+  @currentPage  = 1
 
   @action = ->
     if @file and @file.length
@@ -16,8 +21,17 @@ AdminCinemasEditCtrl = (Cinema, cinema, $alert, $state, Upload) ->
       $alert content : 'Кинотеатр добавлен'
       $state.go 'admin.cinemas.all'
 
+  @deleteReview = (cinemaId, reviewId) ->
+    Cinema
+      .deleteCinemaReview cinemaId, reviewId
+      .success (res) =>
+        $alert content : 'Отзыв успешно удален'
+        index = _.findIndex @reviews, _id : reviewId
+        @reviews.splice index, 1
+      .error (err) -> $alert content : err
+
   return
 
-AdminCinemasEditCtrl.$inject = ['Cinema', 'cinema', '$alert', '$state', 'Upload']
+AdminCinemasEditCtrl.$inject = ['Cinema', 'cinema', 'reviews', '$alert', '$state', 'Upload']
 
 module.exports = AdminCinemasEditCtrl
