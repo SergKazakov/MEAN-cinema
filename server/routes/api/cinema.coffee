@@ -63,6 +63,26 @@ router
 
 router
   .route '/cinemas/:cinemaId/reviews'
+  .get (req, res, next) ->
+    Cinema.findById req.params.cinemaId, (err, cinema) ->
+      return next(err) if err
+      criterion = _id : $in : cinema.reviews
+      if req.query.page
+        Review.paginate criterion, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
+          return next(err) if err
+          res.status(200).send
+            items : paginatedResults
+            count : itemCount
+        ,
+          sortBy : createdAt : -1
+          populate : 'creator'
+      else
+        Review
+          .find criterion
+          .populate 'creator'
+          .exec (err, reviews) ->
+            return next(err) if err
+            res.status(200).send reviews
   .post ensureAuthenticated, (req, res, next) ->
     async.waterfall [
       (cb) ->

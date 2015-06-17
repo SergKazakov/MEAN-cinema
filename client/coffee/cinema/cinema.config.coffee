@@ -10,6 +10,9 @@ cinemaConfig = ($stateProvider) ->
       sessions : ['Session', '$stateParams', (Session, $stateParams) ->
         Session.getSessionsByCinema $stateParams.cinemaId
       ]
+      reviews : ['Cinema', '$stateParams', (Cinema, $stateParams) ->
+        Cinema.getCinemaReviewsByPage $stateParams.cinemaId, 1, 10
+      ]
 
 cinemaConfig.$inject = ['$stateProvider']
 

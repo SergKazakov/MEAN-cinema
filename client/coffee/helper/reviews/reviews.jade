@@ -1,8 +1,8 @@
-h2.entity__header.panel-heading.panel-heading_border(ng-if='!model.reviews.length') Упс! Отзывов нет:(
+h2.entity__header.panel-heading.panel-heading_border(ng-if='!reviews.length') Упс! Отзывов нет:(
 .reviews(ng-else)
-  h2.entity__header.panel-heading.panel-heading_border Отзывы ({{model.reviews.length}})
+  h2.entity__header.panel-heading.panel-heading_border Отзывы ({{reviews.length}})
   ul.reviews-list
-    li.reviews-list__item(ng-repeat='review in model.reviews')
+    li.reviews-list__item(ng-repeat='review in reviews')
       header.reviews-list__header
         a.reviews-list__link(href='#')
           img.reviews-list__img(ng-src='{{review.creator.picture}}')

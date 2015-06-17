@@ -39,4 +39,4 @@
           td.cinema-sessions-table__td {{session.movie.name}}
           td.cinema-sessions-table__td {{session.hall.name}}
           td.cinema-sessions-table__td {{session.date | date : 'dd/MM/yyyy HH:mm:ss'}}
-    <reviews action='vm.addReview()' model='vm.cinema' review='vm.review'>
+    <reviews action='vm.addReview()' reviews='vm.reviews' review='vm.review'>

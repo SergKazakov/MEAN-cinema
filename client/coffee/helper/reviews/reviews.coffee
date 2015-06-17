@@ -2,7 +2,7 @@ reviewsDirective = ->
   restrict : 'E'
   template : require './reviews.jade'
   scope :
-    model : '='
+    reviews : '='
     review : '='
     action : '&'
 

@@ -15,6 +15,10 @@ Cinema = ($http) ->
     $http.delete "/api/v1/cinemas/#{cinemaId}"
   addCinemaReview : (cinemaId, review) ->
     $http.post "/api/v1/cinemas/#{cinemaId}/reviews", review
+  getCinemaReviews : (cinemaId) ->
+    $http.get '/api/v1/cinemas/#{cinemaId}/reviews'
+  getCinemaReviewsByPage : (cinemaId, pageNumber, pageSize) ->
+    $http.get "/api/v1/cinemas/#{cinemaId}/reviews?page=#{pageNumber}&size=#{pageSize}"
 
 Cinema.$inject = ['$http']
 
