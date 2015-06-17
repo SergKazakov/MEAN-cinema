@@ -1,6 +1,11 @@
-AdminMoviesEditCtrl = (Movie, Person, movie, $alert, $state, Upload) ->
+_ = require 'lodash'
 
-  @movie = movie.data
+AdminMoviesEditCtrl = (Movie, Person, movie, reviews, $alert, $state, Upload) ->
+
+  @movie        = movie.data
+  @reviews      = reviews.data.items
+  @pageSize     = 5
+  @currentPage  = 1
 
   @action = ->
     if @file and @file.length
@@ -19,8 +24,17 @@ AdminMoviesEditCtrl = (Movie, Person, movie, $alert, $state, Upload) ->
   @loadPersons = (name) ->
     Person.getPersonsByName name
 
+  @deleteReview = (movieId, reviewId) ->
+    Movie
+      .deleteMovieReview movieId, reviewId
+      .success (res) =>
+        $alert content : 'Отзыв успешно удален'
+        index = _.findIndex @reviews, _id : reviewId
+        @reviews.splice index, 1
+      .error (err) -> $alert content : err
+
   return
 
-AdminMoviesEditCtrl.$inject = ['Movie', 'Person', 'movie', '$alert', '$state', 'Upload']
+AdminMoviesEditCtrl.$inject = ['Movie', 'Person', 'movie', 'reviews', '$alert', '$state', 'Upload']
 
 module.exports = AdminMoviesEditCtrl

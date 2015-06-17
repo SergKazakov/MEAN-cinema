@@ -125,4 +125,28 @@ router
       return next(err) if err
       res.status(200).send result
 
+router
+  .route '/movies/:movieId/reviews/:reviewId'
+  .delete ensureAuthenticated, isAdmin, (req, res, next) ->
+    async.parallel [
+      (cb) ->
+        Movie.findByIdAndUpdate req.params.movieId
+        ,
+          $pull :
+            reviews : req.params.reviewId
+        ,
+          new : on
+        ,
+          (err, movie) ->
+            return next(err) if err
+            cb null, movie
+      (cb) ->
+        Review.findByIdAndRemove req.params.reviewId, (err, review) ->
+          return next(err) if err
+          cb null, review
+    ], (err, results) ->
+      return next(err) if err
+      res.sendStatus 200
+
+
 module.exports = (app) -> app.use '/api/v1/', router
