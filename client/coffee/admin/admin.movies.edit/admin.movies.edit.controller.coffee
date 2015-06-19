@@ -18,7 +18,7 @@ AdminMoviesEditCtrl = (Movie, Person, movie, reviews, $alert, $state, Upload) ->
     else
       promise = Movie.editMovie @movie
     promise.success (res) ->
-      $alert content : 'Фильм добавлен'
+      $alert content : 'Изменения сохранены'
       $state.go 'admin.movies.all'
 
   @loadPersons = (name) ->

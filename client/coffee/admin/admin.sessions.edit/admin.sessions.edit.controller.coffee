@@ -8,7 +8,7 @@ AdminSessionsEditCtrl = (Session, session, Cinema, Movie, $alert, $state) ->
     Session
       .editSession @session
       .success (res) ->
-        $alert content : 'Сеанс добавлен'
+        $alert content : 'Изменения сохранены'
         $state.go 'admin.sessions.all'
 
   @loadMovies = (name) ->

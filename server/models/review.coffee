@@ -8,6 +8,9 @@ movieSchema = new Schema
     type : Schema.Types.ObjectId
     ref : 'User'
     required : on
+  rating :
+    type : Number
+    required : on
   headline :
     type : String
     required : on

@@ -25,6 +25,6 @@ form(ng-submit='vm.action()')
   button.btn.btn-default(type='submit')
     i.ion-checkmark
     | Сохранить
-  a.btn.btn-danger(ng-if='vm.person._id' href='javascript:void(0)' ng-click='vm.deletePerson()')
+  a.btn.btn-danger.btn-danger_admin(ng-if='vm.person._id' href='javascript:void(0)' ng-click='vm.deletePerson()')
     i.ion-close
     | Удалить

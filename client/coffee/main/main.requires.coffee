@@ -1,5 +1,7 @@
 module.exports = [
   'mgcrea.ngStrap'
+  'template/rating/rating.html'
+  'ui.bootstrap.rating'
   'satellizer'
   'angular-loading-bar'
   'ngFileUpload'

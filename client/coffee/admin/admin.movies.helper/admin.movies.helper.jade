@@ -44,7 +44,7 @@ form(ng-submit='vm.action()')
   button.btn.btn-default(type='submit')
     i.ion-checkmark
     | Сохранить
-  a.btn.btn-danger(ng-if='vm.movie._id' href='javascript:void(0)' ng-click='vm.deleteMovie()')
+  a.btn.btn-danger.btn-danger_admin(ng-if='vm.movie._id' href='javascript:void(0)' ng-click='vm.deleteMovie()')
     i.ion-close
     | Удалить
 .reviews(ng-if='vm.reviews.length')
@@ -58,6 +58,7 @@ form(ng-submit='vm.action()')
           p.reviews-list__info-name {{review.creator.displayName}}
           p.reviews-list__info-date {{review.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
         button.btn.btn-danger.ion-close.reviews__btn(ng-click='vm.deleteReview(vm.movie._id, review._id)')
+      rating(ng-model='review.rating' class='rating' readonly='true')
       p.reviews-list__headline {{review.headline}}
       p.reviews-list__descr {{review.description}}
   dir-pagination-controls.pagination-wr(boundary-links='true' pagination-id='reviewsPagination')

@@ -18,7 +18,7 @@ AdminCinemasEditCtrl = (Cinema, cinema, reviews, $alert, $state, Upload) ->
     else
       promise = Cinema.editCinema @cinema
     promise.success (res) ->
-      $alert content : 'Кинотеатр добавлен'
+      $alert content : 'Изменения сохранены'
       $state.go 'admin.cinemas.all'
 
   @deleteReview = (cinemaId, reviewId) ->

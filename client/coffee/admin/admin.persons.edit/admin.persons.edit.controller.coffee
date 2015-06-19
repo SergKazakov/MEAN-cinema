@@ -14,7 +14,7 @@ AdminPersonsEditCtrl = (Person, person, $alert, $state, Upload) ->
       promise = Person.editPerson @person
 
     promise.success (res) ->
-      $alert content : 'Актер добавлен'
+      $alert content : 'Изменения сохранены'
       $state.go 'admin.persons.all'
 
   @deletePerson = ->

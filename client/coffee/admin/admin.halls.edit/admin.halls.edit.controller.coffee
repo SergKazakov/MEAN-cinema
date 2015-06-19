@@ -6,7 +6,7 @@ AdminHallsEditCtrl = (Hall, hall, Cinema, $alert, $state) ->
     Hall
       .editHall @hall
       .success (res) ->
-        $alert content : 'Зал добавлен'
+        $alert content : 'Изменения сохранены'
         $state.go 'admin.halls.all'
 
   @loadCinemas = (name) ->

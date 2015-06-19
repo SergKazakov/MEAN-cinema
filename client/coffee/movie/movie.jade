@@ -59,6 +59,7 @@
             .reviews-list__info
               p.reviews-list__info-name {{review.creator.displayName}}
               p.reviews-list__info-date {{review.createdAt | date : 'dd/MM/yyyy HH:mm:ss'}}
+          rating(ng-model='review.rating' class='rating' readonly='true')
           p.reviews-list__headline {{review.headline}}
           p.reviews-list__descr {{review.description}}
       dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)' pagination-id='reviewsPagination')
@@ -70,4 +71,7 @@
       .form-group
         label Комментарий
         textarea.form-control(ng-model='vm.review.description' placeholder='Комментарий' required)
+      .form-group
+        label Рейтинг
+        rating(ng-model='vm.review.rating' class='rating' required)
       button.btn.btn-primary(type='submit' ng-disabled='addReviewForm.$invalid') Добавить отзыв
