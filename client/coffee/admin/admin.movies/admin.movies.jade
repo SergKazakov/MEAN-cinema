@@ -1,8 +1,8 @@
 p(ng-if='vm.noMovies') Упс! Пока фильмов нет:(
 .admin-grid-wr(ng-else)
   ul.admin-grid
-    li.admin-grid__item(pagination-id='moviesPagination' dir-paginate='movie in vm.movies | itemsPerPage: vm.pageSize' total-items='vm.totalMovies' current-page='vm.currentPage')
+    li.admin-grid__item(dir-paginate='movie in vm.movies | itemsPerPage: vm.pageSize' total-items='vm.totalMovies' current-page='vm.currentPage')
       a.admin-grid__link(ui-sref='admin.movies.edit({movieId: movie._id})')
         img.admin-grid__img(ng-src='{{movie.poster}}')
-  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)' pagination-id='moviesPagination')
+  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)')
 a.btn.btn-primary(ui-sref='admin.movies.new') Добавить фильм

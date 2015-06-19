@@ -1,8 +1,8 @@
 p(ng-if='vm.noCinemas') Упс! Пока кинотеатров нет:(
 .admin-grid-wr(ng-else)
   ul.admin-grid
-    li.admin-grid__item(pagination-id='cinemasPagination' dir-paginate='cinema in vm.cinemas | itemsPerPage: vm.pageSize' total-items='vm.totalCinemas' current-page='vm.currentPage')
+    li.admin-grid__item(dir-paginate='cinema in vm.cinemas | itemsPerPage: vm.pageSize' total-items='vm.totalCinemas' current-page='vm.currentPage')
       a.admin-grid__link(ui-sref='admin.cinemas.edit({cinemaId: cinema._id})')
         img.admin-grid__img(ng-src='{{cinema.poster}}')
-  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)' pagination-id='cinemasPagination')
+  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)')
 a.btn.btn-primary(ui-sref='admin.cinemas.new') Добавить кинотеатр

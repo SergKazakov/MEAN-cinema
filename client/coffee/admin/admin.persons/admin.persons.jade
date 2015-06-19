@@ -1,8 +1,8 @@
 p(ng-if='vm.noPersons') Упс! Пока актеров нет:(
 .admin-grid-wr(ng-else)
   ul.admin-grid
-    li.admin-grid__item(pagination-id='personsPagination' dir-paginate='person in vm.persons | itemsPerPage: vm.pageSize' total-items='vm.totalPersons' current-page='vm.currentPage')
+    li.admin-grid__item(dir-paginate='person in vm.persons | itemsPerPage: vm.pageSize' total-items='vm.totalPersons' current-page='vm.currentPage')
       a.admin-grid__link(ui-sref='admin.persons.edit({personId: person._id})')
         img.admin-grid__img(ng-src='{{person.photo}}')
-  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)' pagination-id='personsPagination')
+  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)')
 a.btn.btn-primary(ui-sref='admin.persons.new') Добавить актера

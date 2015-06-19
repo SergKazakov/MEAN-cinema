@@ -9,7 +9,7 @@ p(ng-if='vm.noSessions') Упс! Пока сеансов нет:(
       th.admin-table__th.admin-table__th_center Формат
       th.admin-table__th.admin-table__th_center Редактировать
       th.admin-table__th.admin-table__th_center Удалить
-    tr.admin-table__row(pagination-id='sessionsPagination' dir-paginate='session in vm.sessions | itemsPerPage: vm.pageSize' total-items='vm.totalSessions' current-page='vm.currentPage')
+    tr.admin-table__row(dir-paginate='session in vm.sessions | itemsPerPage: vm.pageSize' total-items='vm.totalSessions' current-page='vm.currentPage')
       td.admin-table__td
         a.admin-table__link(ui-sref='movie({movieId : session.movie._id})')
           img.admin-table__img(ng-src='{{session.movie.poster}}' alt='')
@@ -22,5 +22,5 @@ p(ng-if='vm.noSessions') Упс! Пока сеансов нет:(
         a.btn.btn-primary.ion-edit(ui-sref='admin.sessions.edit({sessionId : session._id})')
       td.admin-table__td
         button.btn.btn-danger.ion-close(ng-click='vm.deleteSession(session._id, $index)')
-  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)' pagination-id='sessionsPagination')
+  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)')
 a.btn.btn-primary(ui-sref='admin.sessions.new') Добавить сеанс

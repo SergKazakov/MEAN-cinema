@@ -50,7 +50,7 @@ form(ng-submit='vm.action()')
 .reviews(ng-if='vm.reviews.length')
   h2.entity__header.panel-heading.panel-heading_border Отзывы ({{vm.reviews.length}})
   ul.reviews-list
-    li.reviews-list__item(pagination-id='reviewsPagination' dir-paginate='review in vm.reviews | itemsPerPage: vm.pageSize' current-page='vm.currentPage')
+    li.reviews-list__item(dir-paginate='review in vm.reviews | itemsPerPage: vm.pageSize' current-page='vm.currentPage')
       header.reviews-list__header
         a.reviews-list__link(href='#')
           img.reviews-list__img(ng-src='{{review.creator.picture}}')
@@ -61,4 +61,4 @@ form(ng-submit='vm.action()')
       rating(ng-model='review.rating' class='rating' readonly='true')
       p.reviews-list__headline {{review.headline}}
       p.reviews-list__descr {{review.description}}
-  dir-pagination-controls.pagination-wr(boundary-links='true' pagination-id='reviewsPagination')
+  dir-pagination-controls.pagination-wr(boundary-links='true')
