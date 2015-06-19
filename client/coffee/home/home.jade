@@ -2,16 +2,16 @@
   .panel.panel-default
     h2.panel-heading Сегодня в кино
     h3.panel-heading(ng-if='vm.noNewMovies') Пусто:((
-    ul.home-gallery.panel-body(ng-if='vm.newMovies.length' deckgrid source='vm.newMovies')
-      li.home-gallery__item
-        img.home-gallery__img(ng-src='{{card.poster}}', alt='')
-        a.home-gallery__link(ui-sref='movie({movieId : card._id})')
-          span.home-gallery__name {{card.name}}
+    ul.home-gallery.panel-body(ng-if='vm.newMovies.length')
+      li.home-gallery__item(ng-repeat='movie in vm.newMovies')
+        img.home-gallery__img(ng-src='{{movie.poster}}', alt='')
+        a.home-gallery__link(ui-sref='movie({movieId : movie._id})')
+          span.home-gallery__name {{movie.name}}
   .panel.panel-default
     h2.panel-heading Скоро в кино
     h3.panel-heading(ng-if='vm.noUpcomingMovies') Пусто:((
-    ul.home-gallery.panel-body(ng-if='vm.upcomingMovies.length' deckgrid source='vm.upcomingMovies')
-      li.home-gallery__item
-        img.home-gallery__img(ng-src='{{card.poster}}', alt='')
-        a.home-gallery__link(ui-sref='movie({movieId : card._id})')
-          span.home-gallery__name {{card.name}}
+    ul.home-gallery.panel-body(ng-if='vm.upcomingMovies.length')
+      li.home-gallery__item(ng-repeat='movie in vm.upcomingMovies')
+        img.home-gallery__img(ng-src='{{movie.poster}}', alt='')
+        a.home-gallery__link(ui-sref='movie({movieId : movie._id})')
+          span.home-gallery__name {{movie.name}}

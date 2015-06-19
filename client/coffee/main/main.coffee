@@ -12,7 +12,6 @@ require 'bower/angular-permission/dist/angular-permission'
 require 'bower/angular-utils-pagination/dirPagination'
 require 'bower/ng-elif/src/elif'
 require 'bower/angular-ui-select/dist/select.min'
-require 'bower/angular-deckgrid/angular-deckgrid'
 
 require 'normalize.css'
 require 'bower/bootstrap/dist/css/bootstrap.css'

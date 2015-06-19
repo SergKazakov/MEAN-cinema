@@ -9,7 +9,6 @@ module.exports = [
   'angularUtils.directives.dirPagination'
   'elif'
   'ui.select'
-  'akoenig.deckgrid'
   require 'angular-resource'
   require 'angular-messages'
   require 'angular-ui-router'
