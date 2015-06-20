@@ -1,6 +1,8 @@
-mongoose = require 'mongoose'
-Schema   = mongoose.Schema
-bcrypt   = require 'bcryptjs'
+mongoose          = require 'mongoose'
+Schema            = mongoose.Schema
+bcrypt            = require 'bcryptjs'
+mongoosePaginate  = require 'mongoose-paginate'
+timestamps        = require 'mongoose-timestamp'
 
 userSchema = new Schema
   email :
@@ -38,5 +40,8 @@ userSchema.pre 'save', (next) ->
 userSchema.methods.comparePassword = (password, done) ->
   bcrypt.compare password, this.password, (err, isMatch) ->
     done err, isMatch
+
+userSchema.plugin timestamps
+userSchema.plugin mongoosePaginate
 
 module.exports = mongoose.model 'User', userSchema

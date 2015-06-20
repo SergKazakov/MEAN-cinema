@@ -14,5 +14,6 @@ module.exports = (app) ->
     'api/cinema'
     'api/hall'
     'api/session'
+    'api/user'
     'error'
   ].map (path) -> require("./#{path}") app

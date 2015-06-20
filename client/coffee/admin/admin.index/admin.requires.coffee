@@ -20,4 +20,6 @@ module.exports = [
   require('../admin.sessions/admin.sessions').name
   require('../admin.sessions.new/admin.sessions.new').name
   require('../admin.sessions.edit/admin.sessions.edit').name
+  require('../admin.users.index/admin.users.index').name
+  require('../admin.users/admin.users').name
 ]

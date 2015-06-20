@@ -1,0 +1,18 @@
+p(ng-if='vm.noUsers') Упс! Пока пользователй нет:(
+.admin-table-wr(ng-else)
+  table.table.admin-table
+    thead
+      th.admin-table__th Аватар
+      th.admin-table__th Имя
+      th.admin-table__th Email
+      th.admin-table__th.admin-table__th_center Роль
+      th.admin-table__th.admin-table__th_center Удалить
+    tr.admin-table__row(dir-paginate='user in vm.users | itemsPerPage: vm.pageSize' total-items='vm.totalUsers' current-page='vm.currentPage')
+      td.admin-table__td
+        img.admin-table__img(ng-src='{{user.picture}}')
+      td.admin-table__td {{user.displayName}}
+      td.admin-table__td {{user.email}}
+      td.admin-table__td.admin-table__td_center {{user.role}}
+      td.admin-table__td.admin-table__th_center
+        button.btn.btn-danger.ion-close(ng-click='vm.deleteUser(user._id, $index)' ng-disabled='currentUser._id === user._id')
+  dir-pagination-controls.pagination-wr(boundary-links='true' on-page-change='vm.changePage(newPageNumber)')

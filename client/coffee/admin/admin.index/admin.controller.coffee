@@ -22,6 +22,10 @@ AdminCtrl = ($state) ->
     title : 'Сеансы'
     state : 'admin.sessions.all'
     parent : 'admin.sessions'
+  ,
+    title : 'Пользователи'
+    state : 'admin.users.all'
+    parent : 'admin.users'
   ]
 
   return
