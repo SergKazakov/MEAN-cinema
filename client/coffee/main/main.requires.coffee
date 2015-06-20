@@ -23,6 +23,7 @@ module.exports = [
   require('../profile/profile').name
   require('../api/api').name
   require('../movie/movie').name
+  require('../session/session').name
   require('../person/person').name
   require('../cinema/cinema').name
   require('../cinemas/cinemas').name

@@ -1,0 +1,10 @@
+.container
+  .entity-wr.panel.panel-default
+    header.session-header
+      img.session-header__img(ng-src='{{vm.session.movie.poster}}')
+      .session-caption
+        h2.session-caption__movie-name {{vm.session.movie.name}}
+        h3.session-caption__cinema-name {{vm.session.cinema.name}}
+        h4.session-caption__hall-name Зал {{vm.session.hall.name}}
+      h3.session-header__cinema-address {{vm.session.cinema.address}}
+    p.session-header__date {{vm.session.date | date : 'HH:mm'}}
