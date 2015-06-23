@@ -38,7 +38,7 @@
               img.cinema-sessions-table__img(ng-src='{{session.movie.poster}}')
           td.cinema-sessions-table__td {{session.movie.name}}
           td.cinema-sessions-table__td {{session.hall.name}}
-          td.cinema-sessions-table__td: a(ui-sref='session({sessionId: session._id})') {{session.date | date : 'HH:mm'}}
+          td.cinema-sessions-table__td: a.btn.btn-primary(ui-sref='session({sessionId: session._id})') {{session.date | date : 'HH:mm'}}
     h2.entity__header.panel-heading.panel-heading_border(ng-if='!vm.reviews.length') Упс! Отзывов нет:(
     .reviews(ng-else)
       h2.entity__header.panel-heading.panel-heading_border Отзывы ({{vm.totalReviews}})

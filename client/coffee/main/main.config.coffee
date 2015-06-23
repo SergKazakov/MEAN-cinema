@@ -1,4 +1,4 @@
-mainConfig = ($urlRouterProvider, $authProvider, $alertProvider) ->
+mainConfig = ($urlRouterProvider, $authProvider, $alertProvider, cfpLoadingBarProvider) ->
   $urlRouterProvider.otherwise '/'
 
   $authProvider.facebook
@@ -18,6 +18,8 @@ mainConfig = ($urlRouterProvider, $authProvider, $alertProvider) ->
     type : 'material'
     duration : 3
 
-mainConfig.$inject = ['$urlRouterProvider', '$authProvider', '$alertProvider']
+  cfpLoadingBarProvider.includeSpinner = no
+
+mainConfig.$inject = ['$urlRouterProvider', '$authProvider', '$alertProvider', 'cfpLoadingBarProvider']
 
 module.exports = mainConfig
