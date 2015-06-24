@@ -4,10 +4,16 @@ wiredep      = require('wiredep').stream
 runSequence  = require 'run-sequence'
 childProcess = require 'child_process'
 webpack      = require 'webpack-stream'
+browserSync  = require 'browser-sync'
 
 gulp.task 'webpack', ->
   gulp.src './client/coffee/main/main.coffee'
     .pipe webpack require('./webpack.config.coffee') {}
+    .pipe gulp.dest './client/js'
+
+gulp.task 'webpack-production', ->
+  gulp.src './client/coffee/main/main.coffee'
+    .pipe webpack require('./webpack.config.coffee') production : on
     .pipe gulp.dest './client/js'
 
 gulp.task 'wiredep', ->
@@ -31,26 +37,19 @@ gulp.task 'nodemon', ->
       'TWITTER_CALLBACK' : 'http://localhost:3000'
       'GITHUB_SECRET' : '6038e35e20e6b4fc86e7a0694329eee7f8cf9814'
 
+gulp.task 'server', ['nodemon'], ->
+  browserSync.init
+    proxy : 'http://localhost:3000'
+    files : ['client/js/bundle.js']
+    port : 7000
+  gulp.watch ['gulpfile.coffee', './server/**/*.coffee'], ['coffeelint']
+
 gulp.task 'coffeelint', ->
   gulp.src './server/**/*.coffee'
     .pipe $.coffeelint()
     .pipe $.coffeelint.reporter()
 
-gulp.task 'watch', ->
-  $.livereload.listen()
-  gulp
-    .watch [
-      'client/js/bundle.js'
-    ]
-    .on 'change', $.livereload.changed
-  gulp.watch ['./*.coffee', './server/**/*.coffee', '!./client'], ['coffeelint']
-
 gulp.task 'clean', require('del').bind null, ['dist']
-
-gulp.task 'webpack-production', ->
-  gulp.src './client/coffee/main/main.coffee'
-    .pipe webpack require('./webpack.config.coffee') production : on
-    .pipe gulp.dest './client/js'
 
 gulp.task 'copy', ->
   gulp.src [
@@ -70,4 +69,4 @@ gulp.task 'build', ->
 gulp.task 'default', ->
   childProcess.exec '"C:/Program Files/MongoDB 2.6 Standard/bin/mongod.exe" --dbpath C:/mongodb' , (err, stdout, stderr) ->
     console.log stdout
-  runSequence 'nodemon', 'coffeelint', 'watch', 'webpack'
+  runSequence 'server', 'coffeelint', 'webpack'
