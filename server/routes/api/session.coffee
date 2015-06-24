@@ -11,38 +11,18 @@ isAdmin             = alias.require '@auth/isAdmin'
 router
   .route '/sessions'
   .get (req, res, next) ->
+    criterion = {}
     if req.query.page
-      Session.paginate {}, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
+      Session.paginate criterion, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
         return next() if err
         res.status(200).send
           items : paginatedResults
           count : itemCount
       ,
         populate : 'movie hall cinema'
-    else if req.query.cinema
-      now = req.query.date or moment()
-      midnight = moment().hours(23).minutes(59).seconds(59)
-      Session
-        .find {}
-        .where('date').gte(now).lte(midnight)
-        .populate 'hall movie cinema'
-        .exec (err, sessions) ->
-          return next(err) if err
-          sessions = _.filter sessions, (item) -> item if item.cinema._id.toString() is req.query.cinema
-          res.status(200).send sessions
-    else if req.query.movie
-      now = req.query.date or moment()
-      midnight = moment().hours(23).minutes(59).seconds(59)
-      Session
-        .find movie : req.query.movie
-        .where('date').gte(now).lte(midnight)
-        .deepPopulate 'movie hall cinema.halls'
-        .exec (err, sessions) ->
-          return next(err) if err
-          res.status(200).send sessions
     else
       Session
-        .find {}
+        .find criterion
         .populate 'movie hall cinema'
         .exec (err, sessions) ->
           return next(err) if err

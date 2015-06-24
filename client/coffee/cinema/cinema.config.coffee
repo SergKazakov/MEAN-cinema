@@ -7,8 +7,8 @@ cinemaConfig = ($stateProvider) ->
       cinema : ['Cinema', '$stateParams', (Cinema, $stateParams) ->
         Cinema.getCinema $stateParams.cinemaId
       ]
-      sessions : ['Session', '$stateParams', (Session, $stateParams) ->
-        Session.getSessionsByCinema $stateParams.cinemaId
+      sessions : ['Cinema', '$stateParams', (Cinema, $stateParams) ->
+        Cinema.getSessions $stateParams.cinemaId
       ]
       reviews : ['Cinema', '$stateParams', (Cinema, $stateParams) ->
         Cinema.getCinemaReviewsByPage $stateParams.cinemaId, 1, 10

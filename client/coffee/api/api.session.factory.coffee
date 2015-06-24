@@ -3,10 +3,6 @@ Session = ($http) ->
     $http.get '/api/v1/sessions'
   getSessionsByPage : (pageNumber, pageSize) ->
     $http.get "/api/v1/sessions?page=#{pageNumber}&size=#{pageSize}"
-  getSessionsByCinema : (cinemaId) ->
-    $http.get "/api/v1/sessions?cinema=#{cinemaId}"
-  getSessionsByMovie : (movieId) ->
-    $http.get "/api/v1/sessions?movie=#{movieId}"
   createSession : (session) ->
     $http.post '/api/v1/sessions', session
   getSession : (sessionId) ->

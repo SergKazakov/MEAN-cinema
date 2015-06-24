@@ -5,6 +5,8 @@ Cinema = ($http) ->
     $http.get "/api/v1/cinemas?name=#{cinemaName}"
   getCinemasByPage : (pageNumber, pageSize) ->
     $http.get "/api/v1/cinemas?page=#{pageNumber}&size=#{pageSize}"
+  getSessions : (cinemaId) ->
+    $http.get "/api/v1/cinemas/#{cinemaId}/sessions"
   createCinema : (cinema) ->
     $http.post '/api/v1/cinemas', cinema
   getCinema : (cinemaId) ->

@@ -6,6 +6,7 @@ async               = require 'async'
 mongoose            = require 'mongoose'
 Movie               = mongoose.model 'Movie'
 Review              = mongoose.model 'Review'
+Session             = mongoose.model 'Session'
 ensureAuthenticated = alias.require '@auth/ensureAuthenticated'
 isAdmin             = alias.require '@auth/isAdmin'
 
@@ -148,5 +149,17 @@ router
       return next(err) if err
       res.sendStatus 200
 
+router
+  .route '/movies/:movieId/sessions'
+  .get (req, res, next) ->
+    now = req.query.date or moment()
+    midnight = moment().hours(23).minutes(59).seconds(59)
+    Session
+      .find movie : req.params.movieId
+      .where('date').gte(now).lte(midnight)
+      .deepPopulate 'movie hall cinema.halls'
+      .exec (err, sessions) ->
+        return next(err) if err
+        res.status(200).send sessions
 
 module.exports = (app) -> app.use '/api/v1/', router

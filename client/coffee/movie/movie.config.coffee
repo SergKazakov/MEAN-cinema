@@ -7,8 +7,8 @@ movieConfig = ($stateProvider) ->
       movie : ['Movie', '$stateParams', (Movie, $stateParams) ->
         Movie.getMovie $stateParams.movieId
       ]
-      sessions : ['Session', '$stateParams', (Session, $stateParams) ->
-        Session.getSessionsByMovie $stateParams.movieId
+      sessions : ['Movie', '$stateParams', (Movie, $stateParams) ->
+        Movie.getSessions $stateParams.movieId
       ]
       reviews : ['Movie', '$stateParams', (Movie, $stateParams) ->
         Movie.getMovieReviewsByPage $stateParams.movieId, 1, 10
