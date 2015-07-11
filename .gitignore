@@ -1,12 +1,8 @@
 node_modules
-*.log
-.tmp
-.grunt
-.DS_Store
-.yo-rc.json
 dist
 client/js
 client/bower_components
 client/img/media
 .idea
 .codio
+.vagrant

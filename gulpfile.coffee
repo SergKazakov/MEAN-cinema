@@ -2,7 +2,6 @@ gulp         = require 'gulp'
 $            = require('gulp-load-plugins')()
 wiredep      = require('wiredep').stream
 runSequence  = require 'run-sequence'
-childProcess = require 'child_process'
 webpack      = require 'webpack-stream'
 browserSync  = require 'browser-sync'
 
@@ -71,6 +70,4 @@ gulp.task 'build', ->
   runSequence ['webpack-production', 'clean'], 'copy'
 
 gulp.task 'default', ->
-  childProcess.exec '"C:/Program Files/MongoDB 2.6 Standard/bin/mongod.exe" --dbpath C:/mongodb' , (err, stdout, stderr) ->
-    console.log stdout
   runSequence 'server', 'coffeelint', 'webpack'
