@@ -16,7 +16,7 @@ sudo apt-get install -y nodejs
 mkdir /home/vagrant/.npm
 sudo chmod 777 -R /home/vagrant/.npm
 
-# Fir 255 char limit on Windows
+# Fix 255 char limit on Windows
 mkdir ~/node_modules
 ln -sf ~/node_modules /vagrant
 
