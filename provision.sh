@@ -1,4 +1,9 @@
-#!/usr/bin/env bash
+# NodeJS
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+source $HOME/.nvm/nvm.sh
+nvm i stable
+nvm alias default stable
+sudo apt-get install -y build-essential libssl-dev
 
 # MongoDB
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
@@ -6,18 +11,6 @@ echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | 
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 
-# NodeJS
-sudo apt-get install -y g++ curl libssl-dev apache2-utils git-core python-software-properties
-sudo apt-add-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install -y nodejs
-
-# Fix npm permissions
-mkdir /home/vagrant/.npm
-sudo chmod 777 -R /home/vagrant/.npm
-
-# Fix 255 char limit on Windows
-mkdir ~/node_modules
-ln -sf ~/node_modules /vagrant
-
-sudo npm i -g gulp bower nodemon coffee-script npm-check-updates bower-update
+# Others
+sudo apt-get install -y git
+npm i -g gulp bower nodemon coffee-script npm-check-updates bower-update
