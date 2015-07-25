@@ -10,17 +10,22 @@ isAdmin             = alias.require '@auth/isAdmin'
 router
   .route '/halls'
   .get (req, res, next) ->
+    criterion = {}
     if req.query.page
-      Hall.paginate {}, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
-        return next(err) if err
-        res.status(200).send
-          items : paginatedResults
-          count : itemCount
+      Hall.paginate criterion
       ,
-        sortBy : createdAt : -1
+        page : req.query.page
+        limit : req.query.size or 0
         populate : 'cinema'
+        sortBy : createdAt : -1
+      ,
+        (err, results, pageCount, itemCount) ->
+          return next(err) if err
+          res.status(200).send
+            items : results
+            count : itemCount
     else
-      Hall.find {}, (err, halls) ->
+      Hall.find criterion, (err, halls) ->
         return next(err) if err
         res.status(200).send halls
   .post ensureAuthenticated, isAdmin, (req, res, next) ->

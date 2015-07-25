@@ -10,13 +10,17 @@ router
   .get ensureAuthenticated, isAdmin, (req, res, next) ->
     criterion = {}
     if req.query.page
-      User.paginate criterion, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
-        return next(err) if err
-        res.status(200).send
-          items : paginatedResults
-          count : itemCount
+      User.paginate criterion
       ,
+        page : req.query.page
+        limit : req.query.size or 0
         sortBy : createdAt : 1
+      ,
+        (err, results, pageCount, itemCount) ->
+          return next(err) if err
+          res.status(200).send
+            items : results
+            count : itemCount
     else
       User.find criterion, (err, users) ->
         return next(err) if err

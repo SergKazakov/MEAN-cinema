@@ -9,8 +9,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "mean"
-    vb.memory = 512
-    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "50"]
+    vb.cpus = 2
+    vb.memory = 2048
     vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
   end
 

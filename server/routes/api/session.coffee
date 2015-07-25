@@ -13,13 +13,17 @@ router
   .get (req, res, next) ->
     criterion = {}
     if req.query.page
-      Session.paginate criterion, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
-        return next() if err
-        res.status(200).send
-          items : paginatedResults
-          count : itemCount
+      Session.paginate criterion
       ,
+        page : req.query.page
+        limit : req.query.size or 0
         populate : 'movie hall cinema'
+      ,
+        (err, results, pageCount, itemCount) ->
+          return next(err) if err
+          res.status(200).send
+            items : results
+            count : itemCount
     else
       Session
         .find criterion

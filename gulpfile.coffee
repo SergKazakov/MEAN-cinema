@@ -45,6 +45,7 @@ gulp.task 'server', ['nodemon'], ->
     proxy : "http://localhost:#{conf.expressPort}"
     files : ['client/js/bundle.js']
     port : conf.browserSyncPort
+    open : no
   gulp.watch ['gulpfile.coffee', './server/**/*.coffee'], ['coffeelint']
 
 gulp.task 'coffeelint', ->

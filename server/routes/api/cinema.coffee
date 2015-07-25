@@ -20,14 +20,18 @@ router
   .get (req, res, next) ->
     criterion = {}
     if req.query.page
-      Cinema.paginate {}, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
-        return next(err) if err
-        res.status(200).send
-          items : paginatedResults
-          count : itemCount
+      Cinema.paginate criterion
       ,
-        sortBy : name : 1
+        page : req.query.page
+        limit : req.query.size or 0
         populate : 'halls'
+        sortBy : name : 1
+      ,
+        (err, results, pageCount, itemCount) ->
+          return next(err) if err
+          res.status(200).send
+            items : results
+            count : itemCount
     else
       criterion = name : new RegExp req.query.name, 'i' if req.query.name
       Cinema
@@ -70,14 +74,18 @@ router
       return next(err) if err
       criterion = _id : $in : cinema.reviews
       if req.query.page
-        Review.paginate criterion, req.query.page, req.query.size or 0, (err, pageCount, paginatedResults, itemCount) ->
-          return next(err) if err
-          res.status(200).send
-            items : paginatedResults
-            count : itemCount
+        Review.paginate criterion
         ,
-          sortBy : createdAt : -1
+          page : req.query.page
+          limit : req.query.size or 0
           populate : 'creator'
+          sortBy : createdAt : -1
+        ,
+          (err, results, pageCount, itemCount) ->
+            return next(err) if err
+            res.status(200).send
+              items : results
+              count : itemCount
       else
         Review
           .find criterion
