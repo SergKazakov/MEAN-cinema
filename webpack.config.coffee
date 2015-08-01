@@ -1,7 +1,5 @@
 WebpackNotifierPlugin = require 'webpack-notifier'
 webpack               = require 'webpack'
-autoprefixer          = require 'autoprefixer-core'
-csswring              = require 'csswring'
 path                  = require 'path'
 bowerRoot             = path.join __dirname, 'client/bower_components'
 stylusRoot            = path.join __dirname, 'client/stylus'
@@ -40,12 +38,15 @@ module.exports = (options) ->
         loader : 'coffee-loader'
       ,
         test : /\.css$/
-        loader : 'style-loader!css-loader!postcss-loader'
+        loader : 'style-loader!css-loader!cssnext-loader'
       ,
         test : /\.styl$/
-        loader : 'style-loader!css-loader!postcss-loader!stylus-loader'
+        loader : 'style-loader!css-loader!cssnext-loader!stylus-loader'
       ,
-        test : /\.(svg|eot|ttf|woff)/
+        test : /\.(png|jpg|gif|svg)/
+        loader : 'url-loader?limit=8192&name=img/[name].[ext]'
+      ,
+        test : /\.(eot|ttf|woff)/
         loader : 'url-loader'
       ,
         test : /\.jade$/
@@ -69,8 +70,9 @@ module.exports = (options) ->
       '.coffee'
     ]
   plugins : plugins
-  postcss : [
-    autoprefixer
-      browsers : ['last 2 version']
-    csswring
-  ]
+  cssnext :
+    browsers : 'last 2 versions'
+    compress : on
+    messages :
+      browser : on
+    sourcemap : on

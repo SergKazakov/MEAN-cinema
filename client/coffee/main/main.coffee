@@ -18,7 +18,7 @@ require 'bower/bootstrap/dist/css/bootstrap.css'
 require 'bower/angular-motion/dist/angular-motion.css'
 require 'bower/angular-loading-bar/build/loading-bar.css'
 require 'bower/ionicons/css/ionicons.css'
-require 'bower/ng-tags-input/ng-tags-input.min.css'
+require 'bower/ng-tags-input/ng-tags-input.css'
 require 'bower/angular-ui-select/dist/select.css'
 require 'stylus/main.styl'
 

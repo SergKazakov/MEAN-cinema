@@ -1,9 +1,9 @@
 gulp         = require 'gulp'
 $            = require('gulp-load-plugins')()
-wiredep      = require('wiredep').stream
 runSequence  = require 'run-sequence'
 webpack      = require 'webpack-stream'
 browserSync  = require 'browser-sync'
+env          = process.env.NODE_ENV
 
 conf =
   expressPort : 3000
@@ -11,18 +11,8 @@ conf =
 
 gulp.task 'webpack', ->
   gulp.src './client/coffee/main/main.coffee'
-    .pipe webpack require('./webpack.config.coffee') {}
+    .pipe webpack require('./webpack.config.coffee') production : env is 'production'
     .pipe gulp.dest './client/js'
-
-gulp.task 'webpack-production', ->
-  gulp.src './client/coffee/main/main.coffee'
-    .pipe webpack require('./webpack.config.coffee') production : on
-    .pipe gulp.dest './client/js'
-
-gulp.task 'wiredep', ->
-  gulp.src 'client/stylus/main.styl'
-    .pipe wiredep()
-    .pipe gulp.dest 'client/stylus'
 
 gulp.task 'nodemon', ->
   $.nodemon
@@ -52,23 +42,6 @@ gulp.task 'coffeelint', ->
   gulp.src './server/**/*.coffee'
     .pipe $.coffeelint()
     .pipe $.coffeelint.reporter()
-
-gulp.task 'clean', require('del').bind null, ['dist']
-
-gulp.task 'copy', ->
-  gulp.src [
-    './client/js/bundle.js'
-    './client/index.html'
-    './client/favicon.ico'
-    './server/**'
-    'package.json'
-    'Procfile'
-  ]
-  , base : '.'
-    .pipe gulp.dest './dist'
-
-gulp.task 'build', ->
-  runSequence ['webpack-production', 'clean'], 'copy'
 
 gulp.task 'default', ->
   runSequence 'server', 'coffeelint', 'webpack'
