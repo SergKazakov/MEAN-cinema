@@ -31,8 +31,6 @@ app
   .use bodyParser.json()
   .use bodyParser.urlencoded extended : on
   .use methodOverride()
-  .set 'views', path.join __dirname, 'views'
-  .engine 'html', require('ejs').renderFile
   .set 'view engine', 'html'
   .use express.static staticPath
   .use multer
@@ -47,5 +45,7 @@ if app.get('env') is 'production'
     if protocol is 'https' then next() else res.redirect "https://#{req.hostname}#{req.url}"
 
 alias.require('@routes') app
+app.get '*', (req, res) ->
+  res.sendFile "#{staticPath}/index.html"
 
 app.listen conf.port

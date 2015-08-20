@@ -1,5 +1,6 @@
-mainConfig = ($urlRouterProvider, $authProvider, $alertProvider, cfpLoadingBarProvider) ->
+mainConfig = ($locationProvider, $urlRouterProvider, $authProvider, $alertProvider, cfpLoadingBarProvider) ->
   $urlRouterProvider.otherwise '/'
+  $locationProvider.html5Mode true
 
   $authProvider.facebook
     clientId : process.env.FACEBOOK_ID
@@ -20,6 +21,6 @@ mainConfig = ($urlRouterProvider, $authProvider, $alertProvider, cfpLoadingBarPr
 
   cfpLoadingBarProvider.includeSpinner = no
 
-mainConfig.$inject = ['$urlRouterProvider', '$authProvider', '$alertProvider', 'cfpLoadingBarProvider']
+mainConfig.$inject = ['$locationProvider', '$urlRouterProvider', '$authProvider', '$alertProvider', 'cfpLoadingBarProvider']
 
 module.exports = mainConfig
