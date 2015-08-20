@@ -1,8 +1,6 @@
-angular = require 'angular'
-
+require 'angular'
 require 'satellizer'
 require 'ng-file-upload'
-
 require 'bower/angular-loading-bar/build/loading-bar.min'
 require 'bower/angular-strap/dist/angular-strap'
 require 'bower/angular-strap/dist/angular-strap.tpl'

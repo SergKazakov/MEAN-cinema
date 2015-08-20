@@ -1,53 +1,60 @@
 WebpackNotifierPlugin = require 'webpack-notifier'
+BrowserSyncPlugin     = require 'browser-sync-webpack-plugin'
 webpack               = require 'webpack'
 path                  = require 'path'
 bowerRoot             = path.join __dirname, 'client/bower_components'
 stylusRoot            = path.join __dirname, 'client/stylus'
+env                   = process.env.NODE_ENV
 
-module.exports = (options) ->
-  plugins = [
-    new WebpackNotifierPlugin()
-    new webpack.optimize.DedupePlugin()
-    new webpack.DefinePlugin
-      process :
-        env :
-          FACEBOOK_ID : JSON.stringify '1653435961554069'
-          GOOGLE_ID : JSON.stringify '476828247245-ve3nh4f0fbcg0elggblkvctse9a26821.apps.googleusercontent.com'
-          GITHUB_ID : JSON.stringify 'fdf1e069c66bb5a88004'
-          TWITTER_URL : JSON.stringify '/auth/twitter'
-  ]
+plugins = [
+  new WebpackNotifierPlugin()
+  new webpack.optimize.DedupePlugin()
+  new webpack.DefinePlugin
+    process :
+      env :
+        FACEBOOK_ID : JSON.stringify '1653435961554069'
+        GOOGLE_ID : JSON.stringify '476828247245-ve3nh4f0fbcg0elggblkvctse9a26821.apps.googleusercontent.com'
+        GITHUB_ID : JSON.stringify 'fdf1e069c66bb5a88004'
+        TWITTER_URL : JSON.stringify '/auth/twitter'
+  new BrowserSyncPlugin
+    proxy : 'http://localhost:3000'
+    port : 7000
+    files : ['./client/js/bundle.js']
+    open : no
+]
 
-  plugins.push new webpack.optimize.UglifyJsPlugin() if options.production
+plugins.push new webpack.optimize.UglifyJsPlugin() if env is 'production'
 
+module.exports =
   entry : './client/coffee/main/main.coffee'
   output :
-    path : "#{__dirname}/client/js"
+    path : "#{__dirname}/client/build"
     filename : 'bundle.js'
   cache : on
-  watch : on unless options.production
+  watch : on unless env is 'production'
   debug : on
-  devtool : 'source-map'
+  devtool : 'eval'
   module :
     preLoaders : [
       test : /\.coffee$/
       exclude : /node_modules/
-      loader : 'coffeelint-loader'
+      loader : 'coffeelint'
     ]
     loaders : [
         test : /\.coffee$/
-        loader : 'coffee-loader'
+        loader : 'coffee'
       ,
         test : /\.css$/
-        loader : 'style-loader!css-loader!cssnext-loader'
+        loader : 'style!css!cssnext'
       ,
         test : /\.styl$/
-        loader : 'style-loader!css-loader!cssnext-loader!stylus-loader'
+        loader : 'style!css!cssnext!stylus'
       ,
         test : /\.(png|jpg|gif|svg)/
-        loader : 'url-loader?limit=8192&name=img/[name].[ext]'
+        loader : 'url?limit=8192&name=img/[name].[ext]'
       ,
         test : /\.(eot|ttf|woff)/
-        loader : 'url-loader'
+        loader : 'url'
       ,
         test : /\.jade$/
         loader : 'ng-cache?prefix=[dir]/[dir]!jade-html'
@@ -72,7 +79,8 @@ module.exports = (options) ->
   plugins : plugins
   cssnext :
     browsers : 'last 2 versions'
-    compress : on
+    features:
+      rem : no
+    compress : on if env is 'production'
     messages :
-      browser : on
-    sourcemap : on
+      console : on
