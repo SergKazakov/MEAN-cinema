@@ -2,20 +2,7 @@
   "name": "MEAN-cinema",
   "version": "0.0.1",
   "dependencies": {
-    "bootstrap": "~3.3.4",
-    "angular-motion": "~0.4.2",
-    "angular-strap": "~2.3.1",
-    "angular-loading-bar": "~0.8.0",
     "ionicons": "~2.0.1",
-    "ng-tags-input": "~3.0.0",
-    "angular-permission": "~0.3.0",
-    "angular-utils-pagination": "~0.8.2",
-    "ng-elif": "~0.1.3",
-    "angular-ui-select": "~0.12.0",
-    "angular-bootstrap": "~0.13.0"
-  },
-  "resolutions": {
-    "angular-strap": "~2.3.1",
-    "ng-tags-input": "~3.0.0"
+    "ng-elif": "~0.1.3"
   }
 }

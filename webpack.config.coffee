@@ -2,8 +2,9 @@ WebpackNotifierPlugin = require 'webpack-notifier'
 BrowserSyncPlugin     = require 'browser-sync-webpack-plugin'
 webpack               = require 'webpack'
 path                  = require 'path'
-bowerRoot             = path.join __dirname, 'client/bower_components'
-stylusRoot            = path.join __dirname, 'client/stylus'
+npmRoot               = path.join __dirname, './node_modules'
+bowerRoot             = path.join __dirname, './client/bower_components'
+stylusRoot            = path.join __dirname, './client/stylus'
 env                   = process.env.NODE_ENV
 
 plugins = [
@@ -68,6 +69,7 @@ module.exports =
     ]
   resolve :
     alias :
+      npm : npmRoot
       bower : bowerRoot
       stylus : stylusRoot
     extensions : [
