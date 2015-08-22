@@ -1,4 +1,5 @@
 WebpackNotifierPlugin = require 'webpack-notifier'
+ExtractTextPlugin     = require 'extract-text-webpack-plugin'
 BrowserSyncPlugin     = require 'browser-sync-webpack-plugin'
 webpack               = require 'webpack'
 path                  = require 'path'
@@ -8,6 +9,8 @@ stylusRoot            = path.join __dirname, './client/stylus'
 env                   = process.env.NODE_ENV
 
 plugins = [
+  new ExtractTextPlugin '[name].css'
+  new webpack.optimize.CommonsChunkPlugin 'vendor', 'vendor.js'
   new WebpackNotifierPlugin()
   new webpack.optimize.DedupePlugin()
   new webpack.DefinePlugin
@@ -27,7 +30,35 @@ plugins = [
 plugins.push new webpack.optimize.UglifyJsPlugin() if env is 'production'
 
 module.exports =
-  entry : './client/coffee/main/main.coffee'
+  entry :
+    bundle : './client/coffee/main/main.coffee'
+    vendor : [
+      'angular'
+      'satellizer'
+      'ng-file-upload'
+      'angular-permission'
+      'angular-utils-pagination'
+      'angular-loading-bar'
+      'angular-jwt'
+      'angular-ui-router'
+      'angular-messages'
+      'angular-animate'
+      'angular-sanitize'
+      'ng-tags-input'
+      'npm/angular-strap/dist/angular-strap'
+      'npm/angular-strap/dist/angular-strap.tpl'
+      'npm/angular-ui-bootstrap/ui-bootstrap.min'
+      'npm/angular-ui-bootstrap/ui-bootstrap-tpls.min'
+      'npm/ui-select/dist/select.min'
+      'bower/ng-elif/src/elif'
+      'normalize.css'
+      'npm/bootstrap/dist/css/bootstrap.css'
+      'npm/angular-motion/dist/angular-motion.css'
+      'npm/angular-loading-bar/build/loading-bar.css'
+      'npm/ng-tags-input/build/ng-tags-input.css'
+      'npm/ui-select/dist/select.css'
+      'bower/ionicons/css/ionicons.css'
+    ]
   output :
     path : "#{__dirname}/client/build"
     filename : 'bundle.js'
@@ -46,10 +77,10 @@ module.exports =
         loader : 'coffee'
       ,
         test : /\.css$/
-        loader : 'style!css!cssnext'
+        loader : ExtractTextPlugin.extract 'style', 'css!cssnext'
       ,
         test : /\.styl$/
-        loader : 'style!css!cssnext!stylus'
+        loader : ExtractTextPlugin.extract 'style', 'css!cssnext!stylus'
       ,
         test : /\.(png|jpg|gif|svg)/
         loader : 'url?limit=8192&name=img/[name].[ext]'

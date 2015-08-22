@@ -9,12 +9,11 @@ module.exports = [
   'angularUtils.directives.dirPagination'
   'elif'
   'ui.select'
-  require 'angular-resource'
-  require 'angular-messages'
-  require 'angular-ui-router'
-  require 'angular-animate'
-  require 'angular-sanitize'
-  require 'angular-jwt'
+  'ngMessages'
+  'ui.router'
+  'ngAnimate'
+  'ngSanitize'
+  'angular-jwt'
   require('../navbar/navbar').name
   require('../home/home').name
   require('../login/login').name
