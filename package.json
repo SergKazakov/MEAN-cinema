@@ -38,6 +38,7 @@
     "mongoose-timestamp": "^0.4.0",
     "morgan": "^1.6.1",
     "multer": "^0.1.8",
+    "napa": "^1.2.0",
     "ng-file-upload": "^5.0.9",
     "ng-tags-input": "^3.0.0",
     "normalize.css": "^3.0.3",
@@ -68,6 +69,13 @@
     "url-loader": "^0.5.6",
     "webpack": "^1.11.0",
     "webpack-notifier": "^1.2.1"
+  },
+  "scripts": {
+    "install": "napa"
+  },
+  "napa": {
+    "ng-elif": "zachsnow/ng-elif",
+    "ionicons": "driftyco/ionicons"
   },
   "engines": {
     "node": "latest",

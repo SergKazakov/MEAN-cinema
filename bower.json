@@ -1,8 +1,0 @@
-{
-  "name": "MEAN-cinema",
-  "version": "0.0.1",
-  "dependencies": {
-    "ionicons": "~2.0.1",
-    "ng-elif": "~0.1.3"
-  }
-}

@@ -50,14 +50,14 @@ module.exports =
       'npm/angular-ui-bootstrap/ui-bootstrap.min'
       'npm/angular-ui-bootstrap/ui-bootstrap-tpls.min'
       'npm/ui-select/dist/select.min'
-      'bower/ng-elif/src/elif'
+      'npm/ng-elif/src/elif'
       'normalize.css'
       'npm/bootstrap/dist/css/bootstrap.css'
       'npm/angular-motion/dist/angular-motion.css'
       'npm/angular-loading-bar/build/loading-bar.css'
       'npm/ng-tags-input/build/ng-tags-input.css'
       'npm/ui-select/dist/select.css'
-      'bower/ionicons/css/ionicons.css'
+      'npm/ionicons/css/ionicons.css'
     ]
   output :
     path : "#{__dirname}/client/build"
