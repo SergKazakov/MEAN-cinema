@@ -39,11 +39,12 @@ module.exports =
     ]
   output :
     path : "#{__dirname}/client/build"
-    filename : 'bundle.js'
-  cache : on
+    filename : '[name].js'
   watch : on unless env is 'production'
+  watchOptions :
+    aggregateTimeout : 100
   debug : on
-  devtool : 'eval'
+  devtool : 'eval' unless env is 'production'
   module :
     preLoaders : [
       test : /\.coffee$/
@@ -70,18 +71,22 @@ module.exports =
         loader : 'ng-cache?prefix=[dir]/[dir]!jade-html'
     ]
   resolve :
+    modulesDirectories : ['node_modules']
     alias :
       npm : npmRoot
       stylus : stylusRoot
     extensions : [
       ''
       '.js'
-      '.json'
       '.coffee'
     ]
+  resolveLoader :
+    modulesDirectories : ['node_modules']
+    moduleTemplates :    ['*-loader']
+    extensions :         ['', '.js']
   plugins : [
     new ExtractTextPlugin '[name].css'
-    new webpack.optimize.CommonsChunkPlugin 'vendor', 'vendor.js'
+    new webpack.NoErrorsPlugin()
     new WebpackNotifierPlugin()
     new webpack.optimize.DedupePlugin()
     new webpack.DefinePlugin

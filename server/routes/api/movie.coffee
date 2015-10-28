@@ -63,16 +63,16 @@ router
     Movie
       .findById req.params.movieId
       .deepPopulate 'directors actors reviews reviews.creator'
-      .exec (err, movie) ->
-        return next(err) if err
-        res.status(200).send movie
+      .exec()
+      .then (movie) -> res.status(200).send movie
+      .end (err) -> next(err) if err
   .put ensureAuthenticated, isAdmin, (req, res, next) ->
-    Movie.findById req.params.movieId, (err, movie) ->
-      return next(err) if err
-      createMovie movie, req
-        .save (err, movie) ->
-          return next(err) if err
-          res.status(200).send movie
+    Movie
+      .findById(req.params.movieId)
+      .exec()
+      .then (movie) -> createMovie(movie, req).save()
+      .then (movie) -> res.status(200).send movie
+      .end (err) -> next(err) if err
   .delete ensureAuthenticated, isAdmin, (req, res, next) ->
     Movie.findByIdAndRemove req.params.movieId, (err, movie) ->
       return next(err) if err
